@@ -1,4 +1,3 @@
-import os
 import time
 
 import serial
@@ -28,18 +27,21 @@ class SerialConsoleWorker(QThread):
             time.sleep(0.2)
 
         else:
-            self.msgThreadNoti.emit("console is none... ")
+            self.ThreadNoti("console is none... ")
+
+    def ThreadNoti(self, msg: str):
+        self.msgThreadNoti.emit(f"[{self.comPort} / {self.BaudRate}] {msg}")
 
     def run(self):
         with QMutexLocker(self.mutex):
             try:
-                self.msgThreadNoti.emit("serial try open...")
+                self.ThreadNoti("serial try open...")
                 self.serial_port = serial.Serial(port=self.comPort, baudrate=self.BaudRate, timeout=3)
 
                 time.sleep(0.4)
 
                 if self.serial_port.isOpen():
-                    self.msgThreadNoti.emit("console.isOpen!!!")
+                    self.ThreadNoti("console.isOpen!!!")
 
                     while self.bRunning:
                         if self.serial_port.in_waiting > 0:
@@ -47,13 +49,13 @@ class SerialConsoleWorker(QThread):
                             if input_data:
                                 self.msgReadNoti.emit(input_data)
                             else:
-                                self.msgThreadNoti.emit("input_data is Empty")
+                                self.ThreadNoti("input_data is Empty")
                         time.sleep(0.1)
 
-                    self.msgThreadNoti.emit("write complete!!")
+                    self.ThreadNoti("write complete!!")
                 else:
-                    self.msgThreadNoti.emit("not open...")
+                    self.ThreadNoti("not open...")
 
             except Exception as error:
                 print(error)
-                self.msgThreadNoti.emit(str(error))
+                self.ThreadNoti(str(error))

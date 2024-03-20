@@ -1,9 +1,8 @@
-import time
-
 from PySide6.QtWidgets import QMainWindow, QApplication
 
 from src.MainUI import Ui_BCT
-from src.SerialWork import SerialConsoleWorker
+from src.view.BatteryTestView import BatteryTestView
+from src.view.PushSerialView import PushSerialView
 
 
 class MainWindow(QMainWindow, Ui_BCT):
@@ -12,16 +11,8 @@ class MainWindow(QMainWindow, Ui_BCT):
 
         self.setupUi(self)
 
-        self.con = SerialConsoleWorker("COM3", 115200)
-        self.con.msgThreadNoti.connect(self.Thread)
-        self.con.msgReadNoti.connect(self.read)
-        self.con.start()
-
-    def Thread(self, msg: str):
-        print("Thread : [" + msg + "]")
-
-    def read(self, msg: str):
-        print("read : [" + msg + "]")
+        self.BatteryTestTab = BatteryTestView(self)
+        self.PushSerialTab = PushSerialView(self)
 
 
 if __name__ == '__main__':

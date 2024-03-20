@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>734</width>
+    <width>766</width>
     <height>617</height>
    </rect>
   </property>
@@ -18,7 +18,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>731</width>
+     <width>761</width>
      <height>611</height>
     </rect>
    </property>
@@ -34,7 +34,7 @@
       <rect>
        <x>0</x>
        <y>80</y>
-       <width>711</width>
+       <width>751</width>
        <height>251</height>
       </rect>
      </property>
@@ -64,7 +64,11 @@
        </property>
        <layout class="QGridLayout" name="gridLayout">
         <item row="0" column="1">
-         <widget class="QLineEdit" name="lineEdit"/>
+         <widget class="QLineEdit" name="dev01_port">
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
         </item>
         <item row="0" column="0">
          <widget class="QLabel" name="label">
@@ -99,7 +103,10 @@
        </property>
        <layout class="QGridLayout" name="gridLayout_2">
         <item row="1" column="0">
-         <widget class="QLineEdit" name="lineEdit_17">
+         <widget class="QLineEdit" name="dev01_a">
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
           <property name="readOnly">
            <bool>true</bool>
           </property>
@@ -120,7 +127,10 @@
          </widget>
         </item>
         <item row="0" column="0">
-         <widget class="QLineEdit" name="lineEdit_16">
+         <widget class="QLineEdit" name="dev01_v">
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
           <property name="readOnly">
            <bool>true</bool>
           </property>
@@ -140,7 +150,10 @@
          </widget>
         </item>
         <item row="2" column="0">
-         <widget class="QLineEdit" name="lineEdit_18">
+         <widget class="QLineEdit" name="dev01_c">
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
           <property name="readOnly">
            <bool>true</bool>
           </property>
@@ -166,7 +179,10 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_21">
+         <widget class="QLineEdit" name="dev01_version">
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
           <property name="readOnly">
            <bool>true</bool>
           </property>
@@ -180,10 +196,20 @@
          <x>90</x>
          <y>60</y>
          <width>101</width>
-         <height>52</height>
+         <height>31</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_3">
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="dev01_cycle">
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
         <item row="0" column="0">
          <widget class="QLabel" name="label_6">
           <property name="text">
@@ -191,39 +217,43 @@
           </property>
          </widget>
         </item>
-        <item row="0" column="1">
-         <widget class="QLineEdit" name="lineEdit_20">
-          <property name="readOnly">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QLineEdit" name="lineEdit_19">
-          <property name="readOnly">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="label_10">
-          <property name="text">
-           <string>Fail Cnt</string>
-          </property>
-         </widget>
-        </item>
        </layout>
       </widget>
      </widget>
-     <widget class="QListWidget" name="listWidget">
+     <widget class="QTableWidget" name="dev01_table">
       <property name="geometry">
        <rect>
         <x>220</x>
         <y>20</y>
-        <width>481</width>
+        <width>521</width>
         <height>221</height>
        </rect>
       </property>
+      <column>
+       <property name="text">
+        <string>no</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>전압</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>전류</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>온도</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>오류코드</string>
+       </property>
+      </column>
      </widget>
     </widget>
     <widget class="QGroupBox" name="groupBox_4">
@@ -231,7 +261,7 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>711</width>
+       <width>751</width>
        <height>81</height>
       </rect>
      </property>
@@ -243,7 +273,7 @@
        <rect>
         <x>10</x>
         <y>20</y>
-        <width>502</width>
+        <width>507</width>
         <height>56</height>
        </rect>
       </property>
@@ -251,14 +281,14 @@
        <item row="0" column="4">
         <widget class="QLabel" name="label_13">
          <property name="text">
-          <string>충전 유지 시간</string>
+          <string>충전 유지</string>
          </property>
         </widget>
        </item>
        <item row="1" column="5">
         <layout class="QHBoxLayout" name="horizontalLayout_4">
          <item>
-          <widget class="QLineEdit" name="lineEdit_14">
+          <widget class="QLineEdit" name="config_time_off_h">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
              <horstretch>60</horstretch>
@@ -267,6 +297,9 @@
            </property>
            <property name="text">
             <string>0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
            </property>
           </widget>
          </item>
@@ -278,7 +311,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEdit_15">
+          <widget class="QLineEdit" name="config_time_off_m">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
              <horstretch>60</horstretch>
@@ -287,6 +320,9 @@
            </property>
            <property name="text">
             <string>0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
            </property>
           </widget>
          </item>
@@ -298,7 +334,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEdit_5">
+          <widget class="QLineEdit" name="config_time_off_s">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
              <horstretch>60</horstretch>
@@ -307,6 +343,9 @@
            </property>
            <property name="text">
             <string>0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
            </property>
           </widget>
          </item>
@@ -320,16 +359,19 @@
         </layout>
        </item>
        <item row="0" column="3">
-        <widget class="QLineEdit" name="lineEdit_3">
+        <widget class="QLineEdit" name="config_cycle">
          <property name="text">
           <string>0</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
        <item row="0" column="5">
         <layout class="QHBoxLayout" name="horizontalLayout_3">
          <item>
-          <widget class="QLineEdit" name="lineEdit_13">
+          <widget class="QLineEdit" name="config_time_on_h">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
              <horstretch>60</horstretch>
@@ -338,6 +380,9 @@
            </property>
            <property name="text">
             <string>0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
            </property>
           </widget>
          </item>
@@ -349,7 +394,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEdit_12">
+          <widget class="QLineEdit" name="config_time_on_m">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
              <horstretch>60</horstretch>
@@ -358,6 +403,9 @@
            </property>
            <property name="text">
             <string>0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
            </property>
           </widget>
          </item>
@@ -369,7 +417,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEdit_4">
+          <widget class="QLineEdit" name="config_time_on_s">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
              <horstretch>60</horstretch>
@@ -378,6 +426,9 @@
            </property>
            <property name="text">
             <string>0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
            </property>
           </widget>
          </item>
@@ -393,12 +444,16 @@
        <item row="1" column="4">
         <widget class="QLabel" name="label_14">
          <property name="text">
-          <string>충전 중지 시간</string>
+          <string>충전 중지</string>
          </property>
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QLineEdit" name="lineEdit_2"/>
+        <widget class="QLineEdit" name="config_baud">
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
        </item>
        <item row="0" column="2">
         <widget class="QLabel" name="label_12">
@@ -410,7 +465,7 @@
        <item row="0" column="0">
         <widget class="QLabel" name="label_2">
          <property name="text">
-          <string>Baud</string>
+          <string>Serial Baud</string>
          </property>
         </widget>
        </item>
@@ -419,7 +474,7 @@
      <widget class="QWidget" name="verticalLayoutWidget">
       <property name="geometry">
        <rect>
-        <x>590</x>
+        <x>640</x>
         <y>20</y>
         <width>111</width>
         <height>56</height>
@@ -460,69 +515,147 @@
     <attribute name="title">
      <string>Push Serial</string>
     </attribute>
-    <widget class="QWidget" name="gridLayoutWidget_5">
+    <widget class="QGroupBox" name="groupBox_5">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>20</y>
-       <width>621</width>
-       <height>57</height>
+       <y>10</y>
+       <width>391</width>
+       <height>91</height>
       </rect>
      </property>
-     <layout class="QGridLayout" name="gridLayout_5">
-      <item row="0" column="2">
-       <widget class="QLineEdit" name="lineEdit_22">
-        <property name="readOnly">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="3" rowspan="2">
-       <widget class="QLineEdit" name="lineEdit_11"/>
-      </item>
-      <item row="1" column="1">
-       <widget class="QLabel" name="label_21">
-        <property name="text">
-         <string>FW Version</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="4" rowspan="2">
-       <widget class="QPushButton" name="pushButton_5">
-        <property name="text">
-         <string>PushButton</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QLabel" name="label_17">
-        <property name="text">
-         <string>FW Version</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="2">
-       <widget class="QLineEdit" name="lineEdit_23">
-        <property name="readOnly">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="label_15">
-        <property name="text">
-         <string>Device 01</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="label_16">
-        <property name="text">
-         <string>Device 02</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
+     <property name="title">
+      <string>FW Version</string>
+     </property>
+     <widget class="QWidget" name="gridLayoutWidget_5">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>371</width>
+        <height>57</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_5">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_15">
+         <property name="text">
+          <string>Device 01</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_16">
+         <property name="text">
+          <string>Device 02</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="push_dev01_version">
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="push_dev02_version">
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_6">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>100</y>
+       <width>391</width>
+       <height>131</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Push Serial</string>
+     </property>
+     <widget class="QWidget" name="gridLayoutWidget_6">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>371</width>
+        <height>102</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_6">
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="push_serial_val"/>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="push_serial_fixed"/>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_18">
+         <property name="text">
+          <string>변경값</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QCheckBox" name="push_serial_autocnt">
+         <property name="text">
+          <string>변경값 증가</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_19">
+         <property name="text">
+          <string>최종</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLineEdit" name="push_serial_mix">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_17">
+         <property name="text">
+          <string>고정값</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2" rowspan="3">
+        <widget class="QPushButton" name="push_serial_push">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>PushButton</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="2">
+        <widget class="QLabel" name="label_20">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </widget>
   </widget>

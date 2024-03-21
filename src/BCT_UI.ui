@@ -64,7 +64,7 @@
        </property>
        <layout class="QGridLayout" name="gridLayout">
         <item row="0" column="1">
-         <widget class="QLineEdit" name="dev01_port">
+         <widget class="QLineEdit" name="dev_port">
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -103,7 +103,7 @@
        </property>
        <layout class="QGridLayout" name="gridLayout_2">
         <item row="1" column="0">
-         <widget class="QLineEdit" name="dev01_a">
+         <widget class="QLineEdit" name="dev_ampere">
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -127,7 +127,7 @@
          </widget>
         </item>
         <item row="0" column="0">
-         <widget class="QLineEdit" name="dev01_v">
+         <widget class="QLineEdit" name="dev_volt">
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -150,7 +150,7 @@
          </widget>
         </item>
         <item row="2" column="0">
-         <widget class="QLineEdit" name="dev01_c">
+         <widget class="QLineEdit" name="dev_temperature">
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -179,7 +179,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="dev01_version">
+         <widget class="QLineEdit" name="dev_version">
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -201,7 +201,7 @@
        </property>
        <layout class="QGridLayout" name="gridLayout_3">
         <item row="0" column="1">
-         <widget class="QLineEdit" name="dev01_cycle">
+         <widget class="QLineEdit" name="dev_cycle">
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -220,7 +220,7 @@
        </layout>
       </widget>
      </widget>
-     <widget class="QTableWidget" name="dev01_table">
+     <widget class="QTableWidget" name="dev_table">
       <property name="geometry">
        <rect>
         <x>220</x>
@@ -508,6 +508,233 @@
         </widget>
        </item>
       </layout>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_7">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>330</y>
+       <width>751</width>
+       <height>251</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Device 02</string>
+     </property>
+     <widget class="QGroupBox" name="groupBox_8">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>201</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>COM Connect</string>
+      </property>
+      <widget class="QWidget" name="gridLayoutWidget_7">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>181</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_7">
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="dev_port_2">
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string>Port</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_9">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>80</y>
+        <width>201</width>
+        <height>161</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Battery Test Info</string>
+      </property>
+      <widget class="QWidget" name="gridLayoutWidget_8">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>60</y>
+         <width>71</width>
+         <height>80</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_8">
+        <item row="1" column="0">
+         <widget class="QLineEdit" name="dev_ampere_2">
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLabel" name="label_9">
+          <property name="text">
+           <string>°C</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLabel" name="label_10">
+          <property name="text">
+           <string>A</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLineEdit" name="dev_volt_2">
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLabel" name="label_11">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>V</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLineEdit" name="dev_temperature_2">
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="horizontalLayoutWidget_2">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>181</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QLabel" name="label_21">
+          <property name="text">
+           <string>Version</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="dev_version_2">
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="gridLayoutWidget_9">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>60</y>
+         <width>101</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_9">
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="dev_cycle_2">
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_22">
+          <property name="text">
+           <string>Cycle</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QTableWidget" name="dev_table_2">
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>20</y>
+        <width>521</width>
+        <height>221</height>
+       </rect>
+      </property>
+      <column>
+       <property name="text">
+        <string>no</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>전압</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>전류</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>온도</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>오류코드</string>
+       </property>
+      </column>
      </widget>
     </widget>
    </widget>

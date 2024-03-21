@@ -8,3 +8,5 @@ class PushSerialView(QObject):
         super().__init__()
 
         self.view = mainWindow
+
+

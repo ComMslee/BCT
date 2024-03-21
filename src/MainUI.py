@@ -42,11 +42,11 @@ class Ui_BCT(object):
         self.gridLayout = QGridLayout(self.gridLayoutWidget)
         self.gridLayout.setObjectName(u"gridLayout")
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
-        self.dev01_port = QLineEdit(self.gridLayoutWidget)
-        self.dev01_port.setObjectName(u"dev01_port")
-        self.dev01_port.setAlignment(Qt.AlignCenter)
+        self.dev_port = QLineEdit(self.gridLayoutWidget)
+        self.dev_port.setObjectName(u"dev_port")
+        self.dev_port.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.dev01_port, 0, 1, 1, 1)
+        self.gridLayout.addWidget(self.dev_port, 0, 1, 1, 1)
 
         self.label = QLabel(self.gridLayoutWidget)
         self.label.setObjectName(u"label")
@@ -62,12 +62,12 @@ class Ui_BCT(object):
         self.gridLayout_2 = QGridLayout(self.gridLayoutWidget_2)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
         self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.dev01_a = QLineEdit(self.gridLayoutWidget_2)
-        self.dev01_a.setObjectName(u"dev01_a")
-        self.dev01_a.setAlignment(Qt.AlignCenter)
-        self.dev01_a.setReadOnly(True)
+        self.dev_ampere = QLineEdit(self.gridLayoutWidget_2)
+        self.dev_ampere.setObjectName(u"dev_ampere")
+        self.dev_ampere.setAlignment(Qt.AlignCenter)
+        self.dev_ampere.setReadOnly(True)
 
-        self.gridLayout_2.addWidget(self.dev01_a, 1, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.dev_ampere, 1, 0, 1, 1)
 
         self.label_8 = QLabel(self.gridLayoutWidget_2)
         self.label_8.setObjectName(u"label_8")
@@ -79,12 +79,12 @@ class Ui_BCT(object):
 
         self.gridLayout_2.addWidget(self.label_7, 1, 1, 1, 1)
 
-        self.dev01_v = QLineEdit(self.gridLayoutWidget_2)
-        self.dev01_v.setObjectName(u"dev01_v")
-        self.dev01_v.setAlignment(Qt.AlignCenter)
-        self.dev01_v.setReadOnly(True)
+        self.dev_volt = QLineEdit(self.gridLayoutWidget_2)
+        self.dev_volt.setObjectName(u"dev_volt")
+        self.dev_volt.setAlignment(Qt.AlignCenter)
+        self.dev_volt.setReadOnly(True)
 
-        self.gridLayout_2.addWidget(self.dev01_v, 0, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.dev_volt, 0, 0, 1, 1)
 
         self.label_4 = QLabel(self.gridLayoutWidget_2)
         self.label_4.setObjectName(u"label_4")
@@ -96,12 +96,12 @@ class Ui_BCT(object):
 
         self.gridLayout_2.addWidget(self.label_4, 0, 1, 1, 1)
 
-        self.dev01_c = QLineEdit(self.gridLayoutWidget_2)
-        self.dev01_c.setObjectName(u"dev01_c")
-        self.dev01_c.setAlignment(Qt.AlignCenter)
-        self.dev01_c.setReadOnly(True)
+        self.dev_temperature = QLineEdit(self.gridLayoutWidget_2)
+        self.dev_temperature.setObjectName(u"dev_temperature")
+        self.dev_temperature.setAlignment(Qt.AlignCenter)
+        self.dev_temperature.setReadOnly(True)
 
-        self.gridLayout_2.addWidget(self.dev01_c, 2, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.dev_temperature, 2, 0, 1, 1)
 
         self.horizontalLayoutWidget = QWidget(self.groupBox_3)
         self.horizontalLayoutWidget.setObjectName(u"horizontalLayoutWidget")
@@ -114,12 +114,12 @@ class Ui_BCT(object):
 
         self.horizontalLayout.addWidget(self.label_5)
 
-        self.dev01_version = QLineEdit(self.horizontalLayoutWidget)
-        self.dev01_version.setObjectName(u"dev01_version")
-        self.dev01_version.setAlignment(Qt.AlignCenter)
-        self.dev01_version.setReadOnly(True)
+        self.dev_version = QLineEdit(self.horizontalLayoutWidget)
+        self.dev_version.setObjectName(u"dev_version")
+        self.dev_version.setAlignment(Qt.AlignCenter)
+        self.dev_version.setReadOnly(True)
 
-        self.horizontalLayout.addWidget(self.dev01_version)
+        self.horizontalLayout.addWidget(self.dev_version)
 
         self.gridLayoutWidget_3 = QWidget(self.groupBox_3)
         self.gridLayoutWidget_3.setObjectName(u"gridLayoutWidget_3")
@@ -127,33 +127,33 @@ class Ui_BCT(object):
         self.gridLayout_3 = QGridLayout(self.gridLayoutWidget_3)
         self.gridLayout_3.setObjectName(u"gridLayout_3")
         self.gridLayout_3.setContentsMargins(0, 0, 0, 0)
-        self.dev01_cycle = QLineEdit(self.gridLayoutWidget_3)
-        self.dev01_cycle.setObjectName(u"dev01_cycle")
-        self.dev01_cycle.setAlignment(Qt.AlignCenter)
-        self.dev01_cycle.setReadOnly(True)
+        self.dev_cycle = QLineEdit(self.gridLayoutWidget_3)
+        self.dev_cycle.setObjectName(u"dev_cycle")
+        self.dev_cycle.setAlignment(Qt.AlignCenter)
+        self.dev_cycle.setReadOnly(True)
 
-        self.gridLayout_3.addWidget(self.dev01_cycle, 0, 1, 1, 1)
+        self.gridLayout_3.addWidget(self.dev_cycle, 0, 1, 1, 1)
 
         self.label_6 = QLabel(self.gridLayoutWidget_3)
         self.label_6.setObjectName(u"label_6")
 
         self.gridLayout_3.addWidget(self.label_6, 0, 0, 1, 1)
 
-        self.dev01_table = QTableWidget(self.groupBox)
-        if (self.dev01_table.columnCount() < 5):
-            self.dev01_table.setColumnCount(5)
+        self.dev_table = QTableWidget(self.groupBox)
+        if (self.dev_table.columnCount() < 5):
+            self.dev_table.setColumnCount(5)
         __qtablewidgetitem = QTableWidgetItem()
-        self.dev01_table.setHorizontalHeaderItem(0, __qtablewidgetitem)
+        self.dev_table.setHorizontalHeaderItem(0, __qtablewidgetitem)
         __qtablewidgetitem1 = QTableWidgetItem()
-        self.dev01_table.setHorizontalHeaderItem(1, __qtablewidgetitem1)
+        self.dev_table.setHorizontalHeaderItem(1, __qtablewidgetitem1)
         __qtablewidgetitem2 = QTableWidgetItem()
-        self.dev01_table.setHorizontalHeaderItem(2, __qtablewidgetitem2)
+        self.dev_table.setHorizontalHeaderItem(2, __qtablewidgetitem2)
         __qtablewidgetitem3 = QTableWidgetItem()
-        self.dev01_table.setHorizontalHeaderItem(3, __qtablewidgetitem3)
+        self.dev_table.setHorizontalHeaderItem(3, __qtablewidgetitem3)
         __qtablewidgetitem4 = QTableWidgetItem()
-        self.dev01_table.setHorizontalHeaderItem(4, __qtablewidgetitem4)
-        self.dev01_table.setObjectName(u"dev01_table")
-        self.dev01_table.setGeometry(QRect(220, 20, 521, 221))
+        self.dev_table.setHorizontalHeaderItem(4, __qtablewidgetitem4)
+        self.dev_table.setObjectName(u"dev_table")
+        self.dev_table.setGeometry(QRect(220, 20, 521, 221))
         self.groupBox_4 = QGroupBox(self.tbControl)
         self.groupBox_4.setObjectName(u"groupBox_4")
         self.groupBox_4.setGeometry(QRect(0, 0, 751, 81))
@@ -312,6 +312,127 @@ class Ui_BCT(object):
 
         self.verticalLayout.addWidget(self.pushButton)
 
+        self.groupBox_7 = QGroupBox(self.tbControl)
+        self.groupBox_7.setObjectName(u"groupBox_7")
+        self.groupBox_7.setGeometry(QRect(0, 330, 751, 251))
+        self.groupBox_8 = QGroupBox(self.groupBox_7)
+        self.groupBox_8.setObjectName(u"groupBox_8")
+        self.groupBox_8.setGeometry(QRect(10, 20, 201, 61))
+        self.gridLayoutWidget_7 = QWidget(self.groupBox_8)
+        self.gridLayoutWidget_7.setObjectName(u"gridLayoutWidget_7")
+        self.gridLayoutWidget_7.setGeometry(QRect(10, 20, 181, 31))
+        self.gridLayout_7 = QGridLayout(self.gridLayoutWidget_7)
+        self.gridLayout_7.setObjectName(u"gridLayout_7")
+        self.gridLayout_7.setContentsMargins(0, 0, 0, 0)
+        self.dev_port_2 = QLineEdit(self.gridLayoutWidget_7)
+        self.dev_port_2.setObjectName(u"dev_port_2")
+        self.dev_port_2.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_7.addWidget(self.dev_port_2, 0, 1, 1, 1)
+
+        self.label_3 = QLabel(self.gridLayoutWidget_7)
+        self.label_3.setObjectName(u"label_3")
+
+        self.gridLayout_7.addWidget(self.label_3, 0, 0, 1, 1)
+
+        self.groupBox_9 = QGroupBox(self.groupBox_7)
+        self.groupBox_9.setObjectName(u"groupBox_9")
+        self.groupBox_9.setGeometry(QRect(10, 80, 201, 161))
+        self.gridLayoutWidget_8 = QWidget(self.groupBox_9)
+        self.gridLayoutWidget_8.setObjectName(u"gridLayoutWidget_8")
+        self.gridLayoutWidget_8.setGeometry(QRect(10, 60, 71, 80))
+        self.gridLayout_8 = QGridLayout(self.gridLayoutWidget_8)
+        self.gridLayout_8.setObjectName(u"gridLayout_8")
+        self.gridLayout_8.setContentsMargins(0, 0, 0, 0)
+        self.dev_ampere_2 = QLineEdit(self.gridLayoutWidget_8)
+        self.dev_ampere_2.setObjectName(u"dev_ampere_2")
+        self.dev_ampere_2.setAlignment(Qt.AlignCenter)
+        self.dev_ampere_2.setReadOnly(True)
+
+        self.gridLayout_8.addWidget(self.dev_ampere_2, 1, 0, 1, 1)
+
+        self.label_9 = QLabel(self.gridLayoutWidget_8)
+        self.label_9.setObjectName(u"label_9")
+
+        self.gridLayout_8.addWidget(self.label_9, 2, 1, 1, 1)
+
+        self.label_10 = QLabel(self.gridLayoutWidget_8)
+        self.label_10.setObjectName(u"label_10")
+
+        self.gridLayout_8.addWidget(self.label_10, 1, 1, 1, 1)
+
+        self.dev_volt_2 = QLineEdit(self.gridLayoutWidget_8)
+        self.dev_volt_2.setObjectName(u"dev_volt_2")
+        self.dev_volt_2.setAlignment(Qt.AlignCenter)
+        self.dev_volt_2.setReadOnly(True)
+
+        self.gridLayout_8.addWidget(self.dev_volt_2, 0, 0, 1, 1)
+
+        self.label_11 = QLabel(self.gridLayoutWidget_8)
+        self.label_11.setObjectName(u"label_11")
+        sizePolicy.setHeightForWidth(self.label_11.sizePolicy().hasHeightForWidth())
+        self.label_11.setSizePolicy(sizePolicy)
+
+        self.gridLayout_8.addWidget(self.label_11, 0, 1, 1, 1)
+
+        self.dev_temperature_2 = QLineEdit(self.gridLayoutWidget_8)
+        self.dev_temperature_2.setObjectName(u"dev_temperature_2")
+        self.dev_temperature_2.setAlignment(Qt.AlignCenter)
+        self.dev_temperature_2.setReadOnly(True)
+
+        self.gridLayout_8.addWidget(self.dev_temperature_2, 2, 0, 1, 1)
+
+        self.horizontalLayoutWidget_2 = QWidget(self.groupBox_9)
+        self.horizontalLayoutWidget_2.setObjectName(u"horizontalLayoutWidget_2")
+        self.horizontalLayoutWidget_2.setGeometry(QRect(10, 20, 181, 31))
+        self.horizontalLayout_2 = QHBoxLayout(self.horizontalLayoutWidget_2)
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.label_21 = QLabel(self.horizontalLayoutWidget_2)
+        self.label_21.setObjectName(u"label_21")
+
+        self.horizontalLayout_2.addWidget(self.label_21)
+
+        self.dev_version_2 = QLineEdit(self.horizontalLayoutWidget_2)
+        self.dev_version_2.setObjectName(u"dev_version_2")
+        self.dev_version_2.setAlignment(Qt.AlignCenter)
+        self.dev_version_2.setReadOnly(True)
+
+        self.horizontalLayout_2.addWidget(self.dev_version_2)
+
+        self.gridLayoutWidget_9 = QWidget(self.groupBox_9)
+        self.gridLayoutWidget_9.setObjectName(u"gridLayoutWidget_9")
+        self.gridLayoutWidget_9.setGeometry(QRect(90, 60, 101, 31))
+        self.gridLayout_9 = QGridLayout(self.gridLayoutWidget_9)
+        self.gridLayout_9.setObjectName(u"gridLayout_9")
+        self.gridLayout_9.setContentsMargins(0, 0, 0, 0)
+        self.dev_cycle_2 = QLineEdit(self.gridLayoutWidget_9)
+        self.dev_cycle_2.setObjectName(u"dev_cycle_2")
+        self.dev_cycle_2.setAlignment(Qt.AlignCenter)
+        self.dev_cycle_2.setReadOnly(True)
+
+        self.gridLayout_9.addWidget(self.dev_cycle_2, 0, 1, 1, 1)
+
+        self.label_22 = QLabel(self.gridLayoutWidget_9)
+        self.label_22.setObjectName(u"label_22")
+
+        self.gridLayout_9.addWidget(self.label_22, 0, 0, 1, 1)
+
+        self.dev_table_2 = QTableWidget(self.groupBox_7)
+        if (self.dev_table_2.columnCount() < 5):
+            self.dev_table_2.setColumnCount(5)
+        __qtablewidgetitem5 = QTableWidgetItem()
+        self.dev_table_2.setHorizontalHeaderItem(0, __qtablewidgetitem5)
+        __qtablewidgetitem6 = QTableWidgetItem()
+        self.dev_table_2.setHorizontalHeaderItem(1, __qtablewidgetitem6)
+        __qtablewidgetitem7 = QTableWidgetItem()
+        self.dev_table_2.setHorizontalHeaderItem(2, __qtablewidgetitem7)
+        __qtablewidgetitem8 = QTableWidgetItem()
+        self.dev_table_2.setHorizontalHeaderItem(3, __qtablewidgetitem8)
+        __qtablewidgetitem9 = QTableWidgetItem()
+        self.dev_table_2.setHorizontalHeaderItem(4, __qtablewidgetitem9)
+        self.dev_table_2.setObjectName(u"dev_table_2")
+        self.dev_table_2.setGeometry(QRect(220, 20, 521, 221))
         self.tbMain.addTab(self.tbControl, "")
         self.tbSerial = QWidget()
         self.tbSerial.setObjectName(u"tbSerial")
@@ -427,15 +548,15 @@ class Ui_BCT(object):
         self.label_4.setText(QCoreApplication.translate("BCT", u"V", None))
         self.label_5.setText(QCoreApplication.translate("BCT", u"Version", None))
         self.label_6.setText(QCoreApplication.translate("BCT", u"Cycle", None))
-        ___qtablewidgetitem = self.dev01_table.horizontalHeaderItem(0)
+        ___qtablewidgetitem = self.dev_table.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("BCT", u"no", None));
-        ___qtablewidgetitem1 = self.dev01_table.horizontalHeaderItem(1)
+        ___qtablewidgetitem1 = self.dev_table.horizontalHeaderItem(1)
         ___qtablewidgetitem1.setText(QCoreApplication.translate("BCT", u"\uc804\uc555", None));
-        ___qtablewidgetitem2 = self.dev01_table.horizontalHeaderItem(2)
+        ___qtablewidgetitem2 = self.dev_table.horizontalHeaderItem(2)
         ___qtablewidgetitem2.setText(QCoreApplication.translate("BCT", u"\uc804\ub958", None));
-        ___qtablewidgetitem3 = self.dev01_table.horizontalHeaderItem(3)
+        ___qtablewidgetitem3 = self.dev_table.horizontalHeaderItem(3)
         ___qtablewidgetitem3.setText(QCoreApplication.translate("BCT", u"\uc628\ub3c4", None));
-        ___qtablewidgetitem4 = self.dev01_table.horizontalHeaderItem(4)
+        ___qtablewidgetitem4 = self.dev_table.horizontalHeaderItem(4)
         ___qtablewidgetitem4.setText(QCoreApplication.translate("BCT", u"\uc624\ub958\ucf54\ub4dc", None));
         self.groupBox_4.setTitle(QCoreApplication.translate("BCT", u"Control", None))
         self.label_13.setText(QCoreApplication.translate("BCT", u"\ucda9\uc804 \uc720\uc9c0", None))
@@ -457,6 +578,25 @@ class Ui_BCT(object):
         self.label_2.setText(QCoreApplication.translate("BCT", u"Serial Baud", None))
         self.pushButton_2.setText(QCoreApplication.translate("BCT", u"start", None))
         self.pushButton.setText(QCoreApplication.translate("BCT", u"stop", None))
+        self.groupBox_7.setTitle(QCoreApplication.translate("BCT", u"Device 02", None))
+        self.groupBox_8.setTitle(QCoreApplication.translate("BCT", u"COM Connect", None))
+        self.label_3.setText(QCoreApplication.translate("BCT", u"Port", None))
+        self.groupBox_9.setTitle(QCoreApplication.translate("BCT", u"Battery Test Info", None))
+        self.label_9.setText(QCoreApplication.translate("BCT", u"\u00b0C", None))
+        self.label_10.setText(QCoreApplication.translate("BCT", u"A", None))
+        self.label_11.setText(QCoreApplication.translate("BCT", u"V", None))
+        self.label_21.setText(QCoreApplication.translate("BCT", u"Version", None))
+        self.label_22.setText(QCoreApplication.translate("BCT", u"Cycle", None))
+        ___qtablewidgetitem5 = self.dev_table_2.horizontalHeaderItem(0)
+        ___qtablewidgetitem5.setText(QCoreApplication.translate("BCT", u"no", None));
+        ___qtablewidgetitem6 = self.dev_table_2.horizontalHeaderItem(1)
+        ___qtablewidgetitem6.setText(QCoreApplication.translate("BCT", u"\uc804\uc555", None));
+        ___qtablewidgetitem7 = self.dev_table_2.horizontalHeaderItem(2)
+        ___qtablewidgetitem7.setText(QCoreApplication.translate("BCT", u"\uc804\ub958", None));
+        ___qtablewidgetitem8 = self.dev_table_2.horizontalHeaderItem(3)
+        ___qtablewidgetitem8.setText(QCoreApplication.translate("BCT", u"\uc628\ub3c4", None));
+        ___qtablewidgetitem9 = self.dev_table_2.horizontalHeaderItem(4)
+        ___qtablewidgetitem9.setText(QCoreApplication.translate("BCT", u"\uc624\ub958\ucf54\ub4dc", None));
         self.tbMain.setTabText(self.tbMain.indexOf(self.tbControl), QCoreApplication.translate("BCT", u"Battery Test", None))
         self.groupBox_5.setTitle(QCoreApplication.translate("BCT", u"FW Version", None))
         self.label_15.setText(QCoreApplication.translate("BCT", u"Device 01", None))

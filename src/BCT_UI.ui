@@ -25,7 +25,7 @@
    <property name="currentIndex">
     <number>0</number>
    </property>
-   <widget class="QWidget" name="tbControl">
+   <widget class="QWidget" name="tbBatteryTest">
     <attribute name="title">
      <string>Battery Test</string>
     </attribute>

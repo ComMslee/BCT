@@ -28,9 +28,9 @@ class Ui_BCT(object):
         self.tbMain = QTabWidget(BCT)
         self.tbMain.setObjectName(u"tbMain")
         self.tbMain.setGeometry(QRect(0, 0, 761, 611))
-        self.tbControl = QWidget()
-        self.tbControl.setObjectName(u"tbControl")
-        self.groupBox = QGroupBox(self.tbControl)
+        self.tbBatteryTest = QWidget()
+        self.tbBatteryTest.setObjectName(u"tbBatteryTest")
+        self.groupBox = QGroupBox(self.tbBatteryTest)
         self.groupBox.setObjectName(u"groupBox")
         self.groupBox.setGeometry(QRect(0, 80, 751, 251))
         self.groupBox_2 = QGroupBox(self.groupBox)
@@ -154,7 +154,7 @@ class Ui_BCT(object):
         self.dev_table.setHorizontalHeaderItem(4, __qtablewidgetitem4)
         self.dev_table.setObjectName(u"dev_table")
         self.dev_table.setGeometry(QRect(220, 20, 521, 221))
-        self.groupBox_4 = QGroupBox(self.tbControl)
+        self.groupBox_4 = QGroupBox(self.tbBatteryTest)
         self.groupBox_4.setObjectName(u"groupBox_4")
         self.groupBox_4.setGeometry(QRect(0, 0, 751, 81))
         self.gridLayoutWidget_4 = QWidget(self.groupBox_4)
@@ -312,7 +312,7 @@ class Ui_BCT(object):
 
         self.verticalLayout.addWidget(self.pushButton)
 
-        self.groupBox_7 = QGroupBox(self.tbControl)
+        self.groupBox_7 = QGroupBox(self.tbBatteryTest)
         self.groupBox_7.setObjectName(u"groupBox_7")
         self.groupBox_7.setGeometry(QRect(0, 330, 751, 251))
         self.groupBox_8 = QGroupBox(self.groupBox_7)
@@ -433,7 +433,7 @@ class Ui_BCT(object):
         self.dev_table_2.setHorizontalHeaderItem(4, __qtablewidgetitem9)
         self.dev_table_2.setObjectName(u"dev_table_2")
         self.dev_table_2.setGeometry(QRect(220, 20, 521, 221))
-        self.tbMain.addTab(self.tbControl, "")
+        self.tbMain.addTab(self.tbBatteryTest, "")
         self.tbSerial = QWidget()
         self.tbSerial.setObjectName(u"tbSerial")
         self.groupBox_5 = QGroupBox(self.tbSerial)
@@ -597,7 +597,7 @@ class Ui_BCT(object):
         ___qtablewidgetitem8.setText(QCoreApplication.translate("BCT", u"\uc628\ub3c4", None));
         ___qtablewidgetitem9 = self.dev_table_2.horizontalHeaderItem(4)
         ___qtablewidgetitem9.setText(QCoreApplication.translate("BCT", u"\uc624\ub958\ucf54\ub4dc", None));
-        self.tbMain.setTabText(self.tbMain.indexOf(self.tbControl), QCoreApplication.translate("BCT", u"Battery Test", None))
+        self.tbMain.setTabText(self.tbMain.indexOf(self.tbBatteryTest), QCoreApplication.translate("BCT", u"Battery Test", None))
         self.groupBox_5.setTitle(QCoreApplication.translate("BCT", u"FW Version", None))
         self.label_15.setText(QCoreApplication.translate("BCT", u"Device 01", None))
         self.label_16.setText(QCoreApplication.translate("BCT", u"Device 02", None))

@@ -1,6 +1,8 @@
+import PySide6
 from PySide6.QtWidgets import QMainWindow, QApplication
 
 from src.MainUI import Ui_BCT
+from src.repository.DataConfig import DataConfig
 from src.view.BatteryTestView import BatteryTestView
 from src.view.PushSerialView import PushSerialView
 
@@ -11,8 +13,28 @@ class MainWindow(QMainWindow, Ui_BCT):
 
         self.setupUi(self)
 
+        DataConfig()
         self.BatteryTestTab = BatteryTestView(self)
         self.PushSerialTab = PushSerialView(self)
+
+        self.initSelectTab()
+
+    def closeEvent(self, event: PySide6.QtGui.QCloseEvent) -> None:
+        super().closeEvent(event)
+        self.saveSelectTab()
+        print("closeEvent...")
+
+    def initSelectTab(self):
+        config = DataConfig().getSelectTab()
+
+        if "main_tab" in config:
+            self.tbMain.setCurrentIndex(config["main_tab"])
+
+    def saveSelectTab(self):
+        config = DataConfig()
+        select = config.getSelectTab()
+        select["main_tab"] = self.tbMain.currentIndex()
+        config.saveData()
 
 
 if __name__ == '__main__':

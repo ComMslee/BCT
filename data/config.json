@@ -1,1 +1,0 @@
-{"version": 0, "com": {"rate": 115200, "port_dev1": "COM3", "port_dev2": "COM4"}, "setup": {"last_tap": {"main_tab": 0}}, "tap_battery_test": {"cycle": 1000, "ontime": [0, 1, 0], "offtime": [0, 1, 0]}, "tap_push_serial": {"auto_cnt": true, "serial_fixed": "", "serial_val": ""}}

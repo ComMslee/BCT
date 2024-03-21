@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>766</width>
-    <height>617</height>
+    <width>756</width>
+    <height>606</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,9 +17,9 @@
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>0</y>
-     <width>761</width>
-     <height>611</height>
+     <y>60</y>
+     <width>751</width>
+     <height>541</height>
     </rect>
    </property>
    <property name="currentIndex">
@@ -34,98 +34,35 @@
       <rect>
        <x>0</x>
        <y>80</y>
-       <width>751</width>
-       <height>251</height>
+       <width>741</width>
+       <height>221</height>
       </rect>
      </property>
      <property name="title">
       <string>Device 01</string>
      </property>
-     <widget class="QGroupBox" name="groupBox_2">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>20</y>
-        <width>201</width>
-        <height>61</height>
-       </rect>
-      </property>
-      <property name="title">
-       <string>COM Connect</string>
-      </property>
-      <widget class="QWidget" name="gridLayoutWidget">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>20</y>
-         <width>181</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <layout class="QGridLayout" name="gridLayout">
-        <item row="0" column="1">
-         <widget class="QLineEdit" name="dev_port">
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0">
-         <widget class="QLabel" name="label">
-          <property name="text">
-           <string>Port</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </widget>
      <widget class="QGroupBox" name="groupBox_3">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>80</y>
-        <width>201</width>
-        <height>161</height>
+        <y>20</y>
+        <width>131</width>
+        <height>191</height>
        </rect>
       </property>
       <property name="title">
-       <string>Battery Test Info</string>
+       <string>Current Battery Info</string>
       </property>
       <widget class="QWidget" name="gridLayoutWidget_2">
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>60</y>
-         <width>71</width>
-         <height>80</height>
+         <y>70</y>
+         <width>111</width>
+         <height>108</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_2">
-        <item row="1" column="0">
-         <widget class="QLineEdit" name="dev_ampere">
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-          <property name="readOnly">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QLabel" name="label_8">
-          <property name="text">
-           <string>°C</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QLabel" name="label_7">
-          <property name="text">
-           <string>A</string>
-          </property>
-         </widget>
-        </item>
         <item row="0" column="0">
          <widget class="QLineEdit" name="dev_volt">
           <property name="alignment">
@@ -133,6 +70,13 @@
           </property>
           <property name="readOnly">
            <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLabel" name="label_7">
+          <property name="text">
+           <string>A</string>
           </property>
          </widget>
         </item>
@@ -149,6 +93,13 @@
           </property>
          </widget>
         </item>
+        <item row="2" column="1">
+         <widget class="QLabel" name="label_8">
+          <property name="text">
+           <string>°C</string>
+          </property>
+         </widget>
+        </item>
         <item row="2" column="0">
          <widget class="QLineEdit" name="dev_temperature">
           <property name="alignment">
@@ -159,27 +110,21 @@
           </property>
          </widget>
         </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="horizontalLayoutWidget">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>20</y>
-         <width>181</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <layout class="QHBoxLayout" name="horizontalLayout">
-        <item>
-         <widget class="QLabel" name="label_5">
-          <property name="text">
-           <string>Version</string>
+        <item row="1" column="0">
+         <widget class="QLineEdit" name="dev_ampere">
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
-        <item>
-         <widget class="QLineEdit" name="dev_version">
+        <item row="3" column="0" colspan="2">
+         <widget class="QLineEdit" name="dev_temperature_2">
+          <property name="text">
+           <string>Battery State</string>
+          </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -193,14 +138,14 @@
       <widget class="QWidget" name="gridLayoutWidget_3">
        <property name="geometry">
         <rect>
-         <x>90</x>
-         <y>60</y>
-         <width>101</width>
-         <height>31</height>
+         <x>10</x>
+         <y>20</y>
+         <width>111</width>
+         <height>52</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_3">
-        <item row="0" column="1">
+        <item row="1" column="1">
          <widget class="QLineEdit" name="dev_cycle">
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -210,10 +155,27 @@
           </property>
          </widget>
         </item>
-        <item row="0" column="0">
+        <item row="1" column="0">
          <widget class="QLabel" name="label_6">
           <property name="text">
-           <string>Cycle</string>
+           <string>반복</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_5">
+          <property name="text">
+           <string>버전</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="dev_version">
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -223,15 +185,20 @@
      <widget class="QTableWidget" name="dev_table">
       <property name="geometry">
        <rect>
-        <x>220</x>
+        <x>150</x>
         <y>20</y>
-        <width>521</width>
-        <height>221</height>
+        <width>581</width>
+        <height>191</height>
        </rect>
       </property>
       <column>
        <property name="text">
-        <string>no</string>
+        <string>Pass</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>No</string>
        </property>
       </column>
       <column>
@@ -261,7 +228,7 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>751</width>
+       <width>491</width>
        <height>81</height>
       </rect>
      </property>
@@ -273,7 +240,7 @@
        <rect>
         <x>10</x>
         <y>20</y>
-        <width>507</width>
+        <width>351</width>
         <height>56</height>
        </rect>
       </property>
@@ -448,24 +415,10 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="1">
-        <widget class="QLineEdit" name="config_baud">
-         <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
        <item row="0" column="2">
         <widget class="QLabel" name="label_12">
          <property name="text">
           <string>반복횟수</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="label_2">
-         <property name="text">
-          <string>Serial Baud</string>
          </property>
         </widget>
        </item>
@@ -474,9 +427,9 @@
      <widget class="QWidget" name="verticalLayoutWidget">
       <property name="geometry">
        <rect>
-        <x>640</x>
+        <x>400</x>
         <y>20</y>
-        <width>111</width>
+        <width>91</width>
         <height>56</height>
        </rect>
       </property>
@@ -513,78 +466,98 @@
     <widget class="QGroupBox" name="groupBox_7">
      <property name="geometry">
       <rect>
-       <x>0</x>
-       <y>330</y>
-       <width>751</width>
-       <height>251</height>
+       <x>500</x>
+       <y>0</y>
+       <width>241</width>
+       <height>80</height>
       </rect>
      </property>
      <property name="title">
-      <string>Device 02</string>
+      <string>Test Result</string>
      </property>
-     <widget class="QGroupBox" name="groupBox_8">
+     <widget class="QWidget" name="gridLayoutWidget_7">
       <property name="geometry">
        <rect>
         <x>10</x>
         <y>20</y>
-        <width>201</width>
-        <height>61</height>
+        <width>221</width>
+        <height>51</height>
        </rect>
       </property>
-      <property name="title">
-       <string>COM Connect</string>
-      </property>
-      <widget class="QWidget" name="gridLayoutWidget_7">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>20</y>
-         <width>181</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <layout class="QGridLayout" name="gridLayout_7">
-        <item row="0" column="1">
-         <widget class="QLineEdit" name="dev_port_2">
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0">
-         <widget class="QLabel" name="label_3">
-          <property name="text">
-           <string>Port</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
+      <layout class="QGridLayout" name="gridLayout_7">
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_27">
+         <property name="text">
+          <string>Dev02</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_25">
+         <property name="text">
+          <string>Dev01</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="dev_version_3">
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="dev_version_2">
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_8">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>300</y>
+       <width>741</width>
+       <height>221</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Device 01</string>
+     </property>
      <widget class="QGroupBox" name="groupBox_9">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>80</y>
-        <width>201</width>
-        <height>161</height>
+        <y>20</y>
+        <width>131</width>
+        <height>191</height>
        </rect>
       </property>
       <property name="title">
-       <string>Battery Test Info</string>
+       <string>Current Battery Info</string>
       </property>
       <widget class="QWidget" name="gridLayoutWidget_8">
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>60</y>
-         <width>71</width>
-         <height>80</height>
+         <y>70</y>
+         <width>111</width>
+         <height>108</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_8">
-        <item row="1" column="0">
-         <widget class="QLineEdit" name="dev_ampere_2">
+        <item row="0" column="0">
+         <widget class="QLineEdit" name="dev_volt_3">
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -593,32 +566,15 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="1">
-         <widget class="QLabel" name="label_9">
-          <property name="text">
-           <string>°C</string>
-          </property>
-         </widget>
-        </item>
         <item row="1" column="1">
-         <widget class="QLabel" name="label_10">
+         <widget class="QLabel" name="label_9">
           <property name="text">
            <string>A</string>
           </property>
          </widget>
         </item>
-        <item row="0" column="0">
-         <widget class="QLineEdit" name="dev_volt_2">
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-          <property name="readOnly">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
         <item row="0" column="1">
-         <widget class="QLabel" name="label_11">
+         <widget class="QLabel" name="label_10">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -630,8 +586,15 @@
           </property>
          </widget>
         </item>
+        <item row="2" column="1">
+         <widget class="QLabel" name="label_11">
+          <property name="text">
+           <string>°C</string>
+          </property>
+         </widget>
+        </item>
         <item row="2" column="0">
-         <widget class="QLineEdit" name="dev_temperature_2">
+         <widget class="QLineEdit" name="dev_temperature_3">
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -640,27 +603,21 @@
           </property>
          </widget>
         </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="horizontalLayoutWidget_2">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>20</y>
-         <width>181</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <layout class="QHBoxLayout" name="horizontalLayout_2">
-        <item>
-         <widget class="QLabel" name="label_21">
-          <property name="text">
-           <string>Version</string>
+        <item row="1" column="0">
+         <widget class="QLineEdit" name="dev_ampere_2">
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
-        <item>
-         <widget class="QLineEdit" name="dev_version_2">
+        <item row="3" column="0" colspan="2">
+         <widget class="QLineEdit" name="dev_temperature_4">
+          <property name="text">
+           <string>Battery State</string>
+          </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -674,14 +631,14 @@
       <widget class="QWidget" name="gridLayoutWidget_9">
        <property name="geometry">
         <rect>
-         <x>90</x>
-         <y>60</y>
-         <width>101</width>
-         <height>31</height>
+         <x>10</x>
+         <y>20</y>
+         <width>111</width>
+         <height>52</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_9">
-        <item row="0" column="1">
+        <item row="1" column="1">
          <widget class="QLineEdit" name="dev_cycle_2">
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -691,10 +648,27 @@
           </property>
          </widget>
         </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_21">
+          <property name="text">
+           <string>반복</string>
+          </property>
+         </widget>
+        </item>
         <item row="0" column="0">
          <widget class="QLabel" name="label_22">
           <property name="text">
-           <string>Cycle</string>
+           <string>버전</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="dev_version_4">
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -704,15 +678,20 @@
      <widget class="QTableWidget" name="dev_table_2">
       <property name="geometry">
        <rect>
-        <x>220</x>
+        <x>150</x>
         <y>20</y>
-        <width>521</width>
-        <height>221</height>
+        <width>581</width>
+        <height>191</height>
        </rect>
       </property>
       <column>
        <property name="text">
-        <string>no</string>
+        <string>Pass</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>No</string>
        </property>
       </column>
       <column>
@@ -767,14 +746,14 @@
        <item row="0" column="0">
         <widget class="QLabel" name="label_15">
          <property name="text">
-          <string>Device 01</string>
+          <string>Dev01</string>
          </property>
         </widget>
        </item>
        <item row="1" column="0">
         <widget class="QLabel" name="label_16">
          <property name="text">
-          <string>Device 02</string>
+          <string>Dev02</string>
          </property>
         </widget>
        </item>
@@ -840,7 +819,7 @@
        <item row="3" column="0">
         <widget class="QLabel" name="label_19">
          <property name="text">
-          <string>최종</string>
+          <string>SerialNumber</string>
          </property>
         </widget>
        </item>
@@ -870,7 +849,7 @@
           </sizepolicy>
          </property>
          <property name="text">
-          <string>PushButton</string>
+          <string>Push</string>
          </property>
         </widget>
        </item>
@@ -885,6 +864,106 @@
      </widget>
     </widget>
    </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>0</y>
+     <width>621</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>COM Connect</string>
+   </property>
+   <widget class="QWidget" name="gridLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>591</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="dev_baud">
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="5">
+      <widget class="QLineEdit" name="dev_port">
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="3">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Port</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>Baud</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="6">
+      <widget class="QLabel" name="label_24">
+       <property name="text">
+        <string>Dev02</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QLabel" name="label_23">
+       <property name="text">
+        <string>Dev01</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="7">
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>Port</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="8">
+      <widget class="QLineEdit" name="dev_port_2">
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QPushButton" name="config_save">
+   <property name="geometry">
+    <rect>
+     <x>640</x>
+     <y>9</y>
+     <width>111</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="text">
+    <string>config save</string>
+   </property>
   </widget>
  </widget>
  <resources/>

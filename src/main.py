@@ -3,6 +3,7 @@ from PySide6.QtWidgets import QMainWindow, QApplication
 
 from src.MainUI import Ui_BCT
 from src.repository.DataConfig import DataConfig
+from src.repository.DataLog import DataLog
 from src.view.BatteryTestView import BatteryTestView
 from src.view.PushSerialView import PushSerialView
 
@@ -14,6 +15,7 @@ class MainWindow(QMainWindow, Ui_BCT):
         self.setupUi(self)
 
         DataConfig()
+        DataLog()
         self.BatteryTestTab = BatteryTestView(self)
         self.PushSerialTab = PushSerialView(self)
 

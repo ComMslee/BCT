@@ -48,14 +48,15 @@ class DataConfig(QObject):
     def saveData(self):
         saveConfig = {
             "version": self.__VERSION,
+            "setup": {
+                "last_tap": self.__selectTab
+            },
             "com": {
                 "rate": self.__comBaudRate,
                 "port_dev1": self.__comPort_dev01,
                 "port_dev2": self.__comPort_dev02,
             },
-            "setup": {
-                "last_tap": self.__selectTab
-            },
+
             "tap_battery_test": {
                 "cycle": self.__cycle,
                 "ontime": self.__onTime,
@@ -79,6 +80,11 @@ class DataConfig(QObject):
                 if "version" in loadConfig:
                     self.__version = loadConfig["version"]
 
+                if "setup" in loadConfig:
+                    setup = loadConfig["setup"]
+                    if isinstance(setup, dict):
+                        self.__selectTab = setup["last_tap"]
+
                 if "com" in loadConfig:
                     comInfo = loadConfig["com"]
                     if isinstance(comInfo, dict):
@@ -87,11 +93,6 @@ class DataConfig(QObject):
                         self.__comBaudRate = comInfo["rate"]
                         if self.__comBaudRate == 0:
                             self.__comBaudRate = 115200
-
-                if "setup" in loadConfig:
-                    setup = loadConfig["setup"]
-                    if isinstance(setup, dict):
-                        self.__selectTab = setup["last_tap"]
 
                 if "tap_battery_test" in loadConfig:
                     tapPush = loadConfig["tap_battery_test"]

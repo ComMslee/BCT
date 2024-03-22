@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'BCT_UI.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.4.0
+## Created by: Qt User Interface Compiler version 6.6.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -27,10 +27,11 @@ class Ui_BCT(object):
         BCT.resize(756, 606)
         self.tbMain = QTabWidget(BCT)
         self.tbMain.setObjectName(u"tbMain")
-        self.tbMain.setGeometry(QRect(0, 60, 751, 541))
-        self.tbBatteryTest = QWidget()
-        self.tbBatteryTest.setObjectName(u"tbBatteryTest")
-        self.groupBox = QGroupBox(self.tbBatteryTest)
+        self.tbMain.setGeometry(QRect(0, 50, 751, 541))
+        self.tbMain.setTabBarAutoHide(False)
+        self.tbBatteryCycle = QWidget()
+        self.tbBatteryCycle.setObjectName(u"tbBatteryCycle")
+        self.groupBox = QGroupBox(self.tbBatteryCycle)
         self.groupBox.setObjectName(u"groupBox")
         self.groupBox.setGeometry(QRect(0, 80, 741, 221))
         self.groupBox_3 = QGroupBox(self.groupBox)
@@ -38,7 +39,7 @@ class Ui_BCT(object):
         self.groupBox_3.setGeometry(QRect(10, 20, 131, 191))
         self.gridLayoutWidget_2 = QWidget(self.groupBox_3)
         self.gridLayoutWidget_2.setObjectName(u"gridLayoutWidget_2")
-        self.gridLayoutWidget_2.setGeometry(QRect(10, 70, 111, 108))
+        self.gridLayoutWidget_2.setGeometry(QRect(10, 70, 111, 116))
         self.gridLayout_2 = QGridLayout(self.gridLayoutWidget_2)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
         self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
@@ -56,7 +57,7 @@ class Ui_BCT(object):
 
         self.label_4 = QLabel(self.gridLayoutWidget_2)
         self.label_4.setObjectName(u"label_4")
-        sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Preferred)
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
@@ -92,7 +93,7 @@ class Ui_BCT(object):
 
         self.gridLayoutWidget_3 = QWidget(self.groupBox_3)
         self.gridLayoutWidget_3.setObjectName(u"gridLayoutWidget_3")
-        self.gridLayoutWidget_3.setGeometry(QRect(10, 20, 111, 52))
+        self.gridLayoutWidget_3.setGeometry(QRect(10, 20, 111, 54))
         self.gridLayout_3 = QGridLayout(self.gridLayoutWidget_3)
         self.gridLayout_3.setObjectName(u"gridLayout_3")
         self.gridLayout_3.setContentsMargins(0, 0, 0, 0)
@@ -137,12 +138,12 @@ class Ui_BCT(object):
         self.dev_table.setHorizontalHeaderItem(5, __qtablewidgetitem5)
         self.dev_table.setObjectName(u"dev_table")
         self.dev_table.setGeometry(QRect(150, 20, 581, 191))
-        self.groupBox_4 = QGroupBox(self.tbBatteryTest)
+        self.groupBox_4 = QGroupBox(self.tbBatteryCycle)
         self.groupBox_4.setObjectName(u"groupBox_4")
         self.groupBox_4.setGeometry(QRect(0, 0, 491, 81))
         self.gridLayoutWidget_4 = QWidget(self.groupBox_4)
         self.gridLayoutWidget_4.setObjectName(u"gridLayoutWidget_4")
-        self.gridLayoutWidget_4.setGeometry(QRect(10, 20, 351, 56))
+        self.gridLayoutWidget_4.setGeometry(QRect(10, 20, 351, 58))
         self.gridLayout_4 = QGridLayout(self.gridLayoutWidget_4)
         self.gridLayout_4.setObjectName(u"gridLayout_4")
         self.gridLayout_4.setContentsMargins(0, 0, 0, 0)
@@ -155,7 +156,7 @@ class Ui_BCT(object):
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
         self.config_time_off_h = QLineEdit(self.gridLayoutWidget_4)
         self.config_time_off_h.setObjectName(u"config_time_off_h")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
         sizePolicy1.setHorizontalStretch(60)
         sizePolicy1.setVerticalStretch(0)
         sizePolicy1.setHeightForWidth(self.config_time_off_h.sizePolicy().hasHeightForWidth())
@@ -184,7 +185,7 @@ class Ui_BCT(object):
 
         self.config_time_off_s = QLineEdit(self.gridLayoutWidget_4)
         self.config_time_off_s.setObjectName(u"config_time_off_s")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
+        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Fixed)
         sizePolicy2.setHorizontalStretch(60)
         sizePolicy2.setVerticalStretch(0)
         sizePolicy2.setHeightForWidth(self.config_time_off_s.sizePolicy().hasHeightForWidth())
@@ -263,13 +264,13 @@ class Ui_BCT(object):
 
         self.verticalLayoutWidget = QWidget(self.groupBox_4)
         self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
-        self.verticalLayoutWidget.setGeometry(QRect(400, 20, 91, 56))
+        self.verticalLayoutWidget.setGeometry(QRect(400, 20, 91, 62))
         self.verticalLayout = QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.pushButton_2 = QPushButton(self.verticalLayoutWidget)
         self.pushButton_2.setObjectName(u"pushButton_2")
-        sizePolicy3 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Preferred)
+        sizePolicy3 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
         sizePolicy3.setHorizontalStretch(0)
         sizePolicy3.setVerticalStretch(0)
         sizePolicy3.setHeightForWidth(self.pushButton_2.sizePolicy().hasHeightForWidth())
@@ -284,12 +285,12 @@ class Ui_BCT(object):
 
         self.verticalLayout.addWidget(self.pushButton)
 
-        self.groupBox_7 = QGroupBox(self.tbBatteryTest)
+        self.groupBox_7 = QGroupBox(self.tbBatteryCycle)
         self.groupBox_7.setObjectName(u"groupBox_7")
         self.groupBox_7.setGeometry(QRect(500, 0, 241, 80))
         self.gridLayoutWidget_7 = QWidget(self.groupBox_7)
         self.gridLayoutWidget_7.setObjectName(u"gridLayoutWidget_7")
-        self.gridLayoutWidget_7.setGeometry(QRect(10, 20, 221, 51))
+        self.gridLayoutWidget_7.setGeometry(QRect(10, 20, 221, 54))
         self.gridLayout_7 = QGridLayout(self.gridLayoutWidget_7)
         self.gridLayout_7.setObjectName(u"gridLayout_7")
         self.gridLayout_7.setContentsMargins(0, 0, 0, 0)
@@ -317,7 +318,7 @@ class Ui_BCT(object):
 
         self.gridLayout_7.addWidget(self.dev_version_2, 0, 1, 1, 1)
 
-        self.groupBox_8 = QGroupBox(self.tbBatteryTest)
+        self.groupBox_8 = QGroupBox(self.tbBatteryCycle)
         self.groupBox_8.setObjectName(u"groupBox_8")
         self.groupBox_8.setGeometry(QRect(0, 300, 741, 221))
         self.groupBox_9 = QGroupBox(self.groupBox_8)
@@ -325,7 +326,7 @@ class Ui_BCT(object):
         self.groupBox_9.setGeometry(QRect(10, 20, 131, 191))
         self.gridLayoutWidget_8 = QWidget(self.groupBox_9)
         self.gridLayoutWidget_8.setObjectName(u"gridLayoutWidget_8")
-        self.gridLayoutWidget_8.setGeometry(QRect(10, 70, 111, 108))
+        self.gridLayoutWidget_8.setGeometry(QRect(10, 70, 111, 116))
         self.gridLayout_8 = QGridLayout(self.gridLayoutWidget_8)
         self.gridLayout_8.setObjectName(u"gridLayout_8")
         self.gridLayout_8.setContentsMargins(0, 0, 0, 0)
@@ -376,7 +377,7 @@ class Ui_BCT(object):
 
         self.gridLayoutWidget_9 = QWidget(self.groupBox_9)
         self.gridLayoutWidget_9.setObjectName(u"gridLayoutWidget_9")
-        self.gridLayoutWidget_9.setGeometry(QRect(10, 20, 111, 52))
+        self.gridLayoutWidget_9.setGeometry(QRect(10, 20, 111, 54))
         self.gridLayout_9 = QGridLayout(self.gridLayoutWidget_9)
         self.gridLayout_9.setObjectName(u"gridLayout_9")
         self.gridLayout_9.setContentsMargins(0, 0, 0, 0)
@@ -421,7 +422,10 @@ class Ui_BCT(object):
         self.dev_table_2.setHorizontalHeaderItem(5, __qtablewidgetitem11)
         self.dev_table_2.setObjectName(u"dev_table_2")
         self.dev_table_2.setGeometry(QRect(150, 20, 581, 191))
-        self.tbMain.addTab(self.tbBatteryTest, "")
+        self.tbMain.addTab(self.tbBatteryCycle, "")
+        self.tbBatteryFactory = QWidget()
+        self.tbBatteryFactory.setObjectName(u"tbBatteryFactory")
+        self.tbMain.addTab(self.tbBatteryFactory, "")
         self.tbSerial = QWidget()
         self.tbSerial.setObjectName(u"tbSerial")
         self.groupBox_5 = QGroupBox(self.tbSerial)
@@ -460,7 +464,7 @@ class Ui_BCT(object):
         self.groupBox_6.setGeometry(QRect(10, 100, 391, 131))
         self.gridLayoutWidget_6 = QWidget(self.groupBox_6)
         self.gridLayoutWidget_6.setObjectName(u"gridLayoutWidget_6")
-        self.gridLayoutWidget_6.setGeometry(QRect(10, 20, 371, 102))
+        self.gridLayoutWidget_6.setGeometry(QRect(10, 20, 371, 118))
         self.gridLayout_6 = QGridLayout(self.gridLayoutWidget_6)
         self.gridLayout_6.setObjectName(u"gridLayout_6")
         self.gridLayout_6.setContentsMargins(0, 0, 0, 0)
@@ -502,7 +506,7 @@ class Ui_BCT(object):
 
         self.push_serial_push = QPushButton(self.gridLayoutWidget_6)
         self.push_serial_push.setObjectName(u"push_serial_push")
-        sizePolicy4 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+        sizePolicy4 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
         sizePolicy4.setHorizontalStretch(0)
         sizePolicy4.setVerticalStretch(0)
         sizePolicy4.setHeightForWidth(self.push_serial_push.sizePolicy().hasHeightForWidth())
@@ -646,7 +650,8 @@ class Ui_BCT(object):
         ___qtablewidgetitem10.setText(QCoreApplication.translate("BCT", u"\uc628\ub3c4", None));
         ___qtablewidgetitem11 = self.dev_table_2.horizontalHeaderItem(5)
         ___qtablewidgetitem11.setText(QCoreApplication.translate("BCT", u"\uc624\ub958\ucf54\ub4dc", None));
-        self.tbMain.setTabText(self.tbMain.indexOf(self.tbBatteryTest), QCoreApplication.translate("BCT", u"Battery Test", None))
+        self.tbMain.setTabText(self.tbMain.indexOf(self.tbBatteryCycle), QCoreApplication.translate("BCT", u"Battery Cycle", None))
+        self.tbMain.setTabText(self.tbMain.indexOf(self.tbBatteryFactory), QCoreApplication.translate("BCT", u"Factory Test", None))
         self.groupBox_5.setTitle(QCoreApplication.translate("BCT", u"FW Version", None))
         self.label_15.setText(QCoreApplication.translate("BCT", u"Dev01", None))
         self.label_16.setText(QCoreApplication.translate("BCT", u"Dev02", None))

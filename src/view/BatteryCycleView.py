@@ -4,7 +4,7 @@ from src.MainUI import Ui_BCT
 from src.util.SerialWork import SerialConsoleWorker
 
 
-class BatteryTestView(QObject):
+class BatteryCycleView(QObject):
     def __init__(self, mainWindow: Ui_BCT):
         super().__init__()
 

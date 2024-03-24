@@ -24,10 +24,10 @@ class Ui_BCT(object):
     def setupUi(self, BCT):
         if not BCT.objectName():
             BCT.setObjectName(u"BCT")
-        BCT.resize(756, 606)
+        BCT.resize(752, 605)
         self.tbMain = QTabWidget(BCT)
         self.tbMain.setObjectName(u"tbMain")
-        self.tbMain.setGeometry(QRect(0, 50, 751, 541))
+        self.tbMain.setGeometry(QRect(0, 60, 751, 541))
         self.tbMain.setTabBarAutoHide(False)
         self.tbBatteryCycle = QWidget()
         self.tbBatteryCycle.setObjectName(u"tbBatteryCycle")
@@ -84,12 +84,12 @@ class Ui_BCT(object):
 
         self.gridLayout_2.addWidget(self.dev_ampere, 1, 0, 1, 1)
 
-        self.dev_temperature_2 = QLineEdit(self.gridLayoutWidget_2)
-        self.dev_temperature_2.setObjectName(u"dev_temperature_2")
-        self.dev_temperature_2.setAlignment(Qt.AlignCenter)
-        self.dev_temperature_2.setReadOnly(True)
+        self.dev_led_state = QLineEdit(self.gridLayoutWidget_2)
+        self.dev_led_state.setObjectName(u"dev_led_state")
+        self.dev_led_state.setAlignment(Qt.AlignCenter)
+        self.dev_led_state.setReadOnly(True)
 
-        self.gridLayout_2.addWidget(self.dev_temperature_2, 3, 0, 1, 2)
+        self.gridLayout_2.addWidget(self.dev_led_state, 3, 0, 1, 2)
 
         self.gridLayoutWidget_3 = QWidget(self.groupBox_3)
         self.gridLayoutWidget_3.setObjectName(u"gridLayoutWidget_3")
@@ -268,22 +268,22 @@ class Ui_BCT(object):
         self.verticalLayout = QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
-        self.pushButton_2 = QPushButton(self.verticalLayoutWidget)
-        self.pushButton_2.setObjectName(u"pushButton_2")
+        self.config_btn_start = QPushButton(self.verticalLayoutWidget)
+        self.config_btn_start.setObjectName(u"config_btn_start")
         sizePolicy3 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
         sizePolicy3.setHorizontalStretch(0)
         sizePolicy3.setVerticalStretch(0)
-        sizePolicy3.setHeightForWidth(self.pushButton_2.sizePolicy().hasHeightForWidth())
-        self.pushButton_2.setSizePolicy(sizePolicy3)
+        sizePolicy3.setHeightForWidth(self.config_btn_start.sizePolicy().hasHeightForWidth())
+        self.config_btn_start.setSizePolicy(sizePolicy3)
 
-        self.verticalLayout.addWidget(self.pushButton_2)
+        self.verticalLayout.addWidget(self.config_btn_start)
 
-        self.pushButton = QPushButton(self.verticalLayoutWidget)
-        self.pushButton.setObjectName(u"pushButton")
-        sizePolicy3.setHeightForWidth(self.pushButton.sizePolicy().hasHeightForWidth())
-        self.pushButton.setSizePolicy(sizePolicy3)
+        self.config_btn_stop = QPushButton(self.verticalLayoutWidget)
+        self.config_btn_stop.setObjectName(u"config_btn_stop")
+        sizePolicy3.setHeightForWidth(self.config_btn_stop.sizePolicy().hasHeightForWidth())
+        self.config_btn_stop.setSizePolicy(sizePolicy3)
 
-        self.verticalLayout.addWidget(self.pushButton)
+        self.verticalLayout.addWidget(self.config_btn_stop)
 
         self.groupBox_7 = QGroupBox(self.tbBatteryCycle)
         self.groupBox_7.setObjectName(u"groupBox_7")
@@ -304,19 +304,19 @@ class Ui_BCT(object):
 
         self.gridLayout_7.addWidget(self.label_25, 0, 0, 1, 1)
 
-        self.dev_version_3 = QLineEdit(self.gridLayoutWidget_7)
-        self.dev_version_3.setObjectName(u"dev_version_3")
-        self.dev_version_3.setAlignment(Qt.AlignCenter)
-        self.dev_version_3.setReadOnly(True)
+        self.dev_result_2 = QLineEdit(self.gridLayoutWidget_7)
+        self.dev_result_2.setObjectName(u"dev_result_2")
+        self.dev_result_2.setAlignment(Qt.AlignCenter)
+        self.dev_result_2.setReadOnly(True)
 
-        self.gridLayout_7.addWidget(self.dev_version_3, 1, 1, 1, 1)
+        self.gridLayout_7.addWidget(self.dev_result_2, 1, 1, 1, 1)
 
-        self.dev_version_2 = QLineEdit(self.gridLayoutWidget_7)
-        self.dev_version_2.setObjectName(u"dev_version_2")
-        self.dev_version_2.setAlignment(Qt.AlignCenter)
-        self.dev_version_2.setReadOnly(True)
+        self.dev_result = QLineEdit(self.gridLayoutWidget_7)
+        self.dev_result.setObjectName(u"dev_result")
+        self.dev_result.setAlignment(Qt.AlignCenter)
+        self.dev_result.setReadOnly(True)
 
-        self.gridLayout_7.addWidget(self.dev_version_2, 0, 1, 1, 1)
+        self.gridLayout_7.addWidget(self.dev_result, 0, 1, 1, 1)
 
         self.groupBox_8 = QGroupBox(self.tbBatteryCycle)
         self.groupBox_8.setObjectName(u"groupBox_8")
@@ -330,12 +330,12 @@ class Ui_BCT(object):
         self.gridLayout_8 = QGridLayout(self.gridLayoutWidget_8)
         self.gridLayout_8.setObjectName(u"gridLayout_8")
         self.gridLayout_8.setContentsMargins(0, 0, 0, 0)
-        self.dev_volt_3 = QLineEdit(self.gridLayoutWidget_8)
-        self.dev_volt_3.setObjectName(u"dev_volt_3")
-        self.dev_volt_3.setAlignment(Qt.AlignCenter)
-        self.dev_volt_3.setReadOnly(True)
+        self.dev_volt_2 = QLineEdit(self.gridLayoutWidget_8)
+        self.dev_volt_2.setObjectName(u"dev_volt_2")
+        self.dev_volt_2.setAlignment(Qt.AlignCenter)
+        self.dev_volt_2.setReadOnly(True)
 
-        self.gridLayout_8.addWidget(self.dev_volt_3, 0, 0, 1, 1)
+        self.gridLayout_8.addWidget(self.dev_volt_2, 0, 0, 1, 1)
 
         self.label_9 = QLabel(self.gridLayoutWidget_8)
         self.label_9.setObjectName(u"label_9")
@@ -368,12 +368,12 @@ class Ui_BCT(object):
 
         self.gridLayout_8.addWidget(self.dev_ampere_2, 1, 0, 1, 1)
 
-        self.dev_temperature_4 = QLineEdit(self.gridLayoutWidget_8)
-        self.dev_temperature_4.setObjectName(u"dev_temperature_4")
-        self.dev_temperature_4.setAlignment(Qt.AlignCenter)
-        self.dev_temperature_4.setReadOnly(True)
+        self.dev_led_state_2 = QLineEdit(self.gridLayoutWidget_8)
+        self.dev_led_state_2.setObjectName(u"dev_led_state_2")
+        self.dev_led_state_2.setAlignment(Qt.AlignCenter)
+        self.dev_led_state_2.setReadOnly(True)
 
-        self.gridLayout_8.addWidget(self.dev_temperature_4, 3, 0, 1, 2)
+        self.gridLayout_8.addWidget(self.dev_led_state_2, 3, 0, 1, 2)
 
         self.gridLayoutWidget_9 = QWidget(self.groupBox_9)
         self.gridLayoutWidget_9.setObjectName(u"gridLayoutWidget_9")
@@ -398,12 +398,12 @@ class Ui_BCT(object):
 
         self.gridLayout_9.addWidget(self.label_22, 0, 0, 1, 1)
 
-        self.dev_version_4 = QLineEdit(self.gridLayoutWidget_9)
-        self.dev_version_4.setObjectName(u"dev_version_4")
-        self.dev_version_4.setAlignment(Qt.AlignCenter)
-        self.dev_version_4.setReadOnly(True)
+        self.dev_version_2 = QLineEdit(self.gridLayoutWidget_9)
+        self.dev_version_2.setObjectName(u"dev_version_2")
+        self.dev_version_2.setAlignment(Qt.AlignCenter)
+        self.dev_version_2.setReadOnly(True)
 
-        self.gridLayout_9.addWidget(self.dev_version_4, 0, 1, 1, 1)
+        self.gridLayout_9.addWidget(self.dev_version_2, 0, 1, 1, 1)
 
         self.dev_table_2 = QTableWidget(self.groupBox_8)
         if (self.dev_table_2.columnCount() < 6):
@@ -574,7 +574,7 @@ class Ui_BCT(object):
 
         self.config_save = QPushButton(BCT)
         self.config_save.setObjectName(u"config_save")
-        self.config_save.setGeometry(QRect(640, 9, 111, 51))
+        self.config_save.setGeometry(QRect(640, -1, 111, 71))
         sizePolicy3.setHeightForWidth(self.config_save.sizePolicy().hasHeightForWidth())
         self.config_save.setSizePolicy(sizePolicy3)
 
@@ -593,7 +593,7 @@ class Ui_BCT(object):
         self.label_7.setText(QCoreApplication.translate("BCT", u"A", None))
         self.label_4.setText(QCoreApplication.translate("BCT", u"V", None))
         self.label_8.setText(QCoreApplication.translate("BCT", u"\u00b0C", None))
-        self.dev_temperature_2.setText(QCoreApplication.translate("BCT", u"Battery State", None))
+        self.dev_led_state.setText(QCoreApplication.translate("BCT", u"Battery State", None))
         self.label_6.setText(QCoreApplication.translate("BCT", u"\ubc18\ubcf5", None))
         self.label_5.setText(QCoreApplication.translate("BCT", u"\ubc84\uc804", None))
         ___qtablewidgetitem = self.dev_table.horizontalHeaderItem(0)
@@ -625,8 +625,8 @@ class Ui_BCT(object):
         self.label_47.setText(QCoreApplication.translate("BCT", u" \ucd08", None))
         self.label_14.setText(QCoreApplication.translate("BCT", u"\ucda9\uc804 \uc911\uc9c0", None))
         self.label_12.setText(QCoreApplication.translate("BCT", u"\ubc18\ubcf5\ud69f\uc218", None))
-        self.pushButton_2.setText(QCoreApplication.translate("BCT", u"start", None))
-        self.pushButton.setText(QCoreApplication.translate("BCT", u"stop", None))
+        self.config_btn_start.setText(QCoreApplication.translate("BCT", u"start", None))
+        self.config_btn_stop.setText(QCoreApplication.translate("BCT", u"stop", None))
         self.groupBox_7.setTitle(QCoreApplication.translate("BCT", u"Test Result", None))
         self.label_27.setText(QCoreApplication.translate("BCT", u"Dev02", None))
         self.label_25.setText(QCoreApplication.translate("BCT", u"Dev01", None))
@@ -635,7 +635,7 @@ class Ui_BCT(object):
         self.label_9.setText(QCoreApplication.translate("BCT", u"A", None))
         self.label_10.setText(QCoreApplication.translate("BCT", u"V", None))
         self.label_11.setText(QCoreApplication.translate("BCT", u"\u00b0C", None))
-        self.dev_temperature_4.setText(QCoreApplication.translate("BCT", u"Battery State", None))
+        self.dev_led_state_2.setText(QCoreApplication.translate("BCT", u"Battery State", None))
         self.label_21.setText(QCoreApplication.translate("BCT", u"\ubc18\ubcf5", None))
         self.label_22.setText(QCoreApplication.translate("BCT", u"\ubc84\uc804", None))
         ___qtablewidgetitem6 = self.dev_table_2.horizontalHeaderItem(0)

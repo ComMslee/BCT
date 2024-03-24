@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>756</width>
-    <height>606</height>
+    <width>752</width>
+    <height>605</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,7 +17,7 @@
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>50</y>
+     <y>60</y>
      <width>751</width>
      <height>541</height>
     </rect>
@@ -124,7 +124,7 @@
          </widget>
         </item>
         <item row="3" column="0" colspan="2">
-         <widget class="QLineEdit" name="dev_temperature_2">
+         <widget class="QLineEdit" name="dev_led_state">
           <property name="text">
            <string>Battery State</string>
           </property>
@@ -438,7 +438,7 @@
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <widget class="QPushButton" name="pushButton_2">
+        <widget class="QPushButton" name="config_btn_start">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
            <horstretch>0</horstretch>
@@ -451,7 +451,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="config_btn_stop">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
            <horstretch>0</horstretch>
@@ -503,7 +503,7 @@
         </widget>
        </item>
        <item row="1" column="1">
-        <widget class="QLineEdit" name="dev_version_3">
+        <widget class="QLineEdit" name="dev_result_2">
          <property name="alignment">
           <set>Qt::AlignCenter</set>
          </property>
@@ -513,7 +513,7 @@
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QLineEdit" name="dev_version_2">
+        <widget class="QLineEdit" name="dev_result">
          <property name="alignment">
           <set>Qt::AlignCenter</set>
          </property>
@@ -560,7 +560,7 @@
        </property>
        <layout class="QGridLayout" name="gridLayout_8">
         <item row="0" column="0">
-         <widget class="QLineEdit" name="dev_volt_3">
+         <widget class="QLineEdit" name="dev_volt_2">
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -617,7 +617,7 @@
          </widget>
         </item>
         <item row="3" column="0" colspan="2">
-         <widget class="QLineEdit" name="dev_temperature_4">
+         <widget class="QLineEdit" name="dev_led_state_2">
           <property name="text">
            <string>Battery State</string>
           </property>
@@ -666,7 +666,7 @@
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QLineEdit" name="dev_version_4">
+         <widget class="QLineEdit" name="dev_version_2">
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -958,9 +958,9 @@
    <property name="geometry">
     <rect>
      <x>640</x>
-     <y>9</y>
+     <y>-1</y>
      <width>111</width>
-     <height>51</height>
+     <height>71</height>
     </rect>
    </property>
    <property name="sizePolicy">

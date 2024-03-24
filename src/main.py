@@ -5,7 +5,9 @@ from src.MainUI import Ui_BCT
 from src.repository.DataConfig import DataConfig
 from src.repository.DataLog import DataLog
 from src.view.BatteryCycleView import BatteryCycleView
+from src.view.BatteryFactoryView import BatteryFactoryView
 from src.view.PushSerialView import PushSerialView
+from src.view.RootView import RootView
 
 
 class MainWindow(QMainWindow, Ui_BCT):
@@ -16,8 +18,10 @@ class MainWindow(QMainWindow, Ui_BCT):
 
         DataConfig()
         DataLog()
-        self.BatteryTestTab = BatteryCycleView(self)
-        self.PushSerialTab = PushSerialView(self)
+        self.rootView = RootView(self)
+        self.batteryCycleTab = BatteryCycleView(self)
+        self.batteryFactoryTab = BatteryFactoryView(self)
+        self.pushSerialTab = PushSerialView(self)
 
         self.initSelectTab()
 

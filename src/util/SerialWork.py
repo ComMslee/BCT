@@ -7,8 +7,8 @@ from PySide6.QtCore import QThread, QMutex, QMutexLocker
 
 class SerialConsoleWorker(QThread):
     bRunning = True
-    msgThreadNoti = QtCore.Signal(str)
-    msgReadNoti = QtCore.Signal(str)
+    msgThread = QtCore.Signal(str)
+    msgRead = QtCore.Signal(str)
 
     def __init__(self, ComPort, BaudRate=115200):
         super().__init__()
@@ -30,7 +30,7 @@ class SerialConsoleWorker(QThread):
             self.ThreadNoti("console is none... ")
 
     def ThreadNoti(self, msg: str):
-        self.msgThreadNoti.emit(f"[{self.comPort} / {self.BaudRate}] {msg}")
+        self.msgThread.emit(f"[{self.comPort} / {self.BaudRate}] {msg}")
 
     def run(self):
         with QMutexLocker(self.mutex):
@@ -47,7 +47,7 @@ class SerialConsoleWorker(QThread):
                         if self.serial_port.in_waiting > 0:
                             input_data = self.serial_port.readline().decode().strip()
                             if input_data:
-                                self.msgReadNoti.emit(input_data)
+                                self.msgRead.emit(input_data)
                             else:
                                 self.ThreadNoti("input_data is Empty")
                         time.sleep(0.1)

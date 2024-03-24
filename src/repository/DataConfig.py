@@ -2,10 +2,13 @@ import json
 import os
 import re
 
+from PySide6 import QtCore
 from PySide6.QtCore import QObject
 
 
 class DataConfig(QObject):
+    msgUpdateData = QtCore.Signal()
+
     __init = False
     __DEBUG__ = False
 
@@ -112,13 +115,20 @@ class DataConfig(QObject):
             self.saveData()
 
     # config
-    def setComPort(self, port):
+    def setComPort(self, index: int, port: str):
         matchPort = re.compile("(^com)\\d{1,3}", re.I).match(port)
         if matchPort is not None:
-            self.__comPort_dev01 = matchPort.group().upper()
+            comtext = matchPort.group().upper()
+            if index == 2:
+                self.__comPort_dev02 = comtext
+            else:
+                self.__comPort_dev01 = comtext
 
-    def getComPort(self):
-        return self.__comPort_dev01
+    def getComPort(self, index: int) -> str:
+        if index == 2:
+            return self.__comPort_dev02
+        else:
+            return self.__comPort_dev01
 
     def setComBaudRate(self, rate):
         if rate.isdigit() and int(rate) != 0:

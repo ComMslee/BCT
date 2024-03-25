@@ -53,7 +53,8 @@ class SerialCycleWorker(QThread):
                             else:
                                 self.ThreadNoti("input_data is Empty")
                         time.sleep(0.1)
-                        self.cycle -= self.cycle
+                        print("cycle .. " + str(self.cycle))
+                        self.cycle -= 1
 
                     self.ThreadNoti("write complete!!")
                 else:

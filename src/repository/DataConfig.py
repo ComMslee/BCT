@@ -4,7 +4,7 @@ import re
 
 from PySide6 import QtCore
 from PySide6.QtCore import QObject
-
+import platform
 
 class DataConfig(QObject):
     msgUpdateData = QtCore.Signal()
@@ -32,7 +32,14 @@ class DataConfig(QObject):
         self.__VERSION = 0
 
         self.__version = 0
-        self.__comPort_dev01 = "COM3"  # ComPort = "/dev/tty.usbserial-FTH0U0HX"
+
+        self.current_os = platform.system()
+
+        if self.current_os == "Darwin":
+            self.__comPort_dev01 = "/dev/tty.usbserial-A9IP3GCP"
+        else:
+            self.__comPort_dev01 = "COM3"  # ComPort = "/dev/tty.usbserial-FTH0U0HX"
+
         self.__comPort_dev02 = "COM4"  # ComPort = "/dev/tty.usbserial-FTH0U0HX"
         self.__comBaudRate = 115200
 
@@ -116,9 +123,16 @@ class DataConfig(QObject):
 
     # config
     def setComPort(self, index: int, port: str):
-        matchPort = re.compile("(^com)\\d{1,3}", re.I).match(port)
+        if self.current_os == "Darwin":
+            matchPort = re.compile(r'^/dev/tty\.usbserial.*').match(port)
+        else:
+            matchPort = re.compile("(^com)\\d{1,3}", re.I).match(port)
+
         if matchPort is not None:
-            comtext = matchPort.group().upper()
+            matchPort = matchPort.group()
+            if self.current_os != "Darwin":
+                matchPort = matchPort.upper()
+            comtext = matchPort
             if index == 2:
                 self.__comPort_dev02 = comtext
             else:
@@ -142,3 +156,16 @@ class DataConfig(QObject):
 
     def getSelectTab(self):
         return self.__selectTab
+
+    def setCycle(self, cycle):
+        self.__cycle = cycle
+
+    def getCycle(self):
+        return self.__cycle
+
+    def setTime(self, onTime: list, offTime: list):
+        self.__onTime = onTime
+        self.__offTime = offTime
+
+    def getTime(self):
+        return self.__onTime, self.__offTime

@@ -5,17 +5,17 @@ from PySide6 import QtCore
 from PySide6.QtCore import QThread, QMutex, QMutexLocker
 
 
-class SerialConsoleWorker(QThread):
+class SerialWorker(QThread):
     bRunning = True
     msgThread = QtCore.Signal(str)
     msgRead = QtCore.Signal(str)
 
-    def __init__(self, ComPort, BaudRate=115200):
+    def __init__(self, ComPort, baudrate=115200):
         super().__init__()
 
         self.serial_port = None
         self.comPort = ComPort
-        self.BaudRate = BaudRate
+        self.BaudRate = baudrate
         self.mutex = QMutex()
 
     def consoleWrite(self, data: str):

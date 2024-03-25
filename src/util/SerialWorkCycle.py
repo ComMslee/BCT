@@ -31,6 +31,9 @@ class SerialCycleWorker(QThread):
         else:
             self.ThreadNoti("console is none... ")
 
+    def stopWork(self):
+        self.cycle = 0
+
     def ThreadNoti(self, msg: str):
         self.msgThread.emit(f"[{self.comPort} / {self.BaudRate}] {msg}")
 
@@ -45,14 +48,14 @@ class SerialCycleWorker(QThread):
                 if self.serial_port.isOpen():
                     self.ThreadNoti("console.isOpen!!!")
 
-                    while self.cycle > 0 :
+                    while self.cycle > 0:
                         if self.serial_port.in_waiting > 0:
                             input_data = self.serial_port.readline().decode().strip()
                             if input_data:
                                 self.msgRead.emit(input_data)
                             else:
                                 self.ThreadNoti("input_data is Empty")
-                        time.sleep(0.1)
+                        time.sleep(0.5)
                         print("cycle .. " + str(self.cycle))
                         self.cycle -= 1
 

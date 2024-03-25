@@ -9,8 +9,8 @@ class BatteryCycleView(QObject):
     def __init__(self, mainWindow: Ui_BCT):
         super().__init__()
 
-        self.dev01 = None
-        self.dev02 = None
+        self.dev01: SerialCycleWorker = None
+        self.dev02: SerialCycleWorker = None
         self.view = mainWindow
 
         self.dataConfig = DataConfig()
@@ -22,6 +22,7 @@ class BatteryCycleView(QObject):
     def initUI(self):
         self.view.config_btn_start.clicked.connect(self.startCycle)
         self.view.config_btn_stop.clicked.connect(self.stopCycle)
+        self.dataConfig.msgSaveData.connect(self.saveData)
 
     def updateUI(self):
         self.view.config_cycle.setText(str(self.dataConfig.getCycle()))
@@ -33,24 +34,48 @@ class BatteryCycleView(QObject):
         self.view.config_time_off_m.setText(str(offtime[1]))
         self.view.config_time_off_s.setText(str(offtime[2]))
 
+    def saveData(self):
+        dataconfig = self.dataConfig
+        dataconfig.setTime(
+            [
+                int(self.view.config_time_on_h.text()),
+                int(self.view.config_time_on_m.text()),
+                int(self.view.config_time_on_s.text()),
+            ],
+            [
+                int(self.view.config_time_off_h.text()),
+                int(self.view.config_time_off_m.text()),
+                int(self.view.config_time_off_s.text()),
+            ])
+        dataconfig.setCycle(self.view.config_cycle.text())
+        dataconfig.saveData()
+
     def startCycle(self):
         print("start cycle")
-        self.dev01 = SerialCycleWorker(self.dataConfig.getComPort(1),
-                                       self.dataConfig.getTime(),
-                                       self.dataConfig.getComBaudRate(),
-                                       self.dataConfig.getCycle()
-                                       )
-        self.dev01.run()
+        dataconfig = self.dataConfig
+        self.dev01 = SerialCycleWorker(
+            dataconfig.getComPort(1),
+            dataconfig.getTime(),
+            dataconfig.getComBaudRate(),
+            dataconfig.getCycle()
+        )
+        self.dev01.start()
 
-        self.dev02 = SerialCycleWorker(self.dataConfig.getComPort(2),
-                                       self.dataConfig.getTime(),
-                                       self.dataConfig.getComBaudRate(),
-                                       self.dataConfig.getCycle()
-                                       )
+        self.dev02 = SerialCycleWorker(
+            dataconfig.getComPort(2),
+            dataconfig.getTime(),
+            dataconfig.getComBaudRate(),
+            dataconfig.getCycle()
+        )
+        self.dev02.start()
 
         pass
 
     def stopCycle(self):
+        if self.dev01 is not None:
+            self.dev01.stopWork()
+        if self.dev02 is not None:
+            self.dev02.stopWork()
         print("start cycle stop")
         pass
 

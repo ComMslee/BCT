@@ -30,4 +30,5 @@ class RootView(QObject):
         self.dataConfig.setComPort(1, self.view.dev_port.text())
         self.dataConfig.setComPort(2, self.view.dev_port_2.text())
         self.dataConfig.saveData()
+        self.dataConfig.msgSaveData.emit()
         self.dataConfig.msgUpdateData.emit()

@@ -8,6 +8,7 @@ import platform
 
 class DataConfig(QObject):
     msgUpdateData = QtCore.Signal()
+    msgSaveData = QtCore.Signal()
 
     __init = False
     __DEBUG__ = False
@@ -124,7 +125,7 @@ class DataConfig(QObject):
     # config
     def setComPort(self, index: int, port: str):
         if self.current_os == "Darwin":
-            matchPort = re.compile(r'^/dev/tty\.usbserial.*').match(port)
+            matchPort = re.compile(r'^/dev/tty[sS].*$').match(port)
         else:
             matchPort = re.compile("(^com)\\d{1,3}", re.I).match(port)
 

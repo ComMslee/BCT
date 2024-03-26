@@ -19,5 +19,5 @@ class BatteryFactoryView(QObject):
     def initUI(self):
         pass
 
-    def updatUI(self):
+    def updateUI(self):
         pass

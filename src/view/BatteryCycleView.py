@@ -69,7 +69,7 @@ class BatteryCycleView(QObject):
         )
         self.dev02.start()
 
-        pass
+        self.view.config_btn_start.setEnabled(False)
 
     def stopCycle(self):
         if self.dev01 is not None:
@@ -77,22 +77,4 @@ class BatteryCycleView(QObject):
         if self.dev02 is not None:
             self.dev02.stopWork()
         print("start cycle stop")
-        pass
-
-######################################################
-#         self.dev01 = SerialWorker("COM3", 115200)
-#         self.dev02 = SerialWorker("COM4", 115200)
-#
-#         self.devList = [self.dev01, self.dev02]
-#         for dev in self.devList:
-#             dev.msgThread.connect(logThread)
-#             dev.msgRead.connect(logRead)
-#             dev.start()
-#
-#
-# def logThread(msg: str):
-#     print("logThread " + msg)
-#
-#
-# def logRead(msg: str):
-#     print("logRead " + msg)
+        self.view.config_btn_start.setEnabled(True)

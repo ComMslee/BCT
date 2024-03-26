@@ -6,6 +6,7 @@ from PySide6 import QtCore
 from PySide6.QtCore import QObject
 import platform
 
+
 class DataConfig(QObject):
     msgUpdateData = QtCore.Signal()
     msgSaveData = QtCore.Signal()
@@ -50,8 +51,8 @@ class DataConfig(QObject):
         self.__onTime = [0, 1, 0]
         self.__offTime = [0, 1, 0]
 
-        self.__serial_fixed = ""
-        self.__serial_val = ""
+        self.__serial_fixed = "MSLEE_24_00_00F"
+        self.__serial_val = "000001"
         self.__auto_cnt = True
 
         self.loadData()
@@ -125,9 +126,9 @@ class DataConfig(QObject):
     # config
     def setComPort(self, index: int, port: str):
         if self.current_os == "Darwin":
-            matchPort = re.compile(r'^/dev/tty[sS].*$').match(port)
+            matchPort = re.compile(r'^/dev/tty.*').match(port)
         else:
-            matchPort = re.compile("(^com)\\d{1,3}", re.I).match(port)
+            atchPort = re.compile("(^com)\\d{1,3}", re.I).match(port)
 
         if matchPort is not None:
             matchPort = matchPort.group()
@@ -170,3 +171,16 @@ class DataConfig(QObject):
 
     def getTime(self):
         return self.__onTime, self.__offTime
+
+    def getSerial(self):
+        return self.__serial_fixed, self.__serial_val
+
+    def setSerial(self, fixed: str, value: str):
+        self.__serial_fixed = fixed
+        self.__serial_val = value
+
+    def getAuto(self):
+        return self.__auto_cnt
+
+    def setAuto(self, auto_cnt: bool):
+        self.__auto_cnt = auto_cnt

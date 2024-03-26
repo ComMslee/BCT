@@ -17,7 +17,7 @@ class SerialCycleWorker(QThread):
         self.comPort = ComPort
         self.BaudRate = baudrate
         self.time = time
-        self.cycle = cycle
+        self.cycle = int(cycle)
         self.mutex = QMutex()
 
     def consoleWrite(self, data: str):
@@ -32,7 +32,7 @@ class SerialCycleWorker(QThread):
             self.ThreadNoti("console is none... ")
 
     def stopWork(self):
-        self.cycle = 0
+        self.cycle = -1
 
     def ThreadNoti(self, msg: str):
         self.msgThread.emit(f"[{self.comPort} / {self.BaudRate}] {msg}")

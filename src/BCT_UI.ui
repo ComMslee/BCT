@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>752</width>
-    <height>634</height>
+    <width>800</width>
+    <height>694</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,13 +17,13 @@
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>60</y>
-     <width>751</width>
-     <height>571</height>
+     <y>70</y>
+     <width>801</width>
+     <height>621</height>
     </rect>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>0</number>
    </property>
    <property name="tabBarAutoHide">
     <bool>false</bool>
@@ -37,8 +37,8 @@
       <rect>
        <x>0</x>
        <y>100</y>
-       <width>741</width>
-       <height>221</height>
+       <width>791</width>
+       <height>241</height>
       </rect>
      </property>
      <property name="title">
@@ -49,8 +49,8 @@
        <rect>
         <x>10</x>
         <y>20</y>
-        <width>131</width>
-        <height>191</height>
+        <width>151</width>
+        <height>211</height>
        </rect>
       </property>
       <property name="title">
@@ -60,8 +60,8 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>70</y>
-         <width>111</width>
+         <y>80</y>
+         <width>131</width>
          <height>116</height>
         </rect>
        </property>
@@ -142,8 +142,8 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>20</y>
-         <width>111</width>
+         <y>30</y>
+         <width>131</width>
          <height>54</height>
         </rect>
        </property>
@@ -185,45 +185,21 @@
        </layout>
       </widget>
      </widget>
-     <widget class="QTableWidget" name="dev_table">
+     <widget class="QListWidget" name="listWidget">
       <property name="geometry">
        <rect>
-        <x>150</x>
-        <y>20</y>
-        <width>581</width>
-        <height>191</height>
+        <x>170</x>
+        <y>30</y>
+        <width>611</width>
+        <height>201</height>
        </rect>
       </property>
-      <column>
-       <property name="text">
-        <string>Pass</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>No</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>전압</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>전류</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>온도</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>오류코드</string>
-       </property>
-      </column>
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <property name="viewMode">
+       <enum>QListView::ListMode</enum>
+      </property>
      </widget>
     </widget>
     <widget class="QGroupBox" name="groupBox_4">
@@ -231,7 +207,7 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>501</width>
+       <width>541</width>
        <height>101</height>
       </rect>
      </property>
@@ -425,9 +401,9 @@
      <widget class="QWidget" name="verticalLayoutWidget">
       <property name="geometry">
        <rect>
-        <x>400</x>
+        <x>420</x>
         <y>30</y>
-        <width>91</width>
+        <width>111</width>
         <height>62</height>
        </rect>
       </property>
@@ -505,7 +481,7 @@
     <widget class="QGroupBox" name="groupBox_7">
      <property name="geometry">
       <rect>
-       <x>510</x>
+       <x>550</x>
        <y>0</y>
        <width>231</width>
        <height>101</height>
@@ -565,21 +541,21 @@
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>320</y>
-       <width>741</width>
-       <height>221</height>
+       <y>350</y>
+       <width>791</width>
+       <height>241</height>
       </rect>
      </property>
      <property name="title">
-      <string>Device 02</string>
+      <string>Device 01</string>
      </property>
      <widget class="QGroupBox" name="groupBox_9">
       <property name="geometry">
        <rect>
         <x>10</x>
         <y>20</y>
-        <width>131</width>
-        <height>191</height>
+        <width>151</width>
+        <height>211</height>
        </rect>
       </property>
       <property name="title">
@@ -589,8 +565,8 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>70</y>
-         <width>111</width>
+         <y>80</y>
+         <width>131</width>
          <height>116</height>
         </rect>
        </property>
@@ -633,7 +609,7 @@
          </widget>
         </item>
         <item row="2" column="0">
-         <widget class="QLineEdit" name="dev_temperature_3">
+         <widget class="QLineEdit" name="dev_temperature_2">
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -671,8 +647,8 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>20</y>
-         <width>111</width>
+         <y>30</y>
+         <width>131</width>
          <height>54</height>
         </rect>
        </property>
@@ -688,14 +664,14 @@
          </widget>
         </item>
         <item row="1" column="0">
-         <widget class="QLabel" name="label_21">
+         <widget class="QLabel" name="label_20">
           <property name="text">
            <string>반복</string>
           </property>
          </widget>
         </item>
         <item row="0" column="0">
-         <widget class="QLabel" name="label_22">
+         <widget class="QLabel" name="label_21">
           <property name="text">
            <string>버전</string>
           </property>
@@ -717,10 +693,10 @@
      <widget class="QTableWidget" name="dev_table_2">
       <property name="geometry">
        <rect>
-        <x>150</x>
-        <y>20</y>
-        <width>581</width>
-        <height>191</height>
+        <x>170</x>
+        <y>30</y>
+        <width>611</width>
+        <height>201</height>
        </rect>
       </property>
       <column>
@@ -813,8 +789,8 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>10</y>
-       <width>391</width>
+       <y>0</y>
+       <width>311</width>
        <height>91</height>
       </rect>
      </property>
@@ -826,7 +802,7 @@
        <rect>
         <x>10</x>
         <y>30</y>
-        <width>371</width>
+        <width>291</width>
         <height>57</height>
        </rect>
       </property>
@@ -865,9 +841,9 @@
     <widget class="QGroupBox" name="groupBox_6">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>110</y>
-       <width>511</width>
+       <x>340</x>
+       <y>0</y>
+       <width>431</width>
        <height>151</height>
       </rect>
      </property>
@@ -879,11 +855,11 @@
        <rect>
         <x>10</x>
         <y>30</y>
-        <width>491</width>
+        <width>411</width>
         <height>111</height>
        </rect>
       </property>
-      <layout class="QGridLayout" name="gridLayout_6" columnstretch="0,0,0,0,0" rowminimumheight="0,0,0,0,0,0">
+      <layout class="QGridLayout" name="gridLayout_6" columnstretch="0,0,0,0,0" rowminimumheight="0,0,0">
        <item row="0" column="2">
         <widget class="QLabel" name="label_18">
          <property name="text">
@@ -968,8 +944,8 @@
     <rect>
      <x>10</x>
      <y>0</y>
-     <width>621</width>
-     <height>61</height>
+     <width>651</width>
+     <height>71</height>
     </rect>
    </property>
    <property name="title">
@@ -979,8 +955,8 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>20</y>
-      <width>591</width>
+      <y>30</y>
+      <width>631</width>
       <height>31</height>
      </rect>
     </property>
@@ -1047,9 +1023,9 @@
   <widget class="QPushButton" name="config_save">
    <property name="geometry">
     <rect>
-     <x>640</x>
-     <y>-1</y>
-     <width>111</width>
+     <x>660</x>
+     <y>10</y>
+     <width>141</width>
      <height>71</height>
     </rect>
    </property>

@@ -9,6 +9,7 @@ class SerialCycleWorker(QThread):
     bRunning = True
     msgThread = QtCore.Signal(str)
     msgRead = QtCore.Signal(str)
+    msgReadList = QtCore.Signal(list)
 
     def __init__(self, ComPort, time, baudrate=115200, cycle=1000):
         super().__init__()
@@ -48,7 +49,7 @@ class SerialCycleWorker(QThread):
                 if self.serial_port.isOpen():
                     self.ThreadNoti("console.isOpen!!!")
 
-                    while self.cycle > 0:
+                    for idx in range(self.cycle):
                         if self.serial_port.in_waiting > 0:
                             input_data = self.serial_port.readline().decode().strip()
                             if input_data:
@@ -56,10 +57,10 @@ class SerialCycleWorker(QThread):
                             else:
                                 self.ThreadNoti("input_data is Empty")
                         time.sleep(0.5)
-                        print("cycle .. " + str(self.cycle))
-                        self.cycle -= 1
+                        self.msgReadList.emit(["", str(idx), "", "", "", ""])
+                        print("cycle .. " + str(idx))
 
-                    self.ThreadNoti("write complete!!")
+                    self.ThreadNoti("write complete")
                 else:
                     self.ThreadNoti("not open...")
 

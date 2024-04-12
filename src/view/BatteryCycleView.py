@@ -111,6 +111,14 @@ class BatteryCycleView(QObject):
             data.setFlags(data.flags() & ~Qt.ItemIsEditable)  # 편집 불가능
             self.view.dev_table.setItem(0, col, data)
 
+    def pushTableData(self, items: list):
+        self.cnt += 1
+        self.view.dev_table_2.insertRow(0)
+        for col, item in enumerate(items):
+            data = QTableWidgetItem(item)
+            data.setTextAlignment(Qt.AlignCenter)
+            data.setFlags(data.flags() & ~Qt.ItemIsEditable)  # 편집 불가능
+            self.view.dev_table_2.setItem(0, col, data)
     def changeLEDState(self, idx: int, state: int):
         view: QLineEdit = None
         if idx == 2:

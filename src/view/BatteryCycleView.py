@@ -26,7 +26,7 @@ class BatteryCycleView(QObject):
         self.view.config_btn_stop.clicked.connect(self.stopCycle)
         self.dataConfig.msgSaveData.connect(self.saveData)
 
-        colSize = [70, 80, 110, 110, 110, 110]
+        colSize = [70, 80, 100, 100, 100, 100]
         self.setTableColumnSizes(self.view.dev_table, colSize)  # 각 열의 크기를 설정합니다.
         self.setTableColumnSizes(self.view.dev_table_2, colSize)  # 각 열의 크기를 설정합니다.
         self.view.config_btn_stop.setEnabled(False)
@@ -59,9 +59,8 @@ class BatteryCycleView(QObject):
 
     def startCycle(self):
         print("start cycle")
-        self.saveData()
-
         dataconfig = self.dataConfig
+        dataconfig.msgSaveData.emit()
         self.dev01 = SerialCycleWorker(
             dataconfig.getComPort(1),
             dataconfig.getTime(),

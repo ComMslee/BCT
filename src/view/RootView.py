@@ -17,18 +17,20 @@ class RootView(QObject):
         self.updateUI()
 
     def initUI(self):
-        self.dataConfig.msgUpdateData.connect(self.updateUI)
-        self.view.config_save.clicked.connect(self.saveData)
+        self.view.config_save.clicked.connect(self.saveDataEvent)
+        self.dataConfig.msgSaveData.connect(self.saveData)
 
     def updateUI(self):
         self.view.dev_baud.setText(str(self.dataConfig.getComBaudRate()))
         self.view.dev_port.setText(self.dataConfig.getComPort(1))
         self.view.dev_port_2.setText(self.dataConfig.getComPort(2))
 
+    def saveDataEvent(self):
+        self.dataConfig.msgSaveData.emit()
+
     def saveData(self):
         self.dataConfig.setComBaudRate(self.view.dev_baud.text())
         self.dataConfig.setComPort(1, self.view.dev_port.text())
         self.dataConfig.setComPort(2, self.view.dev_port_2.text())
         self.dataConfig.saveData()
-        self.dataConfig.msgSaveData.emit()
-        self.dataConfig.msgUpdateData.emit()
+

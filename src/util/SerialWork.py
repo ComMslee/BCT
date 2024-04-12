@@ -10,7 +10,7 @@ class SerialWorker(QThread):
     msgThread = QtCore.Signal(str)
     msgRead = QtCore.Signal(str)
 
-    def __init__(self, ComPort, baudrate=115200):
+    def __init__(self, ComPort, baudrate=38400):
         super().__init__()
 
         self.serial_port = None

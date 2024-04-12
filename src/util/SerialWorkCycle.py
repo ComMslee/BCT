@@ -2,7 +2,9 @@ import time
 
 import serial
 from PySide6 import QtCore
-from PySide6.QtCore import QThread, QMutex, QMutexLocker
+from PySide6.QtCore import QThread, QMutex, QMutexLocker, QWaitCondition
+
+from src.util.ReadThread import ReadThread
 
 
 class SerialCycleWorker(QThread):
@@ -11,32 +13,50 @@ class SerialCycleWorker(QThread):
     msgRead = QtCore.Signal(str)
     msgReadList = QtCore.Signal(list)
 
-    def __init__(self, ComPort, time, baudrate=115200, cycle=1000):
+    def __init__(self, ComPort, time, baudrate=38400, cycle=1000):
         super().__init__()
 
         self.serial_port = None
+        self.read_thread = None
         self.comPort = ComPort
         self.BaudRate = baudrate
         self.time = time
         self.cycle = int(cycle)
         self.mutex = QMutex()
+        self.waitCondition = QWaitCondition()
+
+    def consoleWriteBytes(self, sendData: bytes):
+        if self.serial_port is not None:
+            self.serial_port.write(sendData)
+            time.sleep(0.3)
+
+        else:
+            self.ThreadNoti("console is none... ")
 
     def consoleWrite(self, data: str):
         data = data.replace("\n", "")
         sendData = bytes(data + "\r\n", "UTF-8")
 
-        if self.serial_port is not None:
-            self.serial_port.write(sendData)
-            time.sleep(0.2)
-
-        else:
-            self.ThreadNoti("console is none... ")
+        self.consoleWriteBytes(sendData)
 
     def stopWork(self):
-        self.cycle = -1
+        self.bRunning = False
+        self.waitCondition.wakeAll()
 
     def ThreadNoti(self, msg: str):
         self.msgThread.emit(f"[{self.comPort} / {self.BaudRate}] {msg}")
+
+    def make_crc_check_data(self, data: bytes):
+        crc = 0
+        for byte in data:
+            crc += byte
+        crc ^= 0xFF
+        return crc & 0xFF
+
+    def send_bytes_with_crc(self, data: bytes):
+        # CRC 값을 계산하여 데이터 배열 끝에 추가
+        crc = self.make_crc_check_data(data)
+        return data + bytes([crc]) + bytes([0x7E])
 
     def run(self):
         with QMutexLocker(self.mutex):
@@ -49,16 +69,35 @@ class SerialCycleWorker(QThread):
                 if self.serial_port.isOpen():
                     self.ThreadNoti("console.isOpen!!!")
 
+                    self.read_thread = ReadThread(self.serial_port)
+                    self.read_thread.start()
+
                     for idx in range(self.cycle):
-                        if self.serial_port.in_waiting > 0:
-                            input_data = self.serial_port.readline().decode().strip()
-                            if input_data:
-                                self.msgRead.emit(input_data)
-                            else:
-                                self.ThreadNoti("input_data is Empty")
-                        time.sleep(0.5)
+                        # bytes_waiting = self.serial_port.in_waiting
+                        # if bytes_waiting > 0:
+                        #     data = self.serial_port.read(10)  # 수신 대기 중인 모든 데이터를 읽음
+                        #     hex_data = ' '.join(format(byte, '02X') for byte in data)
+                        #     print("Received (hex):", hex_data)
+
+                        if not self.bRunning: break
+                        onData = self.send_bytes_with_crc(bytes([0xA5, 0x02, 0x01, 0x01]))
+                        self.consoleWriteBytes(onData)
+                        waitTime = self.time[0][0] * 60 * 60 + (self.time[0][1] * 60) + (self.time[0][2])
+                        print("on .. " + str(waitTime) + "s")
+                        self.waitCondition.wait(self.mutex, waitTime * 1000)  # msleep 대신에 waitCondition을 사용하여 대기
+                        # time.sleep(waitTime)
+
+                        if not self.bRunning: break
+
+                        # send Off
+                        onData = self.send_bytes_with_crc(bytes([0xA5, 0x02, 0x01, 0x00]))
+                        waitTime = self.time[1][0] * 60 * 60 + (self.time[1][1] * 60) + (self.time[1][2])
+                        print("off .. " + str(waitTime) + "s")
+                        self.waitCondition.wait(self.mutex, waitTime * 1000)  # msleep 대신에 waitCondition을 사용하여 대기
+                        # time.sleep(waitTime)
+
                         self.msgReadList.emit(["", str(idx), "", "", "", ""])
-                        print("cycle .. " + str(idx))
+                        print("cycle-----" + str(idx))
 
                     self.ThreadNoti("write complete")
                 else:
@@ -67,3 +106,5 @@ class SerialCycleWorker(QThread):
             except Exception as error:
                 print(error)
                 self.ThreadNoti(str(error))
+            finally:
+                self.serial_port.close()

@@ -8,7 +8,6 @@ import platform
 
 
 class DataConfig(QObject):
-    msgUpdateData = QtCore.Signal()
     msgSaveData = QtCore.Signal()
 
     __init = False
@@ -43,7 +42,7 @@ class DataConfig(QObject):
             self.__comPort_dev01 = "COM3"  # ComPort = "/dev/tty.usbserial-FTH0U0HX"
 
         self.__comPort_dev02 = "COM4"  # ComPort = "/dev/tty.usbserial-FTH0U0HX"
-        self.__comBaudRate = 115200
+        self.__comBaudRate = 38400
 
         self.__selectTab = {}
 
@@ -104,7 +103,7 @@ class DataConfig(QObject):
                         self.__comPort_dev02 = comInfo["port_dev2"]
                         self.__comBaudRate = comInfo["rate"]
                         if self.__comBaudRate == 0:
-                            self.__comBaudRate = 115200
+                            self.__comBaudRate = 38400
 
                 if "tap_battery_test" in loadConfig:
                     tapPush = loadConfig["tap_battery_test"]
@@ -128,7 +127,7 @@ class DataConfig(QObject):
         if self.current_os == "Darwin":
             matchPort = re.compile(r'^/dev/tty.*').match(port)
         else:
-            atchPort = re.compile("(^com)\\d{1,3}", re.I).match(port)
+            matchPort = re.compile("(^com)\\d{1,3}", re.I).match(port)
 
         if matchPort is not None:
             matchPort = matchPort.group()
@@ -151,7 +150,7 @@ class DataConfig(QObject):
             self.__comBaudRate = rate
         else:
             if len(rate) == 0:
-                self.__comBaudRate = 115200
+                self.__comBaudRate = 38400
 
     def getComBaudRate(self):
         return self.__comBaudRate

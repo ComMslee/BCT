@@ -124,6 +124,7 @@ class DataConfig(QObject):
 
     # config
     def setComPort(self, index: int, port: str):
+        matchPort = None
         if self.current_os == "Darwin":
             matchPort = re.compile(r'^/dev/tty.*').match(port)
         else:

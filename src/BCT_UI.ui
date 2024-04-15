@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>833</width>
     <height>694</height>
    </rect>
   </property>
@@ -18,7 +18,7 @@
     <rect>
      <x>0</x>
      <y>70</y>
-     <width>801</width>
+     <width>831</width>
      <height>621</height>
     </rect>
    </property>
@@ -37,7 +37,7 @@
       <rect>
        <x>0</x>
        <y>100</y>
-       <width>791</width>
+       <width>821</width>
        <height>241</height>
       </rect>
      </property>
@@ -49,7 +49,7 @@
        <rect>
         <x>10</x>
         <y>20</y>
-        <width>151</width>
+        <width>181</width>
         <height>211</height>
        </rect>
       </property>
@@ -60,9 +60,9 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>80</y>
-         <width>131</width>
-         <height>116</height>
+         <y>83</y>
+         <width>161</width>
+         <height>121</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_2">
@@ -143,8 +143,8 @@
         <rect>
          <x>10</x>
          <y>30</y>
-         <width>131</width>
-         <height>54</height>
+         <width>161</width>
+         <height>51</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_3">
@@ -185,21 +185,45 @@
        </layout>
       </widget>
      </widget>
-     <widget class="QListWidget" name="listWidget">
+     <widget class="QTableWidget" name="dev_table">
       <property name="geometry">
        <rect>
-        <x>170</x>
+        <x>200</x>
         <y>30</y>
         <width>611</width>
         <height>201</height>
        </rect>
       </property>
-      <property name="spacing">
-       <number>0</number>
-      </property>
-      <property name="viewMode">
-       <enum>QListView::ListMode</enum>
-      </property>
+      <column>
+       <property name="text">
+        <string>Pass</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>No</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>전압</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>전류</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>온도</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>오류코드</string>
+       </property>
+      </column>
      </widget>
     </widget>
     <widget class="QGroupBox" name="groupBox_4">
@@ -207,7 +231,7 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>541</width>
+       <width>581</width>
        <height>101</height>
       </rect>
      </property>
@@ -219,8 +243,8 @@
        <rect>
         <x>101</x>
         <y>30</y>
-        <width>291</width>
-        <height>61</height>
+        <width>331</width>
+        <height>64</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_4">
@@ -401,10 +425,10 @@
      <widget class="QWidget" name="verticalLayoutWidget">
       <property name="geometry">
        <rect>
-        <x>420</x>
+        <x>460</x>
         <y>30</y>
         <width>111</width>
-        <height>62</height>
+        <height>64</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
@@ -481,7 +505,7 @@
     <widget class="QGroupBox" name="groupBox_7">
      <property name="geometry">
       <rect>
-       <x>550</x>
+       <x>590</x>
        <y>0</y>
        <width>231</width>
        <height>101</height>
@@ -542,7 +566,7 @@
       <rect>
        <x>0</x>
        <y>350</y>
-       <width>791</width>
+       <width>821</width>
        <height>241</height>
       </rect>
      </property>
@@ -554,7 +578,7 @@
        <rect>
         <x>10</x>
         <y>20</y>
-        <width>151</width>
+        <width>181</width>
         <height>211</height>
        </rect>
       </property>
@@ -565,9 +589,9 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>80</y>
-         <width>131</width>
-         <height>116</height>
+         <y>83</y>
+         <width>161</width>
+         <height>121</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_8">
@@ -648,8 +672,8 @@
         <rect>
          <x>10</x>
          <y>30</y>
-         <width>131</width>
-         <height>54</height>
+         <width>161</width>
+         <height>51</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_9">
@@ -693,7 +717,7 @@
      <widget class="QTableWidget" name="dev_table_2">
       <property name="geometry">
        <rect>
-        <x>170</x>
+        <x>200</x>
         <y>30</y>
         <width>611</width>
         <height>201</height>
@@ -741,7 +765,7 @@
       <rect>
        <x>10</x>
        <y>0</y>
-       <width>311</width>
+       <width>411</width>
        <height>541</height>
       </rect>
      </property>
@@ -764,7 +788,7 @@
     <widget class="QPushButton" name="config_btn_start_2">
      <property name="geometry">
       <rect>
-       <x>330</x>
+       <x>430</x>
        <y>0</y>
        <width>91</width>
        <height>91</height>
@@ -791,7 +815,7 @@
        <x>10</x>
        <y>0</y>
        <width>311</width>
-       <height>91</height>
+       <height>101</height>
       </rect>
      </property>
      <property name="title">
@@ -803,7 +827,7 @@
         <x>10</x>
         <y>30</y>
         <width>291</width>
-        <height>57</height>
+        <height>60</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_5">
@@ -944,7 +968,7 @@
     <rect>
      <x>10</x>
      <y>0</y>
-     <width>651</width>
+     <width>661</width>
      <height>71</height>
     </rect>
    </property>
@@ -956,11 +980,25 @@
      <rect>
       <x>10</x>
       <y>30</y>
-      <width>631</width>
+      <width>641</width>
       <height>31</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="9">
+      <widget class="QLineEdit" name="dev_port_2">
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="3">
+      <widget class="QLabel" name="label_23">
+       <property name="text">
+        <string>Dev01</string>
+       </property>
+      </widget>
+     </item>
      <item row="0" column="1">
       <widget class="QLineEdit" name="dev_baud">
        <property name="alignment">
@@ -968,14 +1006,21 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="5">
-      <widget class="QLineEdit" name="dev_port">
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
+     <item row="0" column="8">
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>Port</string>
        </property>
       </widget>
      </item>
-     <item row="0" column="3">
+     <item row="0" column="7">
+      <widget class="QLabel" name="label_24">
+       <property name="text">
+        <string>Dev02</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="4">
       <widget class="QLabel" name="label">
        <property name="text">
         <string>Port</string>
@@ -990,30 +1035,16 @@
       </widget>
      </item>
      <item row="0" column="6">
-      <widget class="QLabel" name="label_24">
-       <property name="text">
-        <string>Dev02</string>
+      <widget class="QLineEdit" name="dev_port">
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
      </item>
      <item row="0" column="2">
-      <widget class="QLabel" name="label_23">
+      <widget class="QLabel" name="label_28">
        <property name="text">
-        <string>Dev01</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="7">
-      <widget class="QLabel" name="label_3">
-       <property name="text">
-        <string>Port</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="8">
-      <widget class="QLineEdit" name="dev_port_2">
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <string>          </string>
        </property>
       </widget>
      </item>
@@ -1023,7 +1054,7 @@
   <widget class="QPushButton" name="config_save">
    <property name="geometry">
     <rect>
-     <x>660</x>
+     <x>680</x>
      <y>10</y>
      <width>141</width>
      <height>71</height>

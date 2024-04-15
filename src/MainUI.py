@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'BCT_UI.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.6.2
+## Created by: Qt User Interface Compiler version 6.4.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -24,22 +24,22 @@ class Ui_BCT(object):
     def setupUi(self, BCT):
         if not BCT.objectName():
             BCT.setObjectName(u"BCT")
-        BCT.resize(800, 694)
+        BCT.resize(833, 694)
         self.tbMain = QTabWidget(BCT)
         self.tbMain.setObjectName(u"tbMain")
-        self.tbMain.setGeometry(QRect(0, 70, 801, 621))
+        self.tbMain.setGeometry(QRect(0, 70, 831, 621))
         self.tbMain.setTabBarAutoHide(False)
         self.tbBatteryCycle = QWidget()
         self.tbBatteryCycle.setObjectName(u"tbBatteryCycle")
         self.groupBox = QGroupBox(self.tbBatteryCycle)
         self.groupBox.setObjectName(u"groupBox")
-        self.groupBox.setGeometry(QRect(0, 100, 791, 241))
+        self.groupBox.setGeometry(QRect(0, 100, 821, 241))
         self.groupBox_3 = QGroupBox(self.groupBox)
         self.groupBox_3.setObjectName(u"groupBox_3")
-        self.groupBox_3.setGeometry(QRect(10, 20, 151, 211))
+        self.groupBox_3.setGeometry(QRect(10, 20, 181, 211))
         self.gridLayoutWidget_2 = QWidget(self.groupBox_3)
         self.gridLayoutWidget_2.setObjectName(u"gridLayoutWidget_2")
-        self.gridLayoutWidget_2.setGeometry(QRect(10, 80, 131, 116))
+        self.gridLayoutWidget_2.setGeometry(QRect(10, 83, 161, 121))
         self.gridLayout_2 = QGridLayout(self.gridLayoutWidget_2)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
         self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
@@ -57,7 +57,7 @@ class Ui_BCT(object):
 
         self.label_4 = QLabel(self.gridLayoutWidget_2)
         self.label_4.setObjectName(u"label_4")
-        sizePolicy = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Preferred)
+        sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
@@ -93,7 +93,7 @@ class Ui_BCT(object):
 
         self.gridLayoutWidget_3 = QWidget(self.groupBox_3)
         self.gridLayoutWidget_3.setObjectName(u"gridLayoutWidget_3")
-        self.gridLayoutWidget_3.setGeometry(QRect(10, 30, 131, 51))
+        self.gridLayoutWidget_3.setGeometry(QRect(10, 30, 161, 51))
         self.gridLayout_3 = QGridLayout(self.gridLayoutWidget_3)
         self.gridLayout_3.setObjectName(u"gridLayout_3")
         self.gridLayout_3.setContentsMargins(0, 0, 0, 0)
@@ -137,13 +137,13 @@ class Ui_BCT(object):
         __qtablewidgetitem5 = QTableWidgetItem()
         self.dev_table.setHorizontalHeaderItem(5, __qtablewidgetitem5)
         self.dev_table.setObjectName(u"dev_table")
-        self.dev_table.setGeometry(QRect(170, 30, 611, 201))
+        self.dev_table.setGeometry(QRect(200, 30, 611, 201))
         self.groupBox_4 = QGroupBox(self.tbBatteryCycle)
         self.groupBox_4.setObjectName(u"groupBox_4")
-        self.groupBox_4.setGeometry(QRect(0, 0, 541, 101))
+        self.groupBox_4.setGeometry(QRect(0, 0, 581, 101))
         self.gridLayoutWidget_4 = QWidget(self.groupBox_4)
         self.gridLayoutWidget_4.setObjectName(u"gridLayoutWidget_4")
-        self.gridLayoutWidget_4.setGeometry(QRect(101, 30, 291, 61))
+        self.gridLayoutWidget_4.setGeometry(QRect(101, 30, 331, 64))
         self.gridLayout_4 = QGridLayout(self.gridLayoutWidget_4)
         self.gridLayout_4.setObjectName(u"gridLayout_4")
         self.gridLayout_4.setContentsMargins(0, 0, 0, 0)
@@ -158,7 +158,7 @@ class Ui_BCT(object):
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.config_time_on_h = QLineEdit(self.gridLayoutWidget_4)
         self.config_time_on_h.setObjectName(u"config_time_on_h")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
+        sizePolicy1 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
         sizePolicy1.setHorizontalStretch(60)
         sizePolicy1.setVerticalStretch(0)
         sizePolicy1.setHeightForWidth(self.config_time_on_h.sizePolicy().hasHeightForWidth())
@@ -187,7 +187,7 @@ class Ui_BCT(object):
 
         self.config_time_on_s = QLineEdit(self.gridLayoutWidget_4)
         self.config_time_on_s.setObjectName(u"config_time_on_s")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Fixed)
+        sizePolicy2 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
         sizePolicy2.setHorizontalStretch(60)
         sizePolicy2.setVerticalStretch(0)
         sizePolicy2.setHeightForWidth(self.config_time_on_s.sizePolicy().hasHeightForWidth())
@@ -257,13 +257,13 @@ class Ui_BCT(object):
 
         self.verticalLayoutWidget = QWidget(self.groupBox_4)
         self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
-        self.verticalLayoutWidget.setGeometry(QRect(420, 30, 111, 62))
+        self.verticalLayoutWidget.setGeometry(QRect(460, 30, 111, 64))
         self.verticalLayout = QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.config_btn_start = QPushButton(self.verticalLayoutWidget)
         self.config_btn_start.setObjectName(u"config_btn_start")
-        sizePolicy3 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
+        sizePolicy3 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         sizePolicy3.setHorizontalStretch(0)
         sizePolicy3.setVerticalStretch(0)
         sizePolicy3.setHeightForWidth(self.config_btn_start.sizePolicy().hasHeightForWidth())
@@ -273,7 +273,7 @@ class Ui_BCT(object):
 
         self.config_btn_stop = QPushButton(self.verticalLayoutWidget)
         self.config_btn_stop.setObjectName(u"config_btn_stop")
-        sizePolicy4 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred)
+        sizePolicy4 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
         sizePolicy4.setHorizontalStretch(0)
         sizePolicy4.setVerticalStretch(0)
         sizePolicy4.setHeightForWidth(self.config_btn_stop.sizePolicy().hasHeightForWidth())
@@ -296,7 +296,7 @@ class Ui_BCT(object):
 
         self.config_cycle = QLineEdit(self.verticalLayoutWidget_2)
         self.config_cycle.setObjectName(u"config_cycle")
-        sizePolicy5 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Expanding)
+        sizePolicy5 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
         sizePolicy5.setHorizontalStretch(0)
         sizePolicy5.setVerticalStretch(0)
         sizePolicy5.setHeightForWidth(self.config_cycle.sizePolicy().hasHeightForWidth())
@@ -307,7 +307,7 @@ class Ui_BCT(object):
 
         self.groupBox_7 = QGroupBox(self.tbBatteryCycle)
         self.groupBox_7.setObjectName(u"groupBox_7")
-        self.groupBox_7.setGeometry(QRect(550, 0, 231, 101))
+        self.groupBox_7.setGeometry(QRect(590, 0, 231, 101))
         self.gridLayoutWidget_7 = QWidget(self.groupBox_7)
         self.gridLayoutWidget_7.setObjectName(u"gridLayoutWidget_7")
         self.gridLayoutWidget_7.setGeometry(QRect(10, 30, 211, 61))
@@ -340,13 +340,13 @@ class Ui_BCT(object):
 
         self.groupBox_8 = QGroupBox(self.tbBatteryCycle)
         self.groupBox_8.setObjectName(u"groupBox_8")
-        self.groupBox_8.setGeometry(QRect(0, 350, 791, 241))
+        self.groupBox_8.setGeometry(QRect(0, 350, 821, 241))
         self.groupBox_9 = QGroupBox(self.groupBox_8)
         self.groupBox_9.setObjectName(u"groupBox_9")
-        self.groupBox_9.setGeometry(QRect(10, 20, 151, 211))
+        self.groupBox_9.setGeometry(QRect(10, 20, 181, 211))
         self.gridLayoutWidget_8 = QWidget(self.groupBox_9)
         self.gridLayoutWidget_8.setObjectName(u"gridLayoutWidget_8")
-        self.gridLayoutWidget_8.setGeometry(QRect(10, 80, 131, 116))
+        self.gridLayoutWidget_8.setGeometry(QRect(10, 83, 161, 121))
         self.gridLayout_8 = QGridLayout(self.gridLayoutWidget_8)
         self.gridLayout_8.setObjectName(u"gridLayout_8")
         self.gridLayout_8.setContentsMargins(0, 0, 0, 0)
@@ -397,7 +397,7 @@ class Ui_BCT(object):
 
         self.gridLayoutWidget_9 = QWidget(self.groupBox_9)
         self.gridLayoutWidget_9.setObjectName(u"gridLayoutWidget_9")
-        self.gridLayoutWidget_9.setGeometry(QRect(10, 30, 131, 54))
+        self.gridLayoutWidget_9.setGeometry(QRect(10, 30, 161, 51))
         self.gridLayout_9 = QGridLayout(self.gridLayoutWidget_9)
         self.gridLayout_9.setObjectName(u"gridLayout_9")
         self.gridLayout_9.setContentsMargins(0, 0, 0, 0)
@@ -441,7 +441,7 @@ class Ui_BCT(object):
         __qtablewidgetitem11 = QTableWidgetItem()
         self.dev_table_2.setHorizontalHeaderItem(5, __qtablewidgetitem11)
         self.dev_table_2.setObjectName(u"dev_table_2")
-        self.dev_table_2.setGeometry(QRect(170, 30, 611, 201))
+        self.dev_table_2.setGeometry(QRect(200, 30, 611, 201))
         self.tbMain.addTab(self.tbBatteryCycle, "")
         self.tbBatteryFactory = QWidget()
         self.tbBatteryFactory.setObjectName(u"tbBatteryFactory")
@@ -455,10 +455,10 @@ class Ui_BCT(object):
         __qtablewidgetitem14 = QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(2, __qtablewidgetitem14)
         self.tableWidget.setObjectName(u"tableWidget")
-        self.tableWidget.setGeometry(QRect(10, 0, 311, 541))
+        self.tableWidget.setGeometry(QRect(10, 0, 411, 541))
         self.config_btn_start_2 = QPushButton(self.tbBatteryFactory)
         self.config_btn_start_2.setObjectName(u"config_btn_start_2")
-        self.config_btn_start_2.setGeometry(QRect(330, 0, 91, 91))
+        self.config_btn_start_2.setGeometry(QRect(430, 0, 91, 91))
         sizePolicy3.setHeightForWidth(self.config_btn_start_2.sizePolicy().hasHeightForWidth())
         self.config_btn_start_2.setSizePolicy(sizePolicy3)
         self.tbMain.addTab(self.tbBatteryFactory, "")
@@ -466,10 +466,10 @@ class Ui_BCT(object):
         self.tbSerial.setObjectName(u"tbSerial")
         self.groupBox_5 = QGroupBox(self.tbSerial)
         self.groupBox_5.setObjectName(u"groupBox_5")
-        self.groupBox_5.setGeometry(QRect(10, 0, 311, 91))
+        self.groupBox_5.setGeometry(QRect(10, 0, 311, 101))
         self.gridLayoutWidget_5 = QWidget(self.groupBox_5)
         self.gridLayoutWidget_5.setObjectName(u"gridLayoutWidget_5")
-        self.gridLayoutWidget_5.setGeometry(QRect(10, 30, 291, 57))
+        self.gridLayoutWidget_5.setGeometry(QRect(10, 30, 291, 60))
         self.gridLayout_5 = QGridLayout(self.gridLayoutWidget_5)
         self.gridLayout_5.setObjectName(u"gridLayout_5")
         self.gridLayout_5.setContentsMargins(0, 0, 0, 0)
@@ -561,60 +561,65 @@ class Ui_BCT(object):
         self.tbMain.addTab(self.tbSerial, "")
         self.groupBox_2 = QGroupBox(BCT)
         self.groupBox_2.setObjectName(u"groupBox_2")
-        self.groupBox_2.setGeometry(QRect(10, 0, 651, 71))
+        self.groupBox_2.setGeometry(QRect(10, 0, 661, 71))
         self.gridLayoutWidget = QWidget(self.groupBox_2)
         self.gridLayoutWidget.setObjectName(u"gridLayoutWidget")
-        self.gridLayoutWidget.setGeometry(QRect(10, 30, 631, 31))
+        self.gridLayoutWidget.setGeometry(QRect(10, 30, 641, 31))
         self.gridLayout = QGridLayout(self.gridLayoutWidget)
         self.gridLayout.setObjectName(u"gridLayout")
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
+        self.dev_port_2 = QLineEdit(self.gridLayoutWidget)
+        self.dev_port_2.setObjectName(u"dev_port_2")
+        self.dev_port_2.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout.addWidget(self.dev_port_2, 0, 9, 1, 1)
+
+        self.label_23 = QLabel(self.gridLayoutWidget)
+        self.label_23.setObjectName(u"label_23")
+
+        self.gridLayout.addWidget(self.label_23, 0, 3, 1, 1)
+
         self.dev_baud = QLineEdit(self.gridLayoutWidget)
         self.dev_baud.setObjectName(u"dev_baud")
         self.dev_baud.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
         self.gridLayout.addWidget(self.dev_baud, 0, 1, 1, 1)
 
-        self.dev_port = QLineEdit(self.gridLayoutWidget)
-        self.dev_port.setObjectName(u"dev_port")
-        self.dev_port.setAlignment(Qt.AlignCenter)
+        self.label_3 = QLabel(self.gridLayoutWidget)
+        self.label_3.setObjectName(u"label_3")
 
-        self.gridLayout.addWidget(self.dev_port, 0, 5, 1, 1)
+        self.gridLayout.addWidget(self.label_3, 0, 8, 1, 1)
+
+        self.label_24 = QLabel(self.gridLayoutWidget)
+        self.label_24.setObjectName(u"label_24")
+
+        self.gridLayout.addWidget(self.label_24, 0, 7, 1, 1)
 
         self.label = QLabel(self.gridLayoutWidget)
         self.label.setObjectName(u"label")
 
-        self.gridLayout.addWidget(self.label, 0, 3, 1, 1)
+        self.gridLayout.addWidget(self.label, 0, 4, 1, 1)
 
         self.label_2 = QLabel(self.gridLayoutWidget)
         self.label_2.setObjectName(u"label_2")
 
         self.gridLayout.addWidget(self.label_2, 0, 0, 1, 1)
 
-        self.label_24 = QLabel(self.gridLayoutWidget)
-        self.label_24.setObjectName(u"label_24")
+        self.dev_port = QLineEdit(self.gridLayoutWidget)
+        self.dev_port.setObjectName(u"dev_port")
+        self.dev_port.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.label_24, 0, 6, 1, 1)
+        self.gridLayout.addWidget(self.dev_port, 0, 6, 1, 1)
 
-        self.label_23 = QLabel(self.gridLayoutWidget)
-        self.label_23.setObjectName(u"label_23")
+        self.label_28 = QLabel(self.gridLayoutWidget)
+        self.label_28.setObjectName(u"label_28")
 
-        self.gridLayout.addWidget(self.label_23, 0, 2, 1, 1)
-
-        self.label_3 = QLabel(self.gridLayoutWidget)
-        self.label_3.setObjectName(u"label_3")
-
-        self.gridLayout.addWidget(self.label_3, 0, 7, 1, 1)
-
-        self.dev_port_2 = QLineEdit(self.gridLayoutWidget)
-        self.dev_port_2.setObjectName(u"dev_port_2")
-        self.dev_port_2.setAlignment(Qt.AlignCenter)
-
-        self.gridLayout.addWidget(self.dev_port_2, 0, 8, 1, 1)
+        self.gridLayout.addWidget(self.label_28, 0, 2, 1, 1)
 
         self.config_save = QPushButton(BCT)
         self.config_save.setObjectName(u"config_save")
-        self.config_save.setGeometry(QRect(660, 10, 141, 71))
-        sizePolicy6 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
+        self.config_save.setGeometry(QRect(680, 10, 141, 71))
+        sizePolicy6 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Preferred)
         sizePolicy6.setHorizontalStretch(0)
         sizePolicy6.setVerticalStretch(0)
         sizePolicy6.setHeightForWidth(self.config_save.sizePolicy().hasHeightForWidth())
@@ -715,11 +720,12 @@ class Ui_BCT(object):
         self.push_serial_push.setText(QCoreApplication.translate("BCT", u"Push", None))
         self.tbMain.setTabText(self.tbMain.indexOf(self.tbSerial), QCoreApplication.translate("BCT", u"Push Serial", None))
         self.groupBox_2.setTitle(QCoreApplication.translate("BCT", u"COM Connect", None))
-        self.label.setText(QCoreApplication.translate("BCT", u"Port", None))
-        self.label_2.setText(QCoreApplication.translate("BCT", u"Baud", None))
-        self.label_24.setText(QCoreApplication.translate("BCT", u"Dev02", None))
         self.label_23.setText(QCoreApplication.translate("BCT", u"Dev01", None))
         self.label_3.setText(QCoreApplication.translate("BCT", u"Port", None))
+        self.label_24.setText(QCoreApplication.translate("BCT", u"Dev02", None))
+        self.label.setText(QCoreApplication.translate("BCT", u"Port", None))
+        self.label_2.setText(QCoreApplication.translate("BCT", u"Baud", None))
+        self.label_28.setText("")
         self.config_save.setText(QCoreApplication.translate("BCT", u"config save", None))
     # retranslateUi
 

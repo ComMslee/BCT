@@ -13,6 +13,7 @@ class PushSerialView(QObject):
 
         self.view = mainWindow
         self.serialWork = None
+        self.serialWork2 = None
 
         self.dataConfig = DataConfig()
         self.dataConfig.loadData()
@@ -45,21 +46,35 @@ class PushSerialView(QObject):
         self.view.push_serial_mix.setText(srMix)
 
         self.serialWork = SerialWorker(
-            dataConfig.getComPort(2),
+            dataConfig.getComPort(1),
             srMix,
             dataConfig.getComBaudRate(),
         )
         self.serialWork.msgRead.connect(self.pushResult)
         self.serialWork.start()
 
+        self.serialWork2 = SerialWorker(
+            dataConfig.getComPort(2),
+            srMix,
+            dataConfig.getComBaudRate(),
+        )
+        self.serialWork2.msgRead.connect(self.pushResult2)
+        self.serialWork2.start()
+
     def pushResult(self, serialNum):
-        print("UI " + serialNum)
+        self.result(serialNum, self.view.push_dev01_version)
+
+    def pushResult2(self, serialNum):
+        self.result(serialNum, self.view.push_dev02_version)
+
+    def result(self, serialNum, view):
+        view.setText(serialNum)
         dataConfig = self.dataConfig
         value = self.view.push_serial_val.text()
+        srMix = self.mix(value)
 
-        suss = True
-        if suss:
-            self.view.push_serial_push.setStyleSheet("background-color: green")
+        if srMix == serialNum:
+            view.setStyleSheet("background-color: green")
             nextVal = self.nextNumber(value)
             srMixNextVal = self.mix(nextVal)
             self.view.push_serial_val.setText(nextVal)
@@ -68,7 +83,7 @@ class PushSerialView(QObject):
             dataConfig.setSerial(self.view.push_serial_fixed.text(), nextVal)
             dataConfig.saveData()
         else:
-            self.view.push_serial_push.setStyleSheet("background-color: red")
+            view.setStyleSheet("background-color: red")
 
     def mix(self, value):
         return self.view.push_serial_fixed.text() + value

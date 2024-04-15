@@ -74,13 +74,12 @@ class SerialWorker(QThread):
 
                     # 00 start read
                     self.read_thread = ReadThread(self.serial_port)
-                    self.read_thread.msgRead.connect(self.serialRead)
                     self.read_thread.start()
 
                     # 01 testmode enable
                     onData = self.makePacket(bytes([0x01, 0x01]))
                     self.consoleWriteBytes(onData)
-                    self.waitCondition.wait(self.mutex, 300)
+                    self.waitCondition.wait(self.mutex, 10)
 
                     byte_array = self.writeNum.encode('utf-8')
                     if len(byte_array) < 15:
@@ -91,7 +90,12 @@ class SerialWorker(QThread):
 
                     onData = self.makePacket(bytes([0x07, 0x01]) + byte_array)
                     self.consoleWriteBytes(onData)
-                    self.waitCondition.wait(self.mutex, 300)
+                    self.read_thread.msgReadSerial.connect(self.serialRead)
+                    self.waitCondition.wait(self.mutex, 10)
+
+                    onData = self.makePacket(bytes([0x01, 0x01]))
+                    self.consoleWriteBytes(onData)
+                    self.waitCondition.wait(self.mutex, 10)
 
                     self.ThreadNoti("write complete")
                 else:

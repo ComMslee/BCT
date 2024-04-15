@@ -1,5 +1,5 @@
 from PySide6.QtCore import QObject, Qt
-from PySide6.QtWidgets import QLineEdit, QTableWidgetItem, QTableWidget
+from PySide6.QtWidgets import QTableWidgetItem, QTableWidget
 
 from src.MainUI import Ui_BCT
 from src.repository.DataConfig import DataConfig
@@ -26,9 +26,9 @@ class BatteryCycleView(QObject):
         self.view.config_btn_stop.clicked.connect(self.stopCycle)
         self.dataConfig.msgSaveData.connect(self.saveData)
 
-        colSize = [70, 80, 100, 100, 100, 100]
-        self.setTableColumnSizes(self.view.dev_table, colSize)  # 각 열의 크기를 설정합니다.
-        self.setTableColumnSizes(self.view.dev_table_2, colSize)  # 각 열의 크기를 설정합니다.
+        colSize = [65, 85, 105, 105, 105, 105]
+        self.setTableColumnSize(self.view.dev_table, colSize)  # 각 열의 크기를 설정합니다.
+        self.setTableColumnSize(self.view.dev_table_2, colSize)  # 각 열의 크기를 설정합니다.
         self.view.config_btn_stop.setEnabled(False)
 
     def updateUI(self):
@@ -69,6 +69,8 @@ class BatteryCycleView(QObject):
         )
         self.dev01.msgReadList.connect(self.pushTableData)
         self.dev01.msgReadRealTime.connect(self.pushData)
+        self.dev01.msgReadSerial.connect(self.pushSerial)
+        self.dev01.msgCnt.connect(self.msgCnt)
         self.dev01.msgThread.connect(self.threadNoti)
         self.dev01.start()
 
@@ -80,6 +82,8 @@ class BatteryCycleView(QObject):
         )
         self.dev02.msgReadList.connect(self.pushTableData2)
         self.dev02.msgReadRealTime.connect(self.pushData2)
+        self.dev02.msgReadSerial.connect(self.pushSerial2)
+        self.dev02.msgCnt.connect(self.msgCnt2)
         self.dev02.msgThread.connect(self.threadNoti)
         self.dev02.start()
 
@@ -107,10 +111,11 @@ class BatteryCycleView(QObject):
             self.view.tbMain.setTabEnabled(1, True)
             self.view.tbMain.setTabEnabled(2, True)
 
-    def setTableColumnSizes(self, view: QTableWidget, sizes):
+    def setTableColumnSize(self, view: QTableWidget, sizes):
         for i, size in enumerate(sizes):
             view.setColumnWidth(i, size)
 
+    ################################################################################## 1
     def pushTableData(self, items: list):
         self.cnt += 1
         self.view.dev_table.insertRow(0)
@@ -124,6 +129,13 @@ class BatteryCycleView(QObject):
         # print(items)
         pass
 
+    def pushSerial(self, serialNum: str):
+        self.view.dev_version.setText(serialNum)
+
+    def msgCnt(self, idx: int):
+        self.view.dev_cycle.setText(str(idx))
+
+    ################################################################################## 2
     def pushTableData2(self, items: list):
         self.cnt += 1
         self.view.dev_table_2.insertRow(0)
@@ -137,9 +149,15 @@ class BatteryCycleView(QObject):
         # print(items)
         pass
 
-    def changeLEDState(self, idx: int, state: int):
-        view: QLineEdit = None
-        if idx == 2:
-            view = self.view.dev_led_state.setStyleSheet()
-        else:
-            view = self.view.dev_led_state_2.setStyleSheet()
+    def pushSerial2(self, serialNum: str):
+        self.view.dev_version_2.setText(serialNum)
+
+    def msgCnt2(self, idx: int):
+        self.view.dev_cycle_2.setText(str(idx))
+
+    # def changeLEDState(self, idx: int, state: int):
+    #     view: QLineEdit = None
+    #     if idx == 2:
+    #         view = self.view.dev_led_state.setStyleSheet()
+    #     else:
+    #         view = self.view.dev_led_state_2.setStyleSheet()

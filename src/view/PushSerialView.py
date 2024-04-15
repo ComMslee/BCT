@@ -4,6 +4,7 @@ from PySide6.QtCore import QObject
 
 from src.MainUI import Ui_BCT
 from src.repository.DataConfig import DataConfig
+from src.util.SerialWork import SerialWorker
 
 
 class PushSerialView(QObject):
@@ -11,6 +12,7 @@ class PushSerialView(QObject):
         super().__init__()
 
         self.view = mainWindow
+        self.serialWork = None
 
         self.dataConfig = DataConfig()
         self.dataConfig.loadData()
@@ -37,23 +39,33 @@ class PushSerialView(QObject):
 
     def onPush(self):
         dataConfig = self.dataConfig
-        fixed = self.view.push_serial_fixed.text()
         value = self.view.push_serial_val.text()
-
         srMix = self.mix(value)
+
         self.view.push_serial_mix.setText(srMix)
 
-        ##push 해서 결과에 따라서 아래의 동작을 해야함..
+        self.serialWork = SerialWorker(
+            dataConfig.getComPort(2),
+            srMix,
+            dataConfig.getComBaudRate(),
+        )
+        self.serialWork.msgRead.connect(self.pushResult)
+        self.serialWork.start()
+
+    def pushResult(self, serialNum):
+        print("UI " + serialNum)
+        dataConfig = self.dataConfig
+        value = self.view.push_serial_val.text()
 
         suss = True
         if suss:
             self.view.push_serial_push.setStyleSheet("background-color: green")
-            next = self.nextNumber(value)
-            srMixNext = self.mix(next)
-            self.view.push_serial_val.setText(next)
-            self.view.push_serial_next.setText(srMixNext)
+            nextVal = self.nextNumber(value)
+            srMixNextVal = self.mix(nextVal)
+            self.view.push_serial_val.setText(nextVal)
+            self.view.push_serial_next.setText(srMixNextVal)
 
-            dataConfig.setSerial(fixed, next)
+            dataConfig.setSerial(self.view.push_serial_fixed.text(), nextVal)
             dataConfig.saveData()
         else:
             self.view.push_serial_push.setStyleSheet("background-color: red")

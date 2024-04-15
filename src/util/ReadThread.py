@@ -1,10 +1,14 @@
 import copy
 import time
 
+from PySide6 import QtCore
 from PySide6.QtCore import QThread, QMutexLocker, QMutex
 
 
 class ReadThread(QThread):
+    msgRead = QtCore.Signal(str)
+    msgReadRealTime = QtCore.Signal(list)
+
     def __init__(self, serial_port):
         super().__init__()
         self.serial_port = serial_port
@@ -71,52 +75,43 @@ class ReadThread(QThread):
             lastPacket = parserData[data_len - 1]
             if total_len == data_len and lastPacket == 0x7E:
                 if parserData[2] == 0x81:
-                    print("STS_ACK [err " + str(parserData[3]) + "][rev " + str(parserData[4]) + "]")
+                    print(f"STS_ACK [err {parserData[3]}][rev {parserData[4]}]")
+
                 elif parserData[2] == 0x82:
-                    print("STS_INFO" +
-                          " BmsMode " + str(parserData[3]) +
-                          " | stsPwrCFET " + str(parserData[4]) +
-                          " | stsPwrDFET " + str(parserData[5]) +
-                          " | stsDiagInfo " + str(parserData[6]) +
-                          " | stsIgnitionRecog " + str(parserData[7]) +
-                          " | stsFullyCharged " + str(parserData[8]) +
-                          " | word msrCurrentPack "
-                          + str(self.makeWord(parserData[9], parserData[10])) +
-                          " | word msrVoltagePack "
-                          + str(self.makeWord(parserData[11], parserData[12])) +
-                          " | estRSOC " + str(parserData[13]) +
-                          " | estSOH " + str(parserData[14]) +
-                          " | word ctrlChargerLimitCurrent "
-                          + str(self.makeWord(parserData[15], parserData[16])) +
-                          " | word ctrlChargerLimitVoltage "
-                          + str(self.makeWord(parserData[17], parserData[18])) +
-                          " | bms0_msrTempCellAvg " + str(parserData[19]) +
-                          " | bms0_msrTempCellMax " + str(parserData[20]) +
-                          " | bms0_msrTempCellMin " + str(parserData[21]) +
-                          " | ChargeMode " + str(parserData[22]) +
-                          " | ProgressBarState " + str(parserData[23])
-                          )
+                    info_string = (
+                        f"STS_INFO BmsMode {parserData[3]} | "
+                        f"stsPwrCFET {parserData[4]} | "
+                        f"stsPwrDFET {parserData[5]} | "
+                        f"stsDiagInfo {parserData[6]} | "
+                        f"stsIgnitionRecog {parserData[7]} | "
+                        f"stsFullyCharged {parserData[8]} | "
+                        f"word msrCurrentPack {self.makeWord(parserData[9], parserData[10])} | "
+                        f"word msrVoltagePack {self.makeWord(parserData[11], parserData[12])} | "
+                        f"estRSOC {parserData[13]} | "
+                        f"estSOH {parserData[14]} | "
+                        f"word ctrlChargerLimitCurrent {self.makeWord(parserData[15], parserData[16])} | "
+                        f"word ctrlChargerLimitVoltage {self.makeWord(parserData[17], parserData[18])} | "
+                        f"bms0_msrTempCellAvg {parserData[19]} | "
+                        f"bms0_msrTempCellMax {parserData[20]} | "
+                        f"bms0_msrTempCellMin {parserData[21]} | "
+                        f"ChargeMode {parserData[22]} | "
+                        f"ProgressBarState {parserData[23]}"
+                    )
+                    print(info_string)
+
+                    data_82 = [self.makeWord(parserData[9], parserData[10]),
+                               self.makeWord(parserData[11], parserData[12]), parserData[19]]
+
+                    self.msgReadRealTime.emit(data_82)
+
                 elif parserData[2] == 0x83:
-                    print("STS_SERIAL_NUMBER" +
-                          "[" + chr(parserData[3]) + "]" +
-                          chr(parserData[4]) +
-                          chr(parserData[5]) +
-                          chr(parserData[6]) +
-                          chr(parserData[7]) +
-                          chr(parserData[8]) +
-                          chr(parserData[9]) +
-                          chr(parserData[10]) +
-                          chr(parserData[11]) +
-                          chr(parserData[12]) +
-                          chr(parserData[13]) +
-                          chr(parserData[14]) +
-                          chr(parserData[15]) +
-                          chr(parserData[16]) +
-                          chr(parserData[17]) +
-                          chr(parserData[18])
-                          )
+                    text = ''.join(chr(byte) for byte in parserData[4:19])
+                    print(f"STS_SERIAL_NUMBER [{chr(parserData[3])}] {text}")
+                    self.msgRead.emit(text)
+
                 else:
                     print(f"parser not Know command {self.hexText(parserData)}")
+
                 return True
             else:
                 print(f"parser not my packet {total_len} | {data_len} | {self.hexText(bytes([lastPacket]))}")

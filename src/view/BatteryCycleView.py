@@ -67,9 +67,10 @@ class BatteryCycleView(QObject):
             dataconfig.getComBaudRate(),
             dataconfig.getCycle()
         )
-        self.dev01.start()
         self.dev01.msgReadList.connect(self.pushTableData)
+        self.dev01.msgReadRealTime.connect(self.pushData)
         self.dev01.msgThread.connect(self.threadNoti)
+        self.dev01.start()
 
         self.dev02 = SerialCycleWorker(
             dataconfig.getComPort(2),
@@ -77,8 +78,10 @@ class BatteryCycleView(QObject):
             dataconfig.getComBaudRate(),
             dataconfig.getCycle()
         )
+        self.dev02.msgReadList.connect(self.pushTableData2)
+        self.dev02.msgReadRealTime.connect(self.pushData2)
+        self.dev02.msgThread.connect(self.threadNoti)
         self.dev02.start()
-        # self.dev02.msgReadList.connect(self.pushTableData)
 
         self.view.config_btn_start.setEnabled(False)
         self.view.config_btn_stop.setEnabled(True)
@@ -117,14 +120,23 @@ class BatteryCycleView(QObject):
             data.setFlags(data.flags() & ~Qt.ItemIsEditable)  # 편집 불가능
             self.view.dev_table.setItem(0, col, data)
 
-    def pushTableData(self, items: list):
+    def pushData(self, items: list):
+        # print(items)
+        pass
+
+    def pushTableData2(self, items: list):
         self.cnt += 1
         self.view.dev_table_2.insertRow(0)
         for col, item in enumerate(items):
-            data = QTableWidgetItem(item)
+            data = QTableWidgetItem(str(item))
             data.setTextAlignment(Qt.AlignCenter)
             data.setFlags(data.flags() & ~Qt.ItemIsEditable)  # 편집 불가능
             self.view.dev_table_2.setItem(0, col, data)
+
+    def pushData2(self, items: list):
+        # print(items)
+        pass
+
     def changeLEDState(self, idx: int, state: int):
         view: QLineEdit = None
         if idx == 2:

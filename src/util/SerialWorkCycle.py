@@ -109,7 +109,7 @@ class SerialCycleWorker(QThread):
                         else:
                             avglist = self.oneCycleAvg
                         zipped_lists = zip(*avglist)
-                        averages = [sum(values) / len(values) for values in zipped_lists]
+                        averages = [int(sum(values) / len(values) * 100) / 100 for values in zipped_lists]
                         print(averages)
                         self.msgReadList.emit(["", str(idx), averages[1], averages[0], averages[2], ""])
 

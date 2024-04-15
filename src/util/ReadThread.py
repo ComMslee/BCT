@@ -85,22 +85,24 @@ class ReadThread(QThread):
                         f"stsDiagInfo {parserData[6]} | "
                         f"stsIgnitionRecog {parserData[7]} | "
                         f"stsFullyCharged {parserData[8]} | "
-                        f"word msrCurrentPack {self.makeWord(parserData[9], parserData[10])} | "
-                        f"word msrVoltagePack {self.makeWord(parserData[11], parserData[12])} | "
+                        f"[w]Current {self.makeWord(parserData[9], parserData[10], 0.02)} | "
+                        f"[w]Voltage {self.makeWord(parserData[11], parserData[12], 0.002)} | "
                         f"estRSOC {parserData[13]} | "
                         f"estSOH {parserData[14]} | "
-                        f"word ctrlChargerLimitCurrent {self.makeWord(parserData[15], parserData[16])} | "
-                        f"word ctrlChargerLimitVoltage {self.makeWord(parserData[17], parserData[18])} | "
-                        f"bms0_msrTempCellAvg {parserData[19]} | "
-                        f"bms0_msrTempCellMax {parserData[20]} | "
-                        f"bms0_msrTempCellMin {parserData[21]} | "
+                        f"[w]LimitCurrent {self.makeWord(parserData[15], parserData[16], 0.02)} | "
+                        f"[w]LimitVoltage {self.makeWord(parserData[17], parserData[18], 0.002)} | "
+                        f"TempCellAvg {parserData[19]} | "
+                        f"TempCellMax {parserData[20]} | "
+                        f"TempCellMin {parserData[21]} | "
                         f"ChargeMode {parserData[22]} | "
                         f"ProgressBarState {parserData[23]}"
                     )
                     print(info_string)
 
-                    data_82 = [self.makeWord(parserData[9], parserData[10]),
-                               self.makeWord(parserData[11], parserData[12]), parserData[19]]
+                    data_82 = [self.makeWord(parserData[9], parserData[10], 0.02),
+                               self.makeWord(parserData[11], parserData[12], 0.002),
+                               parserData[19],
+                               parserData[23]]
 
                     self.msgReadRealTime.emit(data_82)
 
@@ -123,9 +125,10 @@ class ReadThread(QThread):
     def hexText(self, data: bytes) -> str:
         return ' '.join(format(byte, '02X') for byte in data)
 
-    def makeWord(self, low_byte, high_byte):
+    def makeWord(self, low_byte, high_byte, resolation:float= 1.0):
         word = (high_byte << 8) | low_byte
-        return word
+        result = int(word * resolation * 100) / 100  # 소수점 이하 2자리까지 버림
+        return result
 
     def stop(self):
         self.bRunning = False

@@ -126,7 +126,10 @@ class BatteryCycleView(QObject):
             self.view.dev_table.setItem(0, col, data)
 
     def pushData(self, items: list):
-        # print(items)
+        self.view.dev_ampere.setText(str(items[0]))
+        self.view.dev_volt.setText(str(items[1]))
+        self.view.dev_temperature.setText(str(items[2]))
+        self.view.dev_led_state.setText(str(items[3]))
         pass
 
     def pushSerial(self, serialNum: str):
@@ -146,6 +149,10 @@ class BatteryCycleView(QObject):
             self.view.dev_table_2.setItem(0, col, data)
 
     def pushData2(self, items: list):
+        self.view.dev_ampere_2.setText(str(items[0]))
+        self.view.dev_volt_2.setText(str(items[1]))
+        self.view.dev_temperature_2.setText(str(items[2]))
+        self.view.dev_led_state_2.setText(str(items[3]))
         # print(items)
         pass
 

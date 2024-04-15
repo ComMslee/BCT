@@ -26,16 +26,23 @@ class ReadThread(QThread):
                                 buffer = None
                                 print(f"is buffer --> Join {self.hexText(readData)}")
 
+                                index = readData.find(b'\xA5')
+                                if index > 0:
+                                    readData = readData[index:]
+                                    print(f"cut index {index} | {self.hexText(readData)}")
+
                             while len(readData) > 1 and readData[0] == 0xA5:
                                 total_len = readData[1] + 4
                                 if total_len > len(readData):
-                                    print(f"Packet Under [needTo {str(total_len)}|current {str(len(readData))}][{self.hexText(readData)}]")
                                     buffer = copy.deepcopy(readData)
+                                    print(
+                                        f"Packet Under [needTo {str(total_len)}|current {str(len(readData))}][{self.hexText(readData)}]")
                                     break
                                 elif total_len < len(readData):
                                     buffer = readData[total_len:]
                                     readData = readData[:total_len]
-                                    print(f"Packet Over [needTo {str(total_len)}][ {self.hexText(readData)} | {self.hexText(buffer)} ]")
+                                    print(
+                                        f"Packet Over [needTo {str(total_len)}][ {self.hexText(readData)} | {self.hexText(buffer)} ]")
 
                                 # in data
                                 rt = self.parser(readData)

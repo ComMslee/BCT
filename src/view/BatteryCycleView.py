@@ -82,6 +82,8 @@ class BatteryCycleView(QObject):
 
         self.view.config_btn_start.setEnabled(False)
         self.view.config_btn_stop.setEnabled(True)
+        self.view.tbMain.setTabEnabled(1, False)
+        self.view.tbMain.setTabEnabled(2, False)
 
     def stopCycle(self):
         if self.dev01 is not None:
@@ -91,12 +93,16 @@ class BatteryCycleView(QObject):
         print("start cycle stop")
         self.view.config_btn_start.setEnabled(True)
         self.view.config_btn_stop.setEnabled(False)
+        self.view.tbMain.setTabEnabled(1, True)
+        self.view.tbMain.setTabEnabled(2, True)
 
     def threadNoti(self, msg):
         if "write complete" in msg:
             print("write complete")
             self.view.config_btn_start.setEnabled(True)
             self.view.config_btn_stop.setEnabled(False)
+            self.view.tbMain.setTabEnabled(1, True)
+            self.view.tbMain.setTabEnabled(2, True)
 
     def setTableColumnSizes(self, view: QTableWidget, sizes):
         for i, size in enumerate(sizes):

@@ -56,9 +56,9 @@ class FactoryWork(QThread):
         crc = self.makeCrc(headAndData)
         return headAndData + bytes([crc]) + bytes([0x7E])
 
-    def serialRead(self, serialNum):
-        print(serialNum)
-        self.msgRead.emit(serialNum)
+    def ack(self, ack: bytes):
+        if len(ack) == 2:
+            print(f"[cmd:{ack[1]}][result:{ack[0] == 0}]")
 
     def run(self):
         with QMutexLocker(self.mutex):
@@ -73,6 +73,7 @@ class FactoryWork(QThread):
 
                     # 00 start read
                     self.read_thread = ReadThread(self.serial_port)
+                    self.read_thread.msgAck.connect(self.ack)
                     self.read_thread.start()
 
                     # 01 testmode enable

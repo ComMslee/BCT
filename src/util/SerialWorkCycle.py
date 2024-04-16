@@ -69,6 +69,10 @@ class SerialCycleWorker(QThread):
     def readSerial(self, serialNum: str):
         self.msgReadSerial.emit(serialNum)
 
+    def ack(self, ack: bytes):
+        if len(ack) == 2:
+            print(f"[cmd:{ack[1]}][result:{ack[0] == 0}]")
+
     def run(self):
         with QMutexLocker(self.mutex):
             try:
@@ -84,6 +88,7 @@ class SerialCycleWorker(QThread):
                     self.read_thread = ReadThread(self.serial_port)
                     self.read_thread.msgReadRealTime.connect(self.readRealTime)
                     self.read_thread.msgReadSerial.connect(self.readSerial)
+                    self.read_thread.msgAck.connect(self.ack)
                     self.read_thread.start()
 
                     # 01 testmode enable

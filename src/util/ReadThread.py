@@ -6,6 +6,7 @@ from PySide6.QtCore import QThread, QMutexLocker, QMutex
 
 
 class ReadThread(QThread):
+    msgAck = QtCore.Signal(bytes)
     msgReadSerial = QtCore.Signal(str)
     msgReadRealTime = QtCore.Signal(list)
 
@@ -76,22 +77,25 @@ class ReadThread(QThread):
             if total_len == data_len and lastPacket == 0x7E:
                 if parserData[2] == 0x81:
                     print(f"STS_ACK [err {parserData[3]}][rev {parserData[4]}]")
-
+                    self.msgAck.emit(bytes([parserData[3], parserData[4]]))
                 elif parserData[2] == 0x82:
+                    current = self.decodeWord(parserData[9], parserData[10], 0.02, True)
+                    voltage = self.decodeWord(parserData[11], parserData[12], 0.002)
+                    tempAvg = parserData[19]
+                    progrssbar = parserData[23]
                     info_string = (
-                        f"STS_INFO BmsMode {parserData[3]} | "
-                        f"stsPwrCFET {parserData[4]} | "
-                        f"stsPwrDFET {parserData[5]} | "
-                        f"stsDiagInfo {parserData[6]} | "
-                        f"stsIgnitionRecog {parserData[7]} | "
-                        f"stsFullyCharged {parserData[8]} | "
-                        f"Current {self.decodeWord(parserData[9], parserData[10], 0.02, True)} / {self.decodeWord(parserData[15], parserData[16], 0.02, True)} | "
-                        f"Voltage {self.decodeWord(parserData[11], parserData[12], 0.002)} / {self.decodeWord(parserData[17], parserData[18], 0.002)} | "
-                        f"estRSOC {parserData[13]} | "
-                        f"estSOH {parserData[14]} | "
-                        f"TempCell Avg {parserData[19]}, Max {parserData[20]}, Min {parserData[21]} | "
+                        f"STS_INFO "
+                        f"BmsMode {parserData[3]} | "
+                        f"PwrCFET {parserData[4]}, DFET {parserData[5]} | "
+                        f"DiagInfo {parserData[6]} | "
+                        f"IgnitionRecog {parserData[7]} | "
+                        f"FullyCharged {parserData[8]} | "
+                        f"Current {current} / {self.decodeWord(parserData[15], parserData[16], 0.02, True)} | "
+                        f"Voltage {voltage} / {self.decodeWord(parserData[17], parserData[18], 0.002)} | "
+                        f"estRSOC {parserData[13]}, SOH {parserData[14]} | "
+                        f"TempCell Avg {tempAvg}, Max {parserData[20]}, Min {parserData[21]} | "
                         f"ChargeMode {parserData[22]} | "
-                        f"ProgressBarState {parserData[23]}"
+                        f"ProgressBarState {progrssbar}"
                     )
                     print(info_string)
 
@@ -99,10 +103,7 @@ class ReadThread(QThread):
                         data = i.to_bytes(2, byteorder='big', signed=True)
                         word = self.decodeWord(data[0], data[1], 0.02, True)
 
-                    data_82 = [self.decodeWord(parserData[9], parserData[10], 0.02, True),
-                               self.decodeWord(parserData[11], parserData[12], 0.002),
-                               parserData[19],
-                               parserData[23]]
+                    data_82 = [current, voltage, tempAvg, progrssbar]
 
                     self.msgReadRealTime.emit(data_82)
 

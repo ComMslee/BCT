@@ -105,7 +105,7 @@ class ReadThread(QThread):
 
                 elif parserData[2] == 0x83:
                     text = ''.join(chr(byte) for byte in parserData[4:19])
-                    print(f"STS_SERIAL_NUMBER [{chr(parserData[3])}] {text}")
+                    print(f"STS_SERIAL_NUMBER [{parserData[3]}] {text}")
                     self.msgReadSerial.emit(text.replace('\x00', ''))
 
                 else:

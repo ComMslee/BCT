@@ -85,22 +85,22 @@ class ReadThread(QThread):
                         f"stsDiagInfo {parserData[6]} | "
                         f"stsIgnitionRecog {parserData[7]} | "
                         f"stsFullyCharged {parserData[8]} | "
-                        f"[w]Current {self.makeWord(parserData[9], parserData[10], 0.02)} | "
-                        f"[w]Voltage {self.makeWord(parserData[11], parserData[12], 0.002)} | "
+                        f"Current {self.decodeWord(parserData[9], parserData[10], 0.02, True)} / {self.decodeWord(parserData[15], parserData[16], 0.02, True)} | "
+                        f"Voltage {self.decodeWord(parserData[11], parserData[12], 0.002)} / {self.decodeWord(parserData[17], parserData[18], 0.002)} | "
                         f"estRSOC {parserData[13]} | "
                         f"estSOH {parserData[14]} | "
-                        f"[w]LimitCurrent {self.makeWord(parserData[15], parserData[16], 0.02)} | "
-                        f"[w]LimitVoltage {self.makeWord(parserData[17], parserData[18], 0.002)} | "
-                        f"TempCellAvg {parserData[19]} | "
-                        f"TempCellMax {parserData[20]} | "
-                        f"TempCellMin {parserData[21]} | "
+                        f"TempCell Avg {parserData[19]}, Max {parserData[20]}, Min {parserData[21]} | "
                         f"ChargeMode {parserData[22]} | "
                         f"ProgressBarState {parserData[23]}"
                     )
                     print(info_string)
 
-                    data_82 = [self.makeWord(parserData[9], parserData[10], 0.02),
-                               self.makeWord(parserData[11], parserData[12], 0.002),
+                    for i in range(3200, -3200, -10):
+                        data = i.to_bytes(2, byteorder='big', signed=True)
+                        word = self.decodeWord(data[0], data[1], 0.02, True)
+
+                    data_82 = [self.decodeWord(parserData[9], parserData[10], 0.02, True),
+                               self.decodeWord(parserData[11], parserData[12], 0.002),
                                parserData[19],
                                parserData[23]]
 
@@ -125,10 +125,15 @@ class ReadThread(QThread):
     def hexText(self, data: bytes) -> str:
         return ' '.join(format(byte, '02X') for byte in data)
 
-    def makeWord(self, low_byte, high_byte, resolation:float= 1.0):
-        word = (high_byte << 8) | low_byte
-        result = int(word * resolation * 100) / 100  # 소수점 이하 2자리까지 버림
+    def decodeWord(self, low_byte, high_byte, resolation: float = 1.0, signed: bool = False):
+        word_value = int.from_bytes(bytes([high_byte, low_byte]), byteorder='little', signed=signed)
+        result = int(word_value * resolation * 100) / 100  # 소수점 이하 2자리까지 버림
         return result
+
+    def encodeSignedWord(self, word_value) -> bytes:
+        if word_value < -32768 or word_value > 32767:
+            raise ValueError("Value out of range for signed short: " + str(word_value))
+        return word_value.to_bytes(2, byteorder='big', signed=True)
 
     def stop(self):
         self.bRunning = False

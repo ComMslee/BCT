@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <property name="tabBarAutoHide">
     <bool>false</bool>
@@ -62,7 +62,7 @@
          <x>10</x>
          <y>83</y>
          <width>161</width>
-         <height>121</height>
+         <height>124</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_2">
@@ -144,7 +144,7 @@
          <x>10</x>
          <y>30</y>
          <width>161</width>
-         <height>51</height>
+         <height>60</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_3">
@@ -591,7 +591,7 @@
          <x>10</x>
          <y>83</y>
          <width>161</width>
-         <height>121</height>
+         <height>124</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_8">
@@ -673,7 +673,7 @@
          <x>10</x>
          <y>30</y>
          <width>161</width>
-         <height>51</height>
+         <height>60</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_9">
@@ -785,7 +785,7 @@
       </property>
      </column>
     </widget>
-    <widget class="QPushButton" name="config_btn_start_2">
+    <widget class="QPushButton" name="factory_start">
      <property name="geometry">
       <rect>
        <x>430</x>
@@ -1044,7 +1044,7 @@
      <item row="0" column="2">
       <widget class="QLabel" name="label_28">
        <property name="text">
-        <string>          </string>
+        <string/>
        </property>
       </widget>
      </item>

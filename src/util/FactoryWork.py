@@ -7,19 +7,18 @@ from PySide6.QtCore import QThread, QMutex, QMutexLocker, QWaitCondition
 from src.util.ReadThread import ReadThread
 
 
-class SerialWorker(QThread):
+class FactoryWork(QThread):
     bRunning = True
     msgThread = QtCore.Signal(str)
-    msgSerialRead = QtCore.Signal(str)
+    msgRead = QtCore.Signal(str)
 
-    def __init__(self, ComPort, writeNum: str, baudrate=115200):
+    def __init__(self, ComPort, baudrate=115200):
         super().__init__()
 
         self.serial_port = None
         self.read_thread: ReadThread = None
         self.comPort = ComPort
         self.BaudRate = baudrate
-        self.writeNum = writeNum
         self.mutex = QMutex()
         self.waitCondition = QWaitCondition()
 
@@ -59,7 +58,7 @@ class SerialWorker(QThread):
 
     def serialRead(self, serialNum):
         print(serialNum)
-        self.msgSerialRead.emit(serialNum)
+        self.msgRead.emit(serialNum)
 
     def run(self):
         with QMutexLocker(self.mutex):
@@ -78,17 +77,22 @@ class SerialWorker(QThread):
 
                     # 01 testmode enable
                     self.consoleWriteBytes(self.makePacket(bytes([0x01, 0x01])))
-                    self.waitCondition.wait(self.mutex, 10)
+                    self.waitCondition.wait(self.mutex, 100)
 
-                    byte_array = self.writeNum.encode('utf-8')
-                    byte_array = byte_array.ljust(15, b'\x00')[:15]
+                    #충전시작
+                    self.consoleWriteBytes(self.makePacket(bytes([0x06, 0x01])))
+                    self.waitCondition.wait(self.mutex, 100)
 
-                    self.consoleWriteBytes(self.makePacket(bytes([0x07, 0x01]) + byte_array))
-                    self.read_thread.msgReadSerial.connect(self.serialRead)
-                    self.waitCondition.wait(self.mutex, 10)
+                    #애러코드
+                    self.consoleWriteBytes(self.makePacket(bytes([0x04, 0x03])))
+                    self.waitCondition.wait(self.mutex, 5 * 1000)
 
-                    self.consoleWriteBytes(self.makePacket(bytes([0x01, 0x01])))
-                    self.waitCondition.wait(self.mutex, 10)
+                    #충전종료
+                    self.consoleWriteBytes(self.makePacket(bytes([0x06, 0x00])))
+                    self.waitCondition.wait(self.mutex, 100)
+                    # work
+                    # self.consoleWriteBytes(self.makePacket(bytes([0x01, 0x01])))
+                    # self.waitCondition.wait(self.mutex, 10)
 
                     self.ThreadNoti("write complete")
                 else:

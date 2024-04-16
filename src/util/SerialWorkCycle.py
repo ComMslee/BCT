@@ -87,47 +87,45 @@ class SerialCycleWorker(QThread):
                     self.read_thread.start()
 
                     # 01 testmode enable
-                    onData = self.makePacket(bytes([0x01, 0x01]))
-                    self.consoleWriteBytes(onData)
+                    self.consoleWriteBytes(self.makePacket(bytes([0x01, 0x01])))
 
                     for idx in range(self.cycle):
                         if not self.bRunning: break
                         self.msgCnt.emit(idx)
 
+                        #001 충전on
                         self.oneCycleAvg = []
-
-                        onData = self.makePacket(bytes([0x06, 0x01]))
-                        self.consoleWriteBytes(onData)
+                        self.consoleWriteBytes(self.makePacket(bytes([0x06, 0x01])))
                         waitTime = self.timeCycle[0][0] * 60 * 60 + (self.timeCycle[0][1] * 60) + (self.timeCycle[0][2])
-                        print("on .. " + str(waitTime) + "s")
+                        print(f"on... {waitTime}s")
                         self.waitCondition.wait(self.mutex, waitTime * 1000)
+                        if not self.bRunning: break
 
-                        print(f"{len(self.oneCycleAvg)} {self.oneCycleAvg}")
-
+                        # 0011 값 평균
                         if len(self.oneCycleAvg) > 3:
                             avglist = self.oneCycleAvg[1:len(self.oneCycleAvg) - 1]
                         else:
                             avglist = self.oneCycleAvg
                         zipped_lists = zip(*avglist)
                         averages = [int(sum(values) / len(values) * 100) / 100 for values in zipped_lists]
-                        print(averages)
+                        print(f"{averages} | {len(self.oneCycleAvg)} {self.oneCycleAvg}")
                         self.msgReadList.emit(["", str(idx), averages[1], averages[0], averages[2], ""])
 
                         self.oneCycleAvg = []
 
-                        if not self.bRunning: break
-                        onData = self.makePacket(bytes([0x06, 0x00]))
-                        self.consoleWriteBytes(onData)
+                        #002 충전off
+                        self.consoleWriteBytes(self.makePacket(bytes([0x06, 0x00])))
                         waitTime = self.timeCycle[1][0] * 60 * 60 + (self.timeCycle[1][1] * 60) + (self.timeCycle[1][2])
-                        print("off .. " + str(waitTime) + "s")
+                        print(f"off... {waitTime}s")
                         self.waitCondition.wait(self.mutex, waitTime * 1000)
+                        if not self.bRunning: break
 
                     self.ThreadNoti("write complete")
                 else:
                     self.ThreadNoti("not open...")
 
             except Exception as error:
-                print(error)
+                print(f"Exception error :: {error}")
                 self.ThreadNoti(str(error))
 
             finally:
@@ -135,7 +133,8 @@ class SerialCycleWorker(QThread):
                     self.read_thread.stop()
 
                 # send Off
-                onData = self.makePacket(bytes([0x01, 0x00]))
-                self.consoleWriteBytes(onData)
-
-                self.serial_port.close()
+                if self.serial_port is not None and self.serial_port.isOpen():
+                    self.consoleWriteBytes(self.makePacket(bytes([0x01, 0x00])))
+                    self.serial_port.close()
+                print("SerialCycleWorker finally")
+                self.ThreadNoti("finally...")

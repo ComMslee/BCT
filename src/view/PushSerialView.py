@@ -50,7 +50,7 @@ class PushSerialView(QObject):
             srMix,
             dataConfig.getComBaudRate(),
         )
-        self.serialWork.msgRead.connect(self.pushResult)
+        self.serialWork.msgSerialRead.connect(self.pushResult)
         self.serialWork.start()
 
         self.serialWork2 = SerialWorker(
@@ -58,7 +58,7 @@ class PushSerialView(QObject):
             srMix,
             dataConfig.getComBaudRate(),
         )
-        self.serialWork2.msgRead.connect(self.pushResult2)
+        self.serialWork2.msgSerialRead.connect(self.pushResult2)
         self.serialWork2.start()
 
     def pushResult(self, serialNum):

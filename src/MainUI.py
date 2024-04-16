@@ -39,7 +39,7 @@ class Ui_BCT(object):
         self.groupBox_3.setGeometry(QRect(10, 20, 181, 211))
         self.gridLayoutWidget_2 = QWidget(self.groupBox_3)
         self.gridLayoutWidget_2.setObjectName(u"gridLayoutWidget_2")
-        self.gridLayoutWidget_2.setGeometry(QRect(10, 83, 161, 121))
+        self.gridLayoutWidget_2.setGeometry(QRect(10, 83, 161, 124))
         self.gridLayout_2 = QGridLayout(self.gridLayoutWidget_2)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
         self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
@@ -93,7 +93,7 @@ class Ui_BCT(object):
 
         self.gridLayoutWidget_3 = QWidget(self.groupBox_3)
         self.gridLayoutWidget_3.setObjectName(u"gridLayoutWidget_3")
-        self.gridLayoutWidget_3.setGeometry(QRect(10, 30, 161, 51))
+        self.gridLayoutWidget_3.setGeometry(QRect(10, 30, 161, 60))
         self.gridLayout_3 = QGridLayout(self.gridLayoutWidget_3)
         self.gridLayout_3.setObjectName(u"gridLayout_3")
         self.gridLayout_3.setContentsMargins(0, 0, 0, 0)
@@ -346,7 +346,7 @@ class Ui_BCT(object):
         self.groupBox_9.setGeometry(QRect(10, 20, 181, 211))
         self.gridLayoutWidget_8 = QWidget(self.groupBox_9)
         self.gridLayoutWidget_8.setObjectName(u"gridLayoutWidget_8")
-        self.gridLayoutWidget_8.setGeometry(QRect(10, 83, 161, 121))
+        self.gridLayoutWidget_8.setGeometry(QRect(10, 83, 161, 124))
         self.gridLayout_8 = QGridLayout(self.gridLayoutWidget_8)
         self.gridLayout_8.setObjectName(u"gridLayout_8")
         self.gridLayout_8.setContentsMargins(0, 0, 0, 0)
@@ -397,7 +397,7 @@ class Ui_BCT(object):
 
         self.gridLayoutWidget_9 = QWidget(self.groupBox_9)
         self.gridLayoutWidget_9.setObjectName(u"gridLayoutWidget_9")
-        self.gridLayoutWidget_9.setGeometry(QRect(10, 30, 161, 51))
+        self.gridLayoutWidget_9.setGeometry(QRect(10, 30, 161, 60))
         self.gridLayout_9 = QGridLayout(self.gridLayoutWidget_9)
         self.gridLayout_9.setObjectName(u"gridLayout_9")
         self.gridLayout_9.setContentsMargins(0, 0, 0, 0)
@@ -456,11 +456,11 @@ class Ui_BCT(object):
         self.tableWidget.setHorizontalHeaderItem(2, __qtablewidgetitem14)
         self.tableWidget.setObjectName(u"tableWidget")
         self.tableWidget.setGeometry(QRect(10, 0, 411, 541))
-        self.config_btn_start_2 = QPushButton(self.tbBatteryFactory)
-        self.config_btn_start_2.setObjectName(u"config_btn_start_2")
-        self.config_btn_start_2.setGeometry(QRect(430, 0, 91, 91))
-        sizePolicy3.setHeightForWidth(self.config_btn_start_2.sizePolicy().hasHeightForWidth())
-        self.config_btn_start_2.setSizePolicy(sizePolicy3)
+        self.factory_start = QPushButton(self.tbBatteryFactory)
+        self.factory_start.setObjectName(u"factory_start")
+        self.factory_start.setGeometry(QRect(430, 0, 91, 91))
+        sizePolicy3.setHeightForWidth(self.factory_start.sizePolicy().hasHeightForWidth())
+        self.factory_start.setSizePolicy(sizePolicy3)
         self.tbMain.addTab(self.tbBatteryFactory, "")
         self.tbSerial = QWidget()
         self.tbSerial.setObjectName(u"tbSerial")
@@ -627,7 +627,7 @@ class Ui_BCT(object):
 
         self.retranslateUi(BCT)
 
-        self.tbMain.setCurrentIndex(0)
+        self.tbMain.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(BCT)
@@ -704,7 +704,7 @@ class Ui_BCT(object):
         ___qtablewidgetitem13.setText(QCoreApplication.translate("BCT", u"Dev1", None));
         ___qtablewidgetitem14 = self.tableWidget.horizontalHeaderItem(2)
         ___qtablewidgetitem14.setText(QCoreApplication.translate("BCT", u"Dev2", None));
-        self.config_btn_start_2.setText(QCoreApplication.translate("BCT", u"start", None))
+        self.factory_start.setText(QCoreApplication.translate("BCT", u"start", None))
         self.tbMain.setTabText(self.tbMain.indexOf(self.tbBatteryFactory), QCoreApplication.translate("BCT", u"Factory Test", None))
         self.groupBox_5.setTitle(QCoreApplication.translate("BCT", u"FW Version", None))
         self.label_15.setText(QCoreApplication.translate("BCT", u"Dev01", None))

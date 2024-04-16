@@ -63,7 +63,8 @@ class SerialCycleWorker(QThread):
         return headAndData + bytes([crc]) + bytes([0x7E])
 
     def readRealTime(self, batteryData: list):
-        self.oneCycleAvg.append(batteryData)
+        if len(batteryData) and batteryData[3] > 4:
+            self.oneCycleAvg.append(batteryData)
         self.msgReadRealTime.emit(batteryData)
 
     def readSerial(self, serialNum: str):
@@ -98,7 +99,7 @@ class SerialCycleWorker(QThread):
                         if not self.bRunning: break
                         self.msgCnt.emit(idx)
 
-                        #001 충전on
+                        # 001 충전on
                         self.oneCycleAvg = []
                         self.consoleWriteBytes(self.makePacket(bytes([0x06, 0x01])))
                         waitTime = self.timeCycle[0][0] * 60 * 60 + (self.timeCycle[0][1] * 60) + (self.timeCycle[0][2])
@@ -118,7 +119,7 @@ class SerialCycleWorker(QThread):
 
                         self.oneCycleAvg = []
 
-                        #002 충전off
+                        # 002 충전off
                         self.consoleWriteBytes(self.makePacket(bytes([0x06, 0x00])))
                         waitTime = self.timeCycle[1][0] * 60 * 60 + (self.timeCycle[1][1] * 60) + (self.timeCycle[1][2])
                         print(f"off... {waitTime}s")

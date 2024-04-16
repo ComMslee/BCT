@@ -129,14 +129,29 @@ class BatteryCycleView(QObject):
         self.view.dev_ampere.setText(str(items[0]))
         self.view.dev_volt.setText(str(items[1]))
         self.view.dev_temperature.setText(str(items[2]))
-        self.view.dev_led_state.setText(str(items[3]))
-        pass
 
+        progressbarTxt = ""
+        if items[3] == 0:
+            progressbarTxt = "ALL OFF"
+        elif items[3] == 1:
+            progressbarTxt = "Start"
+        elif items[3] == 2:
+            progressbarTxt = "Battery Con"
+        elif items[3] == 3:
+            progressbarTxt = "Charging Fail"
+        elif items[3] == 4:
+            progressbarTxt = "Charging Wait"
+        elif items[3] == 5:
+            progressbarTxt = "Percent"
+
+        self.view.dev_led_state.setText(progressbarTxt)
     def pushSerial(self, serialNum: str):
         self.view.dev_version.setText(serialNum)
 
+
     def msgCnt(self, idx: int):
         self.view.dev_cycle.setText(str(idx))
+
 
     ################################################################################## 2
     def pushTableData2(self, items: list):
@@ -148,16 +163,31 @@ class BatteryCycleView(QObject):
             data.setFlags(data.flags() & ~Qt.ItemIsEditable)  # 편집 불가능
             self.view.dev_table_2.setItem(0, col, data)
 
+
     def pushData2(self, items: list):
         self.view.dev_ampere_2.setText(str(items[0]))
         self.view.dev_volt_2.setText(str(items[1]))
         self.view.dev_temperature_2.setText(str(items[2]))
-        self.view.dev_led_state_2.setText(str(items[3]))
-        # print(items)
-        pass
+
+        progressbarTxt = ""
+        if items[3] == 0:
+            progressbarTxt = "ALL OFF"
+        elif items[3] == 1:
+            progressbarTxt = "Start"
+        elif items[3] == 2:
+            progressbarTxt = "Battery Con"
+        elif items[3] == 3:
+            progressbarTxt = "Charging Fail"
+        elif items[3] == 4:
+            progressbarTxt = "Charging Wait"
+        elif items[3] == 5:
+            progressbarTxt = "Percent"
+
+        self.view.dev_led_state_2.setText(progressbarTxt)
 
     def pushSerial2(self, serialNum: str):
         self.view.dev_version_2.setText(serialNum)
+
 
     def msgCnt2(self, idx: int):
         self.view.dev_cycle_2.setText(str(idx))

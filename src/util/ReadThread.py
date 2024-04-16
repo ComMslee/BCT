@@ -99,10 +99,6 @@ class ReadThread(QThread):
                     )
                     print(info_string)
 
-                    for i in range(3200, -3200, -10):
-                        data = i.to_bytes(2, byteorder='big', signed=True)
-                        word = self.decodeWord(data[0], data[1], 0.02, True)
-
                     data_82 = [current, voltage, tempAvg, progrssbar]
 
                     self.msgReadRealTime.emit(data_82)
@@ -127,7 +123,7 @@ class ReadThread(QThread):
         return ' '.join(format(byte, '02X') for byte in data)
 
     def decodeWord(self, low_byte, high_byte, resolation: float = 1.0, signed: bool = False):
-        word_value = int.from_bytes(bytes([high_byte, low_byte]), byteorder='little', signed=signed)
+        word_value = int.from_bytes(bytes([high_byte, low_byte]), byteorder='big', signed=signed)
         result = int(word_value * resolation * 100) / 100  # 소수점 이하 2자리까지 버림
         return result
 

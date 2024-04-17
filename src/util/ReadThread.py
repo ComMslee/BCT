@@ -123,7 +123,7 @@ class ReadThread(QThread):
         return ' '.join(format(byte, '02X') for byte in data)
 
     def decodeWord(self, low_byte, high_byte, resolation: float = 1.0, signed: bool = False):
-        word_value = int.from_bytes(bytes([high_byte, low_byte]), byteorder='big', signed=signed)
+        value = int.from_bytes(bytes([high_byte, low_byte]), byteorder='big', signed=signed)
         if resolation != 1.0:
             result = int(value * resolation * 100) / 100  # 소수점 이하 2자리까지 버림
         else:

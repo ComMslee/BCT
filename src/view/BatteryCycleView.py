@@ -128,7 +128,7 @@ class DeviceView(QObject):
     def pushTableData(self, items: list):
         self.table.insertRow(0)
         for col, item in enumerate(items):
-            data = QTableWidgetItem(item)
+            data = QTableWidgetItem(str(item))
             data.setTextAlignment(Qt.AlignCenter)
             data.setFlags(data.flags() & ~Qt.ItemIsEditable)  # 편집 불가능
             self.table.setItem(0, col, data)

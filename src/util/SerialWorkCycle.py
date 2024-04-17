@@ -15,7 +15,7 @@ class SerialCycleWorker(QThread):
     msgReadList = QtCore.Signal(list)
     msgReadRealTime = QtCore.Signal(list)
 
-    def __init__(self, ComPort, timeCycle, baudRate=115200, cycle=1000):
+    def __init__(self, ComPort, baudRate, timeCycle, cycle=1000):
         super().__init__()
 
         self.serial_port = None
@@ -95,6 +95,9 @@ class SerialCycleWorker(QThread):
                     # 01 testmode enable
                     self.consoleWriteBytes(self.makePacket(bytes([0x01, 0x01])))
 
+                    self.consoleWriteBytes(self.makePacket(bytes([0x06, 0x00])))
+                    self.waitCondition.wait(self.mutex, 100)
+
                     for idx in range(self.cycle):
                         if not self.bRunning: break
                         self.msgCnt.emit(idx)
@@ -108,16 +111,16 @@ class SerialCycleWorker(QThread):
                         if not self.bRunning: break
 
                         # 0011 값 평균
-                        if len(self.oneCycleAvg) > 3:
-                            avglist = self.oneCycleAvg[1:len(self.oneCycleAvg) - 1]
-                        else:
-                            avglist = self.oneCycleAvg
-                        zipped_lists = zip(*avglist)
-                        averages = [int(sum(values) / len(values) * 100) / 100 for values in zipped_lists]
-                        print(f"{averages} | {len(self.oneCycleAvg)} {self.oneCycleAvg}")
-                        self.msgReadList.emit(["", str(idx), averages[1], averages[0], averages[2], ""])
-
-                        self.oneCycleAvg = []
+                        if len(self.oneCycleAvg) > 0:
+                            if len(self.oneCycleAvg) > 3:
+                                avglist = self.oneCycleAvg[1:len(self.oneCycleAvg) - 1]
+                            else:
+                                avglist = self.oneCycleAvg
+                            zipped_lists = zip(*avglist)
+                            averages = [int(sum(values) / len(values) * 100) / 100 for values in zipped_lists]
+                            print(f"{averages} | {len(self.oneCycleAvg)} {self.oneCycleAvg}")
+                            self.msgReadList.emit(["", str(idx), averages[1], averages[0], averages[2], ""])
+                            self.oneCycleAvg = []
 
                         # 002 충전off
                         self.consoleWriteBytes(self.makePacket(bytes([0x06, 0x00])))

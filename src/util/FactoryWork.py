@@ -77,20 +77,48 @@ class FactoryWork(QThread):
                     self.read_thread.start()
 
                     # 01 testmode enable
+                    print("start Test")
                     self.consoleWriteBytes(self.makePacket(bytes([0x01, 0x01])))
                     self.waitCondition.wait(self.mutex, 100)
 
-                    #충전시작
+                    # 충전시작
+                    print("start charing")
                     self.consoleWriteBytes(self.makePacket(bytes([0x06, 0x01])))
-                    self.waitCondition.wait(self.mutex, 100)
+                    self.waitCondition.wait(self.mutex, 20 * 1000)
 
-                    #애러코드
+                    # -5
+                    print("-5")
+                    self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x01, self.encodeSignedByte(-5)[0], 0x00])))
+                    self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x02, self.encodeSignedByte(30)[0], 0x00])))
+                    self.waitCondition.wait(self.mutex, 15 * 1000)
+
+                    # +5
+                    print("5")
+                    self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x01, self.encodeSignedByte(5)[0], 0x00])))
+                    self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x02, self.encodeSignedByte(30)[0], 0x00])))
+                    self.waitCondition.wait(self.mutex, 15 * 1000)
+
+                    # +60
+                    print("60")
+                    self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x01, self.encodeSignedByte(30)[0], 0x00])))
+                    self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x02, self.encodeSignedByte(60)[0], 0x00])))
+                    self.waitCondition.wait(self.mutex, 15 * 1000)
+
+                    # +45
+                    print("45")
+                    self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x01, self.encodeSignedByte(30)[0], 0x00])))
+                    self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x02, self.encodeSignedByte(45)[0], 0x00])))
+                    self.waitCondition.wait(self.mutex, 15 * 1000)
+
+                    # 애러코드
+                    print("err code3")
                     self.consoleWriteBytes(self.makePacket(bytes([0x04, 0x03])))
-                    self.waitCondition.wait(self.mutex, 5 * 1000)
+                    self.waitCondition.wait(self.mutex, 15 * 1000)
 
-                    #충전종료
+                    # 충전종료
+                    print("stop charing")
                     self.consoleWriteBytes(self.makePacket(bytes([0x06, 0x00])))
-                    self.waitCondition.wait(self.mutex, 100)
+                    self.waitCondition.wait(self.mutex, 10)
                     # work
                     # self.consoleWriteBytes(self.makePacket(bytes([0x01, 0x01])))
                     # self.waitCondition.wait(self.mutex, 10)
@@ -109,7 +137,13 @@ class FactoryWork(QThread):
 
                 # send Off
                 if self.serial_port is not None and self.serial_port.isOpen():
+                    print("end Test")
                     self.consoleWriteBytes(self.makePacket(bytes([0x01, 0x00])))
                     self.serial_port.close()
                 print("SerialCycleWorker finally")
                 self.ThreadNoti("finally...")
+
+    def encodeSignedByte(self, value) -> bytes:
+        if value < -128 or value > 127:
+            raise ValueError("Value out of range for signed byte: " + str(value))
+        return value.to_bytes(1, byteorder='big', signed=True)

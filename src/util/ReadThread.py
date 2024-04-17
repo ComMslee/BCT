@@ -124,13 +124,28 @@ class ReadThread(QThread):
 
     def decodeWord(self, low_byte, high_byte, resolation: float = 1.0, signed: bool = False):
         word_value = int.from_bytes(bytes([high_byte, low_byte]), byteorder='big', signed=signed)
-        result = int(word_value * resolation * 100) / 100  # 소수점 이하 2자리까지 버림
+        if resolation != 1.0:
+            result = int(value * resolation * 100) / 100  # 소수점 이하 2자리까지 버림
+        else:
+            result = value
+        return result
+
+    def decodeByte(self, byte, resolation: float = 1.0, signed: bool = False):
+        value = int.from_bytes(bytes([byte]), byteorder='big', signed=signed)
+        if resolation != 1.0:
+            result = int(value * resolation * 100) / 100  # 소수점 이하 2자리까지 버림
+        else :
+            result = value
         return result
 
     def encodeSignedWord(self, word_value) -> bytes:
         if word_value < -32768 or word_value > 32767:
             raise ValueError("Value out of range for signed short: " + str(word_value))
         return word_value.to_bytes(2, byteorder='big', signed=True)
+    def encodeSignedByte(self, value) -> bytes:
+        if value < -128 or value > 127:
+            raise ValueError("Value out of range for signed byte: " + str(value))
+        return value.to_bytes(1, byteorder='big', signed=True)
 
     def stop(self):
         self.bRunning = False

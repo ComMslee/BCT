@@ -95,9 +95,6 @@ class SerialCycleWorker(QThread):
                     # 01 testmode enable
                     self.consoleWriteBytes(self.makePacket(bytes([0x01, 0x01])))
 
-                    self.consoleWriteBytes(self.makePacket(bytes([0x06, 0x00])))
-                    self.waitCondition.wait(self.mutex, 100)
-
                     for idx in range(self.cycle):
                         if not self.bRunning: break
                         self.msgCnt.emit(idx)

@@ -83,12 +83,9 @@ class SerialWorker(QThread):
                     byte_array = self.writeNum.encode('utf-8')
                     byte_array = byte_array.ljust(15, b'\x00')[:15]
 
-                    self.consoleWriteBytes(self.makePacket(bytes([0x07, 0x01]) + byte_array))
                     self.read_thread.msgReadSerial.connect(self.serialRead)
                     self.waitCondition.wait(self.mutex, 10)
-
-                    self.consoleWriteBytes(self.makePacket(bytes([0x01, 0x01])))
-                    self.waitCondition.wait(self.mutex, 10)
+                    self.consoleWriteBytes(self.makePacket(bytes([0x07, 0x01]) + byte_array))
 
                     self.ThreadNoti("write complete")
                 else:

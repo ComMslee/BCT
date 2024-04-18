@@ -109,8 +109,8 @@ class FactoryWork(QThread):
                     self.waitCondition.wait(self.mutex, 100)
 
                     # 초기화
-                    self.consoleWriteBytes(self.makePacket(bytes([0x06, 0x00])))
                     self.consoleWriteBytes(self.makePacket(bytes([0x04, 0x00])))
+                    self.consoleWriteBytes(self.makePacket(bytes([0x06, 0x00])))
                     self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x01, self.encodeSignedByte(30)[0], 0x00])))
                     self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x02, self.encodeSignedByte(30)[0], 0x00])))
                     self.waitCondition.wait(self.mutex, 100)
@@ -182,8 +182,6 @@ class FactoryWork(QThread):
                     for case in testCase:
                         status, code = case
                         # 충전시작
-                        self.consoleWriteBytes(self.makePacket(bytes([0x04, 0x00])))
-                        self.consoleWriteBytes(self.makePacket(bytes([0x06, 0x00])))
                         self.consoleWriteBytes(self.makePacket(bytes([0x06, 0x01])))
                         self.waitCondition.wait(self.mutex, 17 * 1000)
                         
@@ -191,6 +189,8 @@ class FactoryWork(QThread):
                         self.setTest(f"ERR::{status}", False)
                         self.consoleWriteBytes(self.makePacket(bytes([0x04, code])))
                         self.waitCondition.wait(self.mutex, 3 * 1000)
+                        self.consoleWriteBytes(self.makePacket(bytes([0x04, 0x00])))
+                        self.consoleWriteBytes(self.makePacket(bytes([0x06, 0x00])))
 
                     # 충전종료
                     print("stop charging")

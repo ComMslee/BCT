@@ -1,6 +1,7 @@
+from typing import List
+
 from PySide6.QtCore import QObject, Qt
 from PySide6.QtWidgets import QTableWidgetItem, QTableWidget
-from typing import List
 
 from src.MainUI import Ui_BCT
 from src.repository.DataConfig import DataConfig
@@ -104,7 +105,7 @@ class BatteryCycleView(QObject):
 
     def threadNoti(self, msg):
         if "write complete" in msg:
-            print("write complete")
+            print("BatteryCycleView::write complete")
             self.enableBtn(True)
 
     def enableBtn(self, enable):
@@ -129,6 +130,11 @@ class DeviceView(QObject):
         self.temp = temp
         self.led = led
         self.table = table
+
+        table.clearContents()
+        row_count = table.rowCount()
+        for row_index in range(row_count):
+            table.removeRow(0)  # 첫 번째 행을 반복적으로 제거
 
     def pushTableData(self, items: list):
         self.table.insertRow(0)
@@ -161,7 +167,7 @@ class DeviceView(QObject):
 
     def threadNoti(self, msg):
         if "write complete" in msg:
-            print("write complete")
+            print(f"DeviceView({self.devNum})::write complete")
             datalog = DataLog(self.version.text(), self.devNum)
 
             for row in range(self.table.rowCount()):

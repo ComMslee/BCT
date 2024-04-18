@@ -78,25 +78,26 @@ class ReadThread(QThread):
                 if parserData[2] == 0x81:
                     print(f"STS_ACK [err {parserData[3]}][rev {parserData[4]}]")
                     self.msgAck.emit(bytes([parserData[3], parserData[4]]))
+
                 elif parserData[2] == 0x82:
                     current = self.decodeWord(parserData[9], parserData[10], 0.02, True)
                     voltage = self.decodeWord(parserData[11], parserData[12], 0.002)
                     tempAvg = parserData[19]
+                    diagInfo = parserData[6]
                     chargeMode = parserData[22]
                     progrssbar = parserData[23]
-                    diagInfo = parserData[6]
                     info_string = (
                         f"STS_INFO "
                         f"BmsMode {parserData[3]} | "
                         f"PwrCFET {parserData[4]}, DFET {parserData[5]} | "
-                        f"DiagInfo {parserData[6]} | "
+                        f"DiagInfo {diagInfo} | "
                         f"IgnitionRecog {parserData[7]} | "
                         f"FullyCharged {parserData[8]} | "
                         f"Current {current} / {self.decodeWord(parserData[15], parserData[16], 0.02, True)} | "
                         f"Voltage {voltage} / {self.decodeWord(parserData[17], parserData[18], 0.002)} | "
                         f"estRSOC {parserData[13]}, SOH {parserData[14]} | "
                         f"TempCell Avg {tempAvg}, Max {parserData[20]}, Min {parserData[21]} | "
-                        f"ChargeMode {parserData[22]} | "
+                        f"ChargeMode {chargeMode} | "
                         f"ProgressBarState {progrssbar}"
                     )
                     print(info_string)
@@ -143,7 +144,7 @@ class ReadThread(QThread):
         value = int.from_bytes(bytes([byte]), byteorder='big', signed=signed)
         if resolation != 1.0:
             result = int(value * resolation * 100) / 100  # 소수점 이하 2자리까지 버림
-        else :
+        else:
             result = value
         return result
 
@@ -151,6 +152,7 @@ class ReadThread(QThread):
         if word_value < -32768 or word_value > 32767:
             raise ValueError("Value out of range for signed short: " + str(word_value))
         return word_value.to_bytes(2, byteorder='big', signed=True)
+
     def encodeSignedByte(self, value) -> bytes:
         if value < -128 or value > 127:
             raise ValueError("Value out of range for signed byte: " + str(value))

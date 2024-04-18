@@ -17,7 +17,6 @@ class MainWindow(QMainWindow, Ui_BCT):
         self.setupUi(self)
 
         DataConfig()
-        DataLog()
         self.rootView = RootView(self)
         self.batteryCycleTab = BatteryCycleView(self)
         self.batteryFactoryTab = BatteryFactoryView(self)

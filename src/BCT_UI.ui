@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>0</number>
    </property>
    <property name="tabBarAutoHide">
     <bool>false</bool>
@@ -206,12 +206,12 @@
       </column>
       <column>
        <property name="text">
-        <string>전압</string>
+        <string>전류</string>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>전류</string>
+        <string>전압</string>
        </property>
       </column>
       <column>
@@ -735,12 +735,12 @@
       </column>
       <column>
        <property name="text">
-        <string>전압</string>
+        <string>전류</string>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>전류</string>
+        <string>전압</string>
        </property>
       </column>
       <column>
@@ -760,7 +760,7 @@
     <attribute name="title">
      <string>Factory Test</string>
     </attribute>
-    <widget class="QTableWidget" name="tableWidget">
+    <widget class="QTableWidget" name="factory_table">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -827,10 +827,10 @@
         <x>10</x>
         <y>20</y>
         <width>781</width>
-        <height>91</height>
+        <height>106</height>
        </rect>
       </property>
-      <layout class="QGridLayout" name="gridLayout_6" columnstretch="0,0,0,0,0,0,0,0">
+      <layout class="QGridLayout" name="gridLayout_6" columnstretch="0,0">
        <item row="1" column="0">
         <layout class="QHBoxLayout" name="horizontalLayout_2">
          <item>

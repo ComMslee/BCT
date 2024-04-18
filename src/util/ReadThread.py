@@ -8,7 +8,7 @@ from PySide6.QtCore import QThread, QMutexLocker, QMutex
 class ReadThread(QThread):
     msgAck = QtCore.Signal(bytes)
     msgReadSerial = QtCore.Signal(str)
-    msgReadRealTime = QtCore.Signal(list)
+    msgReadRealTime = QtCore.Signal(dict)
 
     def __init__(self, serial_port):
         super().__init__()
@@ -82,7 +82,9 @@ class ReadThread(QThread):
                     current = self.decodeWord(parserData[9], parserData[10], 0.02, True)
                     voltage = self.decodeWord(parserData[11], parserData[12], 0.002)
                     tempAvg = parserData[19]
+                    chargeMode = parserData[22]
                     progrssbar = parserData[23]
+                    diagInfo = parserData[6]
                     info_string = (
                         f"STS_INFO "
                         f"BmsMode {parserData[3]} | "
@@ -99,7 +101,14 @@ class ReadThread(QThread):
                     )
                     print(info_string)
 
-                    data_82 = [current, voltage, tempAvg, progrssbar]
+                    data_82 = {
+                        "current": current,
+                        "voltage": voltage,
+                        "tempAvg": tempAvg,
+                        "diagInfo": diagInfo,
+                        "progrssbar": progrssbar,
+                        "chargeMode": chargeMode,
+                    }
 
                     self.msgReadRealTime.emit(data_82)
 

@@ -13,7 +13,7 @@ class SerialCycleWorker(QThread):
     msgReadSerial = QtCore.Signal(str)
     msgCnt = QtCore.Signal(int)
     msgReadList = QtCore.Signal(list)
-    msgReadRealTime = QtCore.Signal(list)
+    msgReadRealTime = QtCore.Signal(dict)
 
     def __init__(self, ComPort, baudRate, timeCycle, cycle=1000):
         super().__init__()
@@ -24,7 +24,7 @@ class SerialCycleWorker(QThread):
         self.baudRate = baudRate
         self.timeCycle = timeCycle
         self.cycle = int(cycle)
-        self.oneCycleAvg = []
+        self.cnt = [0, 0]
         self.mutex = QMutex()
         self.waitCondition = QWaitCondition()
 
@@ -62,9 +62,12 @@ class SerialCycleWorker(QThread):
         crc = self.makeCrc(headAndData)
         return headAndData + bytes([crc]) + bytes([0x7E])
 
-    def readRealTime(self, batteryData: list):
-        if len(batteryData) and batteryData[3] > 4:
-            self.oneCycleAvg.append(batteryData)
+    def readRealTime(self, batteryData: dict):
+        if len(batteryData) > 4:
+            self.msgReadList.emit(
+                [batteryData["chargeMode"], f"{self.cnt[0]}::{self.cnt[1]}",
+                 batteryData["current"], batteryData["voltage"], batteryData["tempAvg"], batteryData["diagInfo"]])
+            self.cnt[1] += 1
         self.msgReadRealTime.emit(batteryData)
 
     def readSerial(self, serialNum: str):
@@ -97,27 +100,15 @@ class SerialCycleWorker(QThread):
 
                     for idx in range(self.cycle):
                         if not self.bRunning: break
+                        self.cnt = [idx, 0]
                         self.msgCnt.emit(idx)
 
                         # 001 충전on
-                        self.oneCycleAvg = []
                         self.consoleWriteBytes(self.makePacket(bytes([0x06, 0x01])))
                         waitTime = self.timeCycle[0][0] * 60 * 60 + (self.timeCycle[0][1] * 60) + (self.timeCycle[0][2])
                         print(f"on... {waitTime}s")
                         self.waitCondition.wait(self.mutex, waitTime * 1000)
                         if not self.bRunning: break
-
-                        # 0011 값 평균
-                        if len(self.oneCycleAvg) > 0:
-                            if len(self.oneCycleAvg) > 3:
-                                avglist = self.oneCycleAvg[1:len(self.oneCycleAvg) - 1]
-                            else:
-                                avglist = self.oneCycleAvg
-                            zipped_lists = zip(*avglist)
-                            averages = [int(sum(values) / len(values) * 100) / 100 for values in zipped_lists]
-                            print(f"{averages} | {len(self.oneCycleAvg)} {self.oneCycleAvg}")
-                            self.msgReadList.emit(["", str(idx), averages[1], averages[0], averages[2], ""])
-                            self.oneCycleAvg = []
 
                         # 002 충전off
                         self.consoleWriteBytes(self.makePacket(bytes([0x06, 0x00])))

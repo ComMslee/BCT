@@ -4,6 +4,7 @@ from typing import List
 
 from src.MainUI import Ui_BCT
 from src.repository.DataConfig import DataConfig
+from src.repository.DataLog import DataLog
 from src.util.SerialWorkCycle import SerialCycleWorker
 
 
@@ -66,11 +67,13 @@ class BatteryCycleView(QObject):
         self.devThread = []
         devPort = [dataconfig.getComPort(1), dataconfig.getComPort(2)]
         self.devView = [DeviceView(
+            "dev01",
             self.view.dev_version, self.view.dev_cycle,
             self.view.dev_ampere, self.view.dev_volt, self.view.dev_temperature,
             self.view.dev_led_state,
             self.view.dev_table
         ), DeviceView(
+            "dev02",
             self.view.dev_version_2, self.view.dev_cycle_2,
             self.view.dev_ampere_2, self.view.dev_volt_2, self.view.dev_temperature_2,
             self.view.dev_led_state_2,
@@ -86,6 +89,7 @@ class BatteryCycleView(QObject):
             thread.msgReadRealTime.connect(view.pushData)
             thread.msgReadSerial.connect(view.pushSerial)
             thread.msgCnt.connect(view.msgCnt)
+            thread.msgThread.connect(view.threadNoti)
             thread.msgThread.connect(self.threadNoti)
             thread.start()
             self.devThread.append(thread)
@@ -115,8 +119,9 @@ class BatteryCycleView(QObject):
 
 
 class DeviceView(QObject):
-    def __init__(self, version, cycle, ampere, volt, temp, led, table):
+    def __init__(self, devNum, version, cycle, ampere, volt, temp, led, table):
         super().__init__()
+        self.devNum = devNum
         self.version = version
         self.cycle = cycle
         self.ampere = ampere
@@ -133,10 +138,10 @@ class DeviceView(QObject):
             data.setFlags(data.flags() & ~Qt.ItemIsEditable)  # 편집 불가능
             self.table.setItem(0, col, data)
 
-    def pushData(self, items: list):
-        self.ampere.setText(str(items[0]))
-        self.volt.setText(str(items[1]))
-        self.temp.setText(str(items[2]))
+    def pushData(self, items: dict):
+        self.ampere.setText(str(items["current"]))
+        self.volt.setText(str(items["voltage"]))
+        self.temp.setText(str(items["tempAvg"]))
 
         progress_txt = {
             0: "ALL OFF",
@@ -145,7 +150,7 @@ class DeviceView(QObject):
             3: "Charging Fail",
             4: "Charging Wait",
             5: "Percent"
-        }.get(items[3], "")
+        }.get(items["progrssbar"], "")
         self.led.setText(progress_txt)
 
     def pushSerial(self, serialNum: str):
@@ -153,3 +158,18 @@ class DeviceView(QObject):
 
     def msgCnt(self, idx: int):
         self.cycle.setText(str(idx))
+
+    def threadNoti(self, msg):
+        if "write complete" in msg:
+            print("write complete")
+            datalog = DataLog(self.version.text(), self.devNum)
+
+            for row in range(self.table.rowCount()):
+                row_data = []
+                for column in range(self.table.columnCount()):
+                    item = self.table.item(row, column)
+                    if item is not None:
+                        row_data.append(item.text())
+                    else:
+                        row_data.append("")
+                datalog.appendData(row_data)

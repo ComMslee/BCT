@@ -63,11 +63,11 @@ class FactoryWork(QThread):
         return headAndData + bytes([crc]) + bytes([0x7E])
 
     def readRealTime(self, batteryData: dict):
-        if len(batteryData) and batteryData["chargeMode"] > 4:
+        if batteryData["progrssbar"] == 5:
             if not self.charging:
                 self.testOnOff(True)
             self.charging = True
-        else:
+        elif batteryData["progrssbar"] == 3:
             if self.charging:
                 self.testOnOff(False)
             self.charging = False
@@ -78,6 +78,7 @@ class FactoryWork(QThread):
         self.testType = testType
 
     def testOnOff(self, chargingOn):
+        print(f"-----------------------{self.testTitle} {chargingOn}, {self.testType}")
         if chargingOn == self.testType:
             self.msgReadList.emit([self.testTitle, "Pass"])
 
@@ -107,34 +108,41 @@ class FactoryWork(QThread):
                     self.consoleWriteBytes(self.makePacket(bytes([0x01, 0x01])))
                     self.waitCondition.wait(self.mutex, 100)
 
+                    # 초기화
+                    self.consoleWriteBytes(self.makePacket(bytes([0x06, 0x00])))
+                    self.consoleWriteBytes(self.makePacket(bytes([0x04, 0x00])))
+                    self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x01, self.encodeSignedByte(30)[0], 0x00])))
+                    self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x02, self.encodeSignedByte(30)[0], 0x00])))
+                    self.waitCondition.wait(self.mutex, 100)
+
                     # 충전시작
                     print("start charging")
                     self.consoleWriteBytes(self.makePacket(bytes([0x06, 0x01])))
-                    self.waitCondition.wait(self.mutex, 16 * 1000)
+                    self.waitCondition.wait(self.mutex, 17 * 1000)
 
                     # -5
                     self.setTest("-5", False)
                     self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x01, self.encodeSignedByte(-5)[0], 0x00])))
                     self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x02, self.encodeSignedByte(30)[0], 0x00])))
-                    self.waitCondition.wait(self.mutex, 11 * 1000)
+                    self.waitCondition.wait(self.mutex, 3 * 1000)
 
                     # +5
                     self.setTest("5", True)
                     self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x01, self.encodeSignedByte(5)[0], 0x00])))
                     self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x02, self.encodeSignedByte(30)[0], 0x00])))
-                    self.waitCondition.wait(self.mutex, 11 * 1000)
+                    self.waitCondition.wait(self.mutex, 3 * 1000)
 
                     # +60
                     self.setTest("60", False)
                     self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x01, self.encodeSignedByte(30)[0], 0x00])))
                     self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x02, self.encodeSignedByte(60)[0], 0x00])))
-                    self.waitCondition.wait(self.mutex, 11 * 1000)
+                    self.waitCondition.wait(self.mutex, 3 * 1000)
 
                     # +45
                     self.setTest("45", True)
                     self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x01, self.encodeSignedByte(30)[0], 0x00])))
                     self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x02, self.encodeSignedByte(45)[0], 0x00])))
-                    self.waitCondition.wait(self.mutex, 11 * 1000)
+                    self.waitCondition.wait(self.mutex, 3 * 1000)
 
                     testCase = [
                         ("Cell_OVP_FAULT", 3),
@@ -174,13 +182,15 @@ class FactoryWork(QThread):
                     for case in testCase:
                         status, code = case
                         # 충전시작
+                        self.consoleWriteBytes(self.makePacket(bytes([0x04, 0x00])))
+                        self.consoleWriteBytes(self.makePacket(bytes([0x06, 0x00])))
                         self.consoleWriteBytes(self.makePacket(bytes([0x06, 0x01])))
-                        self.waitCondition.wait(self.mutex, 16 * 1000)
+                        self.waitCondition.wait(self.mutex, 17 * 1000)
                         
                         # 애러코드
-                        self.setTest(f"case :: {status}", False)
+                        self.setTest(f"ERR::{status}", False)
                         self.consoleWriteBytes(self.makePacket(bytes([0x04, code])))
-                        self.waitCondition.wait(self.mutex, 11 * 1000)
+                        self.waitCondition.wait(self.mutex, 3 * 1000)
 
                     # 충전종료
                     print("stop charging")

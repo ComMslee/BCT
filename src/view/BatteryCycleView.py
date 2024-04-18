@@ -28,7 +28,7 @@ class BatteryCycleView(QObject):
         self.view.config_btn_stop.clicked.connect(self.stopCycle)
         self.dataConfig.msgSaveData.connect(self.saveData)
 
-        colSize = [65, 85, 105, 105, 105, 105]
+        colSize = [60, 85, 105, 105, 90, 105]
         for view in [self.view.dev_table, self.view.dev_table_2]:
             for i, size in enumerate(colSize):
                 view.setColumnWidth(i, size)

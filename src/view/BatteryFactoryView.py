@@ -82,6 +82,11 @@ class DeviceView(QObject):
         self.table: QTableWidget = table
         self.devNum: int = devNum
 
+        table.clearContents()
+        row_count = table.rowCount()
+        for row_index in range(row_count):
+            table.removeRow(0)  # 첫 번째 행을 반복적으로 제거
+
     def pushTable(self, items: list):
         self.pushTableData(items, self.devNum)
 
@@ -100,11 +105,13 @@ class DeviceView(QObject):
                     item.setText(setVal)
                 else:
                     # 해당 열의 값이 없는 경우
-                    table.setItem(row, target, QTableWidgetItem(setVal))
+                    if len(setVal) > 0:
+                        table.setItem(row, target, QTableWidgetItem(setVal))
                 return  # 작업 완료 후 함수 종료
 
         # 첫 번째 열의 값이 일치하는 행이 없는 경우
         newRowCount = table.rowCount()
         table.insertRow(newRowCount)
         table.setItem(newRowCount, 0, QTableWidgetItem(findVal))
-        table.setItem(newRowCount, target, QTableWidgetItem(setVal))
+        if len(setVal) > 0:
+            table.setItem(newRowCount, target, QTableWidgetItem(setVal))

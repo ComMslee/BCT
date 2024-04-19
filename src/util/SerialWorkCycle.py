@@ -5,6 +5,7 @@ from PySide6 import QtCore
 from PySide6.QtCore import QThread, QMutex, QMutexLocker, QWaitCondition
 
 from src.util.ReadThread import ReadThread
+from src.util.define import global_testCase
 
 
 class SerialCycleWorker(QThread):
@@ -64,9 +65,12 @@ class SerialCycleWorker(QThread):
 
     def readRealTime(self, batteryData: dict):
         if len(batteryData) > 4:
+            code = batteryData["diagInfo"]
+            if code in global_testCase:
+                code = global_testCase[code]
             self.msgReadList.emit(
                 [batteryData["chargeMode"], f"{self.cnt[0]}::{self.cnt[1]}",
-                 batteryData["current"], batteryData["voltage"], batteryData["tempAvg"], batteryData["diagInfo"]])
+                 batteryData["current"], batteryData["voltage"], batteryData["tempAvg"], code])
             self.cnt[1] += 1
         self.msgReadRealTime.emit(batteryData)
 

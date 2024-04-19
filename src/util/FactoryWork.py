@@ -5,6 +5,7 @@ from PySide6 import QtCore
 from PySide6.QtCore import QThread, QMutex, QMutexLocker, QWaitCondition
 
 from src.util.ReadThread import ReadThread
+from src.util.define import global_testCase
 
 
 class FactoryWork(QThread):
@@ -76,6 +77,7 @@ class FactoryWork(QThread):
         print(testTitle)
         self.testTitle = str(testTitle)
         self.testType = testType
+        self.msgReadList.emit([self.testTitle, ""])
 
     def testOnOff(self, chargingOn):
         print(f"-----------------------{self.testTitle} {chargingOn}, {self.testType}")
@@ -151,44 +153,8 @@ class FactoryWork(QThread):
                     self.waitCondition.wait(self.mutex, 3 * 1000)
                     if not self.bRunning: return
 
-                    testCase = [
-                        ("Cell_OVP_FAULT", 3),
-                        ("Cell_OVP_FAILURE", 4),
-                        ("Cell_UVP_FAULT", 7),
-                        ("Cell_UVP_FAILURE", 8),
-                        ("Cell_OVP_PACK_FAULT", 11),
-                        ("Cell_UVP_PACK_FAILURE", 16),
-                        ("Cell_OCCP_FAULT", 19),
-                        ("Cell_OCCP_FAILURE", 20),
-                        ("Cell_ODCP_FAULT", 23),
-                        ("Cell_ODCP_FAILURE", 24),
-                        ("Cell_OCTP_FAULT", 27),
-                        ("Cell_OCTP_FAILURE", 28),
-                        ("Cell_UCTP_FAULT", 35),
-                        ("Cell_UDTP_FAULT", 39),
-                        ("Cell_SOC_IM_FAULT", 55),
-                        ("BMS_SHORT_IC", 60),
-                        ("BMS_DFET_FAULT", 63),
-                        ("BMS_CFET_FAULT", 67),
-                        ("BMS_PFET_OT_FAULT", 71),
-                        ("BMS_ASIC_SHUTDOWN_FAULT", 79),
-                        ("BMS_ASIC_LOC_FAULT", 83),
-                        ("Pack_FUSEROHM_FAULT", 87),
-                        ("Pack_FUSEOC_FAULT", 95),
-                        ("Pack_FETsOT_FAULT", 99),
-                        ("ASIC_OV_FAILURE", 104),
-                        ("ASIC_UV_FAULT", 107),
-                        ("ASIC_UV_FAILURE", 108),
-                        ("ASIC_ODC_FAULT", 111),
-                        ("ASIC_SCD_FAULT", 119),
-                        ("ASIC_SCD_FAILURE", 120),
-                        ("ASIC_XREADY_FAULT", 127),
-                        ("ASIC_OVERRIDE_FAULT", 131)
-                    ]
-
                     if not self.bRunning: return
-                    for case in testCase:
-                        status, code = case
+                    for code, status in global_testCase.items():
                         # 충전시작
                         self.consoleWriteBytes(self.makePacket(bytes([0x06, 0x01])))
                         self.waitCondition.wait(self.mutex, 17 * 1000)

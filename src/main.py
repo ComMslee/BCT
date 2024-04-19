@@ -3,7 +3,6 @@ from PySide6.QtWidgets import QMainWindow, QApplication
 
 from src.MainUI import Ui_BCT
 from src.repository.DataConfig import DataConfig
-from src.repository.DataLog import DataLog
 from src.view.BatteryCycleView import BatteryCycleView
 from src.view.BatteryFactoryView import BatteryFactoryView
 from src.view.PushSerialView import PushSerialView

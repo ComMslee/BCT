@@ -1,7 +1,7 @@
 from typing import List
 
 from PySide6.QtCore import QObject
-from PySide6.QtWidgets import QTableWidgetItem, QTableWidget
+from PySide6.QtWidgets import QTableWidgetItem, QTableWidget, QLineEdit
 
 from src.MainUI import Ui_BCT
 from src.repository.DataConfig import DataConfig
@@ -43,12 +43,14 @@ class BatteryFactoryView(QObject):
 
         self.devThread = []
         devPort = [dataConfig.getComPort(1), dataConfig.getComPort(2)]
-        self.devView = [DeviceView(self.view.factory_table, 1), DeviceView(self.view.factory_table, 2)]
+        self.devView = [DeviceView(self.view.factory_table, self.view.factory_result, 1),
+                        DeviceView(self.view.factory_table, self.view.factory_result_2, 2)]
         for port, view in zip(devPort, self.devView):
             thread = FactoryWork(
                 port, dataConfig.getComBaudRate(),
             )
             thread.msgReadList.connect(view.pushTable)
+            thread.msgThread.connect(view.threadNoti)
             thread.msgThread.connect(self.threadNoti)
             thread.start()
             self.devThread.append(thread)
@@ -79,9 +81,10 @@ class BatteryFactoryView(QObject):
 
 
 class DeviceView(QObject):
-    def __init__(self, table: QTableWidget, devNum: int):
+    def __init__(self, table: QTableWidget, resultView, devNum: int):
         super().__init__()
         self.table: QTableWidget = table
+        self.resultView: QLineEdit = resultView
         self.devNum: int = devNum
 
         table.clearContents()
@@ -117,3 +120,20 @@ class DeviceView(QObject):
         table.setItem(newRowCount, 0, QTableWidgetItem(findVal))
         if len(setVal) > 0:
             table.setItem(newRowCount, target, QTableWidgetItem(setVal))
+
+    def threadNoti(self, msg):
+        if "write complete" in msg:
+            print(f"DeviceView({self.devNum})::write complete")
+            table = self.table
+            cnt = 0
+            for row in range(table.rowCount()):
+                item = table.item(row, 0)
+                if item:
+                    item = table.item(row, self.devNum)
+                    if item and "pass" == item.text():
+                        print(f"{item.text()} : {item.text()}")
+                        cnt += 1
+
+            print(f"is cnt {cnt} | {table.rowCount()}")
+            if cnt == table.rowCount():
+                self.resultView.setText("Pass")

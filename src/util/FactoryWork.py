@@ -77,11 +77,12 @@ class FactoryWork(QThread):
         print(testTitle)
         self.testTitle = str(testTitle)
         self.testType = testType
-        self.msgReadList.emit([self.testTitle, ""])
+        if len(self.testTitle) > 0:
+            self.msgReadList.emit([self.testTitle, ""])
 
     def testOnOff(self, chargingOn):
         print(f"-----------------------{self.testTitle} {chargingOn}, {self.testType}")
-        if chargingOn == self.testType:
+        if chargingOn == self.testType and len(self.testTitle) > 0:
             self.msgReadList.emit([self.testTitle, "Pass"])
 
     def ack(self, ack: bytes):
@@ -190,6 +191,12 @@ class FactoryWork(QThread):
 
                 # send Off
                 if self.serial_port is not None and self.serial_port.isOpen():
+                    print("factory test end init...")
+                    self.consoleWriteBytes(self.makePacket(bytes([0x06, 0x00])))
+                    self.consoleWriteBytes(self.makePacket(bytes([0x04, 0x00])))
+                    self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x01, self.encodeSignedByte(30)[0], 0x00])))
+                    self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x02, self.encodeSignedByte(30)[0], 0x00])))
+
                     print("end Test")
                     self.consoleWriteBytes(self.makePacket(bytes([0x01, 0x00])))
                     self.serial_port.close()

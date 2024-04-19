@@ -45,8 +45,8 @@ class BatteryCycleView(QObject):
             view.setText(str(time))
 
     def saveData(self):
-        dataconfig = self.dataConfig
-        dataconfig.setTime(
+        dataConfig = self.dataConfig
+        dataConfig.setTime(
             [
                 int(self.view.config_time_on_h.text()),
                 int(self.view.config_time_on_m.text()),
@@ -57,16 +57,16 @@ class BatteryCycleView(QObject):
                 int(self.view.config_time_off_m.text()),
                 int(self.view.config_time_off_s.text()),
             ])
-        dataconfig.setCycle(self.view.config_cycle.text())
-        dataconfig.saveData()
+        dataConfig.setCycle(self.view.config_cycle.text())
+        dataConfig.saveData()
 
     def startCycle(self):
         print("start cycle")
-        dataconfig = self.dataConfig
-        dataconfig.msgSaveData.emit()
+        dataConfig = self.dataConfig
+        dataConfig.msgSaveData.emit()
 
         self.devThread = []
-        devPort = [dataconfig.getComPort(1), dataconfig.getComPort(2)]
+        devPort = [dataConfig.getComPort(1), dataConfig.getComPort(2)]
         self.devView = [DeviceView(
             "dev01",
             self.view.dev_version, self.view.dev_cycle,
@@ -83,8 +83,8 @@ class BatteryCycleView(QObject):
 
         for port, view in zip(devPort, self.devView):
             thread = SerialCycleWorker(
-                port, dataconfig.getComBaudRate(),
-                dataconfig.getTime(), dataconfig.getCycle()
+                port, dataConfig.getComBaudRate(),
+                dataConfig.getTime(), dataConfig.getCycle()
             )
             thread.msgReadList.connect(view.pushTableData)
             thread.msgReadRealTime.connect(view.pushData)

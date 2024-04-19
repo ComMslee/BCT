@@ -39,6 +39,8 @@ class BatteryFactoryView(QObject):
     def startCycle(self):
         print("start cycle")
         dataConfig = self.dataConfig
+        dataConfig.msgSaveData.emit()
+
         self.devThread = []
         devPort = [dataConfig.getComPort(1), dataConfig.getComPort(2)]
         self.devView = [DeviceView(self.view.factory_table, 1), DeviceView(self.view.factory_table, 2)]

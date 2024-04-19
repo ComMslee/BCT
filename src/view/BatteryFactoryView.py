@@ -25,7 +25,13 @@ class BatteryFactoryView(QObject):
 
     def initUI(self):
         self.view.factory_start.clicked.connect(self.startCycle)
-        pass
+        self.view.factory_stop.clicked.connect(self.stopCycle)
+
+        colSize = [240, 90, 90]
+        for view in [self.view.factory_table]:
+            for i, size in enumerate(colSize):
+                view.setColumnWidth(i, size)
+        self.view.factory_stop.setEnabled(False)
 
     def updateUI(self):
         pass
@@ -54,12 +60,18 @@ class BatteryFactoryView(QObject):
         self.enableBtn(True)
 
     def threadNoti(self, msg):
-        if "write complete" in msg:
-            print("write complete")
-            self.enableBtn(True)
+        if "finally" in msg:
+            cnt = 0
+            for dev in self.devThread:
+                if not dev.bRunning:
+                    cnt += 1
+            if len(self.devThread) == cnt:
+                print("BatteryCycleView::finally")
+                self.enableBtn(True)
 
     def enableBtn(self, enable):
         self.view.factory_start.setEnabled(enable)
+        self.view.factory_stop.setEnabled(not enable)
         self.view.tbMain.setTabEnabled(0, enable)
         self.view.tbMain.setTabEnabled(2, enable)
 

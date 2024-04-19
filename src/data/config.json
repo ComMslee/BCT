@@ -1,1 +1,1 @@
-{"version": 0, "setup": {"last_tap": {"main_tab": 1}}, "com": {"rate": "115200", "port_dev1": "COM1", "port_dev2": "COM5"}, "tap_battery_test": {"cycle": "10", "ontime": [0, 0, 20], "offtime": [0, 0, 5]}, "tap_push_serial": {"auto_cnt": 2, "serial_fixed": "HW24-LEE", "serial_val": "032"}}
+{"version": 0, "setup": {"last_tap": {"main_tab": 0}}, "com": {"rate": "115200", "port_dev1": "COM7", "port_dev2": "COM8"}, "tap_battery_test": {"cycle": "10", "ontime": [0, 0, 20], "offtime": [0, 0, 5]}, "tap_push_serial": {"auto_cnt": 2, "serial_fixed": "HW24-LEE", "serial_val": "033"}}

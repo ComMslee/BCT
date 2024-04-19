@@ -107,6 +107,7 @@ class FactoryWork(QThread):
                     print("start Test")
                     self.consoleWriteBytes(self.makePacket(bytes([0x01, 0x01])))
                     self.waitCondition.wait(self.mutex, 100)
+                    if not self.bRunning: return
 
                     # 초기화
                     self.consoleWriteBytes(self.makePacket(bytes([0x04, 0x00])))
@@ -114,35 +115,41 @@ class FactoryWork(QThread):
                     self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x01, self.encodeSignedByte(30)[0], 0x00])))
                     self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x02, self.encodeSignedByte(30)[0], 0x00])))
                     self.waitCondition.wait(self.mutex, 100)
+                    if not self.bRunning: return
 
                     # 충전시작
                     print("start charging")
                     self.consoleWriteBytes(self.makePacket(bytes([0x06, 0x01])))
                     self.waitCondition.wait(self.mutex, 17 * 1000)
+                    if not self.bRunning: return
 
                     # -5
                     self.setTest("-5", False)
                     self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x01, self.encodeSignedByte(-5)[0], 0x00])))
                     self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x02, self.encodeSignedByte(30)[0], 0x00])))
                     self.waitCondition.wait(self.mutex, 3 * 1000)
+                    if not self.bRunning: return
 
                     # +5
                     self.setTest("5", True)
                     self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x01, self.encodeSignedByte(5)[0], 0x00])))
                     self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x02, self.encodeSignedByte(30)[0], 0x00])))
                     self.waitCondition.wait(self.mutex, 3 * 1000)
+                    if not self.bRunning: return
 
                     # +60
                     self.setTest("60", False)
                     self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x01, self.encodeSignedByte(30)[0], 0x00])))
                     self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x02, self.encodeSignedByte(60)[0], 0x00])))
                     self.waitCondition.wait(self.mutex, 3 * 1000)
+                    if not self.bRunning: return
 
                     # +45
                     self.setTest("45", True)
                     self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x01, self.encodeSignedByte(30)[0], 0x00])))
                     self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x02, self.encodeSignedByte(45)[0], 0x00])))
                     self.waitCondition.wait(self.mutex, 3 * 1000)
+                    if not self.bRunning: return
 
                     testCase = [
                         ("Cell_OVP_FAULT", 3),
@@ -179,18 +186,21 @@ class FactoryWork(QThread):
                         ("ASIC_OVERRIDE_FAULT", 131)
                     ]
 
+                    if not self.bRunning: return
                     for case in testCase:
                         status, code = case
                         # 충전시작
                         self.consoleWriteBytes(self.makePacket(bytes([0x06, 0x01])))
                         self.waitCondition.wait(self.mutex, 17 * 1000)
-                        
+                        if not self.bRunning: return
+
                         # 애러코드
                         self.setTest(f"ERR::{status}", False)
                         self.consoleWriteBytes(self.makePacket(bytes([0x04, code])))
                         self.waitCondition.wait(self.mutex, 3 * 1000)
                         self.consoleWriteBytes(self.makePacket(bytes([0x04, 0x00])))
                         self.consoleWriteBytes(self.makePacket(bytes([0x06, 0x00])))
+                        if not self.bRunning: return
 
                     # 충전종료
                     print("stop charging")
@@ -218,7 +228,8 @@ class FactoryWork(QThread):
                     self.consoleWriteBytes(self.makePacket(bytes([0x01, 0x00])))
                     self.serial_port.close()
                 print("SerialCycleWorker finally")
-                self.ThreadNoti("finally...")
+                self.bRunning = False
+                self.ThreadNoti("finally")
 
     def encodeSignedByte(self, value) -> bytes:
         if value < -128 or value > 127:

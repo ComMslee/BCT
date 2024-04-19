@@ -28,7 +28,7 @@ class BatteryCycleView(QObject):
         self.view.config_btn_stop.clicked.connect(self.stopCycle)
         self.dataConfig.msgSaveData.connect(self.saveData)
 
-        colSize = [60, 85, 105, 105, 90, 105]
+        colSize = [65, 85, 105, 105, 90, 105]
         for view in [self.view.dev_table, self.view.dev_table_2]:
             for i, size in enumerate(colSize):
                 view.setColumnWidth(i, size)
@@ -104,9 +104,14 @@ class BatteryCycleView(QObject):
         self.enableBtn(True)
 
     def threadNoti(self, msg):
-        if "write complete" in msg:
-            print("BatteryCycleView::write complete")
-            self.enableBtn(True)
+        if "finally" in msg:
+            cnt = 0
+            for dev in self.devThread:
+                if not dev.bRunning:
+                    cnt += 1
+            if len(self.devThread) == cnt:
+                print("BatteryCycleView::finally")
+                self.enableBtn(True)
 
     def enableBtn(self, enable):
         self.view.config_btn_start.setEnabled(enable)

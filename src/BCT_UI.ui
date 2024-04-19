@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <property name="tabBarAutoHide">
     <bool>false</bool>
@@ -196,12 +196,12 @@
       </property>
       <column>
        <property name="text">
-        <string>Pass</string>
+        <string>충전상태</string>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>No</string>
+        <string>번호</string>
        </property>
       </column>
       <column>
@@ -725,12 +725,12 @@
       </property>
       <column>
        <property name="text">
-        <string>Pass</string>
+        <string>충전상태</string>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>No</string>
+        <string>번호</string>
        </property>
       </column>
       <column>
@@ -765,7 +765,7 @@
       <rect>
        <x>10</x>
        <y>0</y>
-       <width>411</width>
+       <width>511</width>
        <height>591</height>
       </rect>
      </property>
@@ -788,10 +788,10 @@
     <widget class="QPushButton" name="factory_start">
      <property name="geometry">
       <rect>
-       <x>430</x>
+       <x>530</x>
        <y>0</y>
-       <width>91</width>
-       <height>91</height>
+       <width>161</width>
+       <height>71</height>
       </rect>
      </property>
      <property name="sizePolicy">
@@ -802,6 +802,25 @@
      </property>
      <property name="text">
       <string>start</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="factory_stop">
+     <property name="geometry">
+      <rect>
+       <x>530</x>
+       <y>80</y>
+       <width>161</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>stop</string>
      </property>
     </widget>
    </widget>
@@ -964,8 +983,8 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>130</y>
-        <width>281</width>
+        <y>140</y>
+        <width>351</width>
         <height>62</height>
        </rect>
       </property>

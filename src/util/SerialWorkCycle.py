@@ -134,4 +134,5 @@ class SerialCycleWorker(QThread):
                     self.consoleWriteBytes(self.makePacket(bytes([0x01, 0x00])))
                     self.serial_port.close()
                 print("SerialCycleWorker finally")
+                self.bRunning = False
                 self.ThreadNoti("finally...")

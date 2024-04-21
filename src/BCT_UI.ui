@@ -60,9 +60,9 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>83</y>
+         <y>86</y>
          <width>161</width>
-         <height>124</height>
+         <height>121</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_2">
@@ -589,9 +589,9 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>83</y>
+         <y>86</y>
          <width>161</width>
-         <height>124</height>
+         <height>121</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_8">
@@ -765,7 +765,7 @@
       <rect>
        <x>10</x>
        <y>0</y>
-       <width>511</width>
+       <width>571</width>
        <height>591</height>
       </rect>
      </property>
@@ -788,9 +788,9 @@
     <widget class="QPushButton" name="factory_start">
      <property name="geometry">
       <rect>
-       <x>530</x>
+       <x>590</x>
        <y>0</y>
-       <width>161</width>
+       <width>231</width>
        <height>71</height>
       </rect>
      </property>
@@ -807,9 +807,9 @@
     <widget class="QPushButton" name="factory_stop">
      <property name="geometry">
       <rect>
-       <x>530</x>
+       <x>590</x>
        <y>80</y>
-       <width>161</width>
+       <width>231</width>
        <height>61</height>
       </rect>
      </property>
@@ -822,6 +822,65 @@
      <property name="text">
       <string>stop</string>
      </property>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_10">
+     <property name="geometry">
+      <rect>
+       <x>590</x>
+       <y>150</y>
+       <width>231</width>
+       <height>101</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Test Result</string>
+     </property>
+     <widget class="QWidget" name="gridLayoutWidget_11">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>211</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_11">
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_29">
+         <property name="text">
+          <string>Dev02</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_30">
+         <property name="text">
+          <string>Dev01</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="factory_result_2">
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="factory_result">
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </widget>
    <widget class="QWidget" name="tbSerial">
@@ -984,7 +1043,7 @@
        <rect>
         <x>10</x>
         <y>140</y>
-        <width>351</width>
+        <width>301</width>
         <height>62</height>
        </rect>
       </property>

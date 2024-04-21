@@ -50,7 +50,7 @@ class DataConfig(QObject):
         self.__onTime = [0, 1, 0]
         self.__offTime = [0, 1, 0]
 
-        self.__serial_fixed = "MSLEE_24_00_00F"
+        self.__serial_fixed = "MSLEE_24_F"
         self.__serial_val = "000001"
         self.__auto_cnt = True
 

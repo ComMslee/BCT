@@ -13,8 +13,8 @@ class DataConfig(QObject):
     __init = False
     __DEBUG__ = False
 
-    __SAVE_DIR = "data"
-    __FILE_CONFIG = "./data/config.json"
+    __SAVE_DIR = os.path.join(".", "data")
+    __FILE_CONFIG = os.path.join(".", "data", "config.json")
 
     def __new__(cls):
         if not hasattr(cls, "instance"):

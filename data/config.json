@@ -1,1 +1,0 @@
-{"version": 0, "setup": {"last_tap": {"main_tab": 1}}, "com": {"rate": "115200", "port_dev1": "COM5", "port_dev2": "COM8"}, "tap_battery_test": {"cycle": "5", "ontime": [0, 0, 1], "offtime": [0, 0, 1]}, "tap_push_serial": {"auto_cnt": 2, "serial_fixed": "LB3A-", "serial_val": "A220"}}

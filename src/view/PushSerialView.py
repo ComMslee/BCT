@@ -75,13 +75,14 @@ class PushSerialView(QObject):
 
         if srMix == serialNum:
             view.setStyleSheet("background-color: green")
-            nextVal = self.nextNumber(value)
-            srMixNextVal = self.mix(nextVal)
-            self.view.push_serial_val.setText(nextVal)
-            self.view.push_serial_next.setText(srMixNextVal)
+            if dataConfig.getAuto():
+                nextVal = self.nextNumber(value)
+                srMixNextVal = self.mix(nextVal)
+                self.view.push_serial_val.setText(nextVal)
+                self.view.push_serial_next.setText(srMixNextVal)
 
-            dataConfig.setSerial(self.view.push_serial_fixed.text(), nextVal)
-            dataConfig.saveData()
+                dataConfig.setSerial(self.view.push_serial_fixed.text(), nextVal)
+                dataConfig.saveData()
         else:
             view.setStyleSheet("background-color: red")
 

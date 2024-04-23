@@ -39,7 +39,10 @@ class PushSerialView(QObject):
         dataConfig.saveData()
 
     def onPush(self):
+        print("start cycle")
         dataConfig = self.dataConfig
+        dataConfig.msgSaveData.emit()
+
         value = self.view.push_serial_val.text()
         srMix = self.mix(value)
 

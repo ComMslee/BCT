@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>833</width>
-    <height>694</height>
+    <height>690</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -764,9 +764,9 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>0</y>
-       <width>571</width>
-       <height>591</height>
+       <y>10</y>
+       <width>501</width>
+       <height>571</height>
       </rect>
      </property>
      <column>
@@ -788,9 +788,9 @@
     <widget class="QPushButton" name="factory_start">
      <property name="geometry">
       <rect>
-       <x>590</x>
-       <y>0</y>
-       <width>231</width>
+       <x>520</x>
+       <y>410</y>
+       <width>151</width>
        <height>71</height>
       </rect>
      </property>
@@ -807,10 +807,10 @@
     <widget class="QPushButton" name="factory_stop">
      <property name="geometry">
       <rect>
-       <x>590</x>
-       <y>80</y>
-       <width>231</width>
-       <height>61</height>
+       <x>670</x>
+       <y>410</y>
+       <width>151</width>
+       <height>71</height>
       </rect>
      </property>
      <property name="sizePolicy">
@@ -826,10 +826,10 @@
     <widget class="QGroupBox" name="groupBox_10">
      <property name="geometry">
       <rect>
-       <x>590</x>
-       <y>150</y>
-       <width>231</width>
-       <height>101</height>
+       <x>520</x>
+       <y>490</y>
+       <width>301</width>
+       <height>91</height>
       </rect>
      </property>
      <property name="title">
@@ -839,8 +839,8 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>30</y>
-        <width>211</width>
+        <y>20</y>
+        <width>281</width>
         <height>61</height>
        </rect>
       </property>
@@ -881,6 +881,35 @@
        </item>
       </layout>
      </widget>
+    </widget>
+    <widget class="QListWidget" name="factory_list">
+     <property name="geometry">
+      <rect>
+       <x>520</x>
+       <y>10</y>
+       <width>301</width>
+       <height>371</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="factory_select">
+     <property name="geometry">
+      <rect>
+       <x>520</x>
+       <y>380</y>
+       <width>301</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>select all</string>
+     </property>
     </widget>
    </widget>
    <widget class="QWidget" name="tbSerial">

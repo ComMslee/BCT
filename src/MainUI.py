@@ -17,14 +17,15 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QCheckBox, QGridLayout, QGroupBox,
     QHBoxLayout, QHeaderView, QLabel, QLineEdit,
-    QPushButton, QSizePolicy, QTabWidget, QTableWidget,
-    QTableWidgetItem, QVBoxLayout, QWidget)
+    QListWidget, QListWidgetItem, QPushButton, QSizePolicy,
+    QTabWidget, QTableWidget, QTableWidgetItem, QVBoxLayout,
+    QWidget)
 
 class Ui_BCT(object):
     def setupUi(self, BCT):
         if not BCT.objectName():
             BCT.setObjectName(u"BCT")
-        BCT.resize(833, 694)
+        BCT.resize(833, 690)
         self.tbMain = QTabWidget(BCT)
         self.tbMain.setObjectName(u"tbMain")
         self.tbMain.setGeometry(QRect(0, 80, 831, 621))
@@ -455,23 +456,23 @@ class Ui_BCT(object):
         __qtablewidgetitem14 = QTableWidgetItem()
         self.factory_table.setHorizontalHeaderItem(2, __qtablewidgetitem14)
         self.factory_table.setObjectName(u"factory_table")
-        self.factory_table.setGeometry(QRect(10, 0, 571, 591))
+        self.factory_table.setGeometry(QRect(10, 10, 501, 571))
         self.factory_start = QPushButton(self.tbBatteryFactory)
         self.factory_start.setObjectName(u"factory_start")
-        self.factory_start.setGeometry(QRect(590, 0, 231, 71))
+        self.factory_start.setGeometry(QRect(520, 410, 151, 71))
         sizePolicy3.setHeightForWidth(self.factory_start.sizePolicy().hasHeightForWidth())
         self.factory_start.setSizePolicy(sizePolicy3)
         self.factory_stop = QPushButton(self.tbBatteryFactory)
         self.factory_stop.setObjectName(u"factory_stop")
-        self.factory_stop.setGeometry(QRect(590, 80, 231, 61))
+        self.factory_stop.setGeometry(QRect(670, 410, 151, 71))
         sizePolicy3.setHeightForWidth(self.factory_stop.sizePolicy().hasHeightForWidth())
         self.factory_stop.setSizePolicy(sizePolicy3)
         self.groupBox_10 = QGroupBox(self.tbBatteryFactory)
         self.groupBox_10.setObjectName(u"groupBox_10")
-        self.groupBox_10.setGeometry(QRect(590, 150, 231, 101))
+        self.groupBox_10.setGeometry(QRect(520, 490, 301, 91))
         self.gridLayoutWidget_11 = QWidget(self.groupBox_10)
         self.gridLayoutWidget_11.setObjectName(u"gridLayoutWidget_11")
-        self.gridLayoutWidget_11.setGeometry(QRect(10, 30, 211, 61))
+        self.gridLayoutWidget_11.setGeometry(QRect(10, 20, 281, 61))
         self.gridLayout_11 = QGridLayout(self.gridLayoutWidget_11)
         self.gridLayout_11.setObjectName(u"gridLayout_11")
         self.gridLayout_11.setContentsMargins(0, 0, 0, 0)
@@ -499,6 +500,14 @@ class Ui_BCT(object):
 
         self.gridLayout_11.addWidget(self.factory_result, 0, 1, 1, 1)
 
+        self.factory_list = QListWidget(self.tbBatteryFactory)
+        self.factory_list.setObjectName(u"factory_list")
+        self.factory_list.setGeometry(QRect(520, 10, 301, 371))
+        self.factory_select = QPushButton(self.tbBatteryFactory)
+        self.factory_select.setObjectName(u"factory_select")
+        self.factory_select.setGeometry(QRect(520, 380, 301, 31))
+        sizePolicy3.setHeightForWidth(self.factory_select.sizePolicy().hasHeightForWidth())
+        self.factory_select.setSizePolicy(sizePolicy3)
         self.tbMain.addTab(self.tbBatteryFactory, "")
         self.tbSerial = QWidget()
         self.tbSerial.setObjectName(u"tbSerial")
@@ -789,6 +798,7 @@ class Ui_BCT(object):
         self.groupBox_10.setTitle(QCoreApplication.translate("BCT", u"Test Result", None))
         self.label_29.setText(QCoreApplication.translate("BCT", u"Dev02", None))
         self.label_30.setText(QCoreApplication.translate("BCT", u"Dev01", None))
+        self.factory_select.setText(QCoreApplication.translate("BCT", u"select all", None))
         self.tbMain.setTabText(self.tbMain.indexOf(self.tbBatteryFactory), QCoreApplication.translate("BCT", u"Factory Test", None))
         self.groupBox_6.setTitle(QCoreApplication.translate("BCT", u"Push Serial", None))
         self.push_serial_next.setText("")

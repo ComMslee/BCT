@@ -14,13 +14,18 @@ class FactoryWork(QThread):
     msgRead = QtCore.Signal(str)
     msgReadList = QtCore.Signal(list)
 
-    def __init__(self, ComPort, baudrate=115200):
+    def __init__(self, ComPort, baudrate=115200, selected_dict=None):
         super().__init__()
 
+        if selected_dict is None:
+            selected_dict = {}
         self.serial_port = None
         self.read_thread: ReadThread = None
         self.comPort = ComPort
         self.BaudRate = baudrate
+        self.selected_dict = selected_dict if selected_dict and (len(selected_dict) > 0) else global_testCase
+        self.chargingStartWaitTime = 17 * 1000
+        self.testWaitTime = 2.8 * 1000
         self.charging = False
 
         self.testType: bool = False
@@ -89,6 +94,27 @@ class FactoryWork(QThread):
         if len(ack) == 2:
             print(f"[cmd:{ack[1]}][result:{ack[0] == 0}]")
 
+    def initStopCharging(self):
+        try:
+            self.consoleWriteBytes(self.makePacket(bytes([0x04, 0x00])))
+            self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x01, self.encodeSignedByte(30)[0], 0x00])))
+            self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x02, self.encodeSignedByte(30)[0], 0x00])))
+            self.consoleWriteBytes(self.makePacket(bytes([0x06, 0x00])))
+            self.waitCondition.wait(self.mutex, 50)
+        except Exception as error:
+            print(error)
+            self.ThreadNoti(str(error))
+
+    def tempTest(self, testTitle, testType, minVal=30, maxVal=30):
+        try:
+            self.setTest(testTitle, testType)
+            self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x01, self.encodeSignedByte(minVal)[0], 0x00])))
+            self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x02, self.encodeSignedByte(maxVal)[0], 0x00])))
+            self.waitCondition.wait(self.mutex, self.testWaitTime)
+        except Exception as error:
+            print(error)
+            self.ThreadNoti(str(error))
+
     def run(self):
         with QMutexLocker(self.mutex):
             try:
@@ -109,71 +135,53 @@ class FactoryWork(QThread):
                     # 01 testmode enable
                     print("start Test")
                     self.consoleWriteBytes(self.makePacket(bytes([0x01, 0x01])))
-                    self.waitCondition.wait(self.mutex, 100)
+                    self.waitCondition.wait(self.mutex, 50)
                     if not self.bRunning: return
 
                     # 초기화
-                    self.consoleWriteBytes(self.makePacket(bytes([0x04, 0x00])))
-                    self.consoleWriteBytes(self.makePacket(bytes([0x06, 0x00])))
-                    self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x01, self.encodeSignedByte(30)[0], 0x00])))
-                    self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x02, self.encodeSignedByte(30)[0], 0x00])))
-                    self.waitCondition.wait(self.mutex, 100)
+                    self.initStopCharging()
                     if not self.bRunning: return
 
                     # 충전시작
                     print("start charging")
                     self.consoleWriteBytes(self.makePacket(bytes([0x06, 0x01])))
-                    self.waitCondition.wait(self.mutex, 17 * 1000)
+                    self.waitCondition.wait(self.mutex, self.chargingStartWaitTime)
                     if not self.bRunning: return
 
                     # -5
-                    self.setTest("-5", False)
-                    self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x01, self.encodeSignedByte(-5)[0], 0x00])))
-                    self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x02, self.encodeSignedByte(30)[0], 0x00])))
-                    self.waitCondition.wait(self.mutex, 3 * 1000)
+                    self.tempTest("-5", False, minVal=-5)
                     if not self.bRunning: return
 
                     # +5
-                    self.setTest("5", True)
-                    self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x01, self.encodeSignedByte(5)[0], 0x00])))
-                    self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x02, self.encodeSignedByte(30)[0], 0x00])))
-                    self.waitCondition.wait(self.mutex, 3 * 1000)
+                    self.tempTest("5", True, minVal=-5)
                     if not self.bRunning: return
 
                     # +60
-                    self.setTest("60", False)
-                    self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x01, self.encodeSignedByte(30)[0], 0x00])))
-                    self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x02, self.encodeSignedByte(60)[0], 0x00])))
-                    self.waitCondition.wait(self.mutex, 3 * 1000)
+                    self.tempTest("60", False, maxVal=60)
                     if not self.bRunning: return
 
                     # +45
-                    self.setTest("45", True)
-                    self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x01, self.encodeSignedByte(30)[0], 0x00])))
-                    self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x02, self.encodeSignedByte(45)[0], 0x00])))
-                    self.waitCondition.wait(self.mutex, 3 * 1000)
+                    self.tempTest("45", True, maxVal=45)
                     if not self.bRunning: return
 
-                    if not self.bRunning: return
-                    for code, status in global_testCase.items():
+                    for code, status in self.selected_dict.items():
                         # 충전시작
                         self.consoleWriteBytes(self.makePacket(bytes([0x06, 0x01])))
-                        self.waitCondition.wait(self.mutex, 17 * 1000)
+                        self.waitCondition.wait(self.mutex, self.chargingStartWaitTime)
                         if not self.bRunning: return
 
                         # 애러코드
                         self.setTest(f"ERR::{status}", False)
                         self.consoleWriteBytes(self.makePacket(bytes([0x04, code])))
-                        self.waitCondition.wait(self.mutex, 3 * 1000)
+                        self.waitCondition.wait(self.mutex, self.testWaitTime)
+
+                        # 충전 중지 및 초기화
                         self.consoleWriteBytes(self.makePacket(bytes([0x04, 0x00])))
                         self.consoleWriteBytes(self.makePacket(bytes([0x06, 0x00])))
                         if not self.bRunning: return
 
                     # 충전종료
                     print("stop charging")
-                    self.consoleWriteBytes(self.makePacket(bytes([0x06, 0x00])))
-                    self.waitCondition.wait(self.mutex, 10)
-
                     self.ThreadNoti("write complete")
                 else:
                     self.ThreadNoti("not open...")
@@ -189,16 +197,13 @@ class FactoryWork(QThread):
                 # send Off
                 if self.serial_port is not None and self.serial_port.isOpen():
                     print("factory test end init...")
-                    self.consoleWriteBytes(self.makePacket(bytes([0x06, 0x00])))
-                    self.consoleWriteBytes(self.makePacket(bytes([0x04, 0x00])))
-                    self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x01, self.encodeSignedByte(30)[0], 0x00])))
-                    self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x02, self.encodeSignedByte(30)[0], 0x00])))
-                    self.waitCondition.wait(self.mutex, 10)
+                    self.initStopCharging()
 
                     print("end Test")
                     self.consoleWriteBytes(self.makePacket(bytes([0x01, 0x00])))
                     self.serial_port.close()
-                print("SerialCycleWorker finally")
+
+                print("FactoryWork finally")
                 self.bRunning = False
                 self.ThreadNoti("finally")
 

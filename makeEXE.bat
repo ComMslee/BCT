@@ -7,7 +7,7 @@ rem Change the current directory to the release folder
 cd .\release
 
 rem Run PyInstaller
-..\venv\Scripts\pyinstaller.exe -w -F ..\src\main.py
+..\venv\Scripts\pyinstaller.exe -F ..\src\main.py
 
 rem Change the current directory back to the parent directory
 cd ..

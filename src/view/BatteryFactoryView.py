@@ -1,17 +1,19 @@
 from typing import List
 
 from PySide6.QtCore import QObject
-from PySide6.QtWidgets import QTableWidgetItem, QTableWidget, QLineEdit
+from PySide6.QtWidgets import QTableWidgetItem, QTableWidget, QLineEdit, QListWidget, QListWidgetItem
 
 from src.MainUI import Ui_BCT
 from src.repository.DataConfig import DataConfig
 from src.util.FactoryWork import FactoryWork
+from src.util.define import global_testCase
 
 
 class BatteryFactoryView(QObject):
     def __init__(self, mainWindow: Ui_BCT):
         super().__init__()
 
+        self.selected_dict = None
         self.view = mainWindow
 
         self.dataConfig = DataConfig()
@@ -26,12 +28,38 @@ class BatteryFactoryView(QObject):
     def initUI(self):
         self.view.factory_start.clicked.connect(self.startCycle)
         self.view.factory_stop.clicked.connect(self.stopCycle)
+        self.view.factory_select.clicked.connect(self.select_all_items)
 
         colSize = [240, 90, 90]
         for view in [self.view.factory_table]:
             for i, size in enumerate(colSize):
                 view.setColumnWidth(i, size)
         self.view.factory_stop.setEnabled(False)
+
+        for key, value in global_testCase.items():
+            item = QListWidgetItem(f"{key}: {value}")
+            item.setData(1, key)  # Save the key in user data
+            item.setData(2, value)  # Save the value in user data
+            self.view.factory_list.addItem(item)
+
+        self.view.factory_list.setSelectionMode(QListWidget.MultiSelection)
+        self.view.factory_list.itemSelectionChanged.connect(self.update_selected_items)
+
+    def update_selected_items(self):
+        selected_items = self.view.factory_list.selectedItems()
+        self.selected_dict = {item.data(1): item.data(2) for item in selected_items}
+        # selected_texts = [f"{item.data(1)}: {item.data(2)}" for item in selected_items]
+        # print("Selected: " + ", ".join(selected_texts))
+
+    def select_all_items(self):
+        selected_items = self.view.factory_list.selectedItems()
+        itemCnt = self.view.factory_list.count()
+        for i in range(self.view.factory_list.count()):
+            item = self.view.factory_list.item(i)
+            if len(selected_items) != itemCnt:
+                item.setSelected(True)
+            else:
+                item.setSelected(False)
 
     def updateUI(self):
         pass
@@ -47,7 +75,7 @@ class BatteryFactoryView(QObject):
                         DeviceView(self.view.factory_table, self.view.factory_result_2, 2)]
         for port, view in zip(devPort, self.devView):
             thread = FactoryWork(
-                port, dataConfig.getComBaudRate(),
+                port, dataConfig.getComBaudRate(), self.selected_dict
             )
             thread.msgReadList.connect(view.pushTable)
             thread.msgThread.connect(view.threadNoti)
@@ -70,7 +98,7 @@ class BatteryFactoryView(QObject):
                 if not dev.bRunning:
                     cnt += 1
             if len(self.devThread) == cnt:
-                print("BatteryCycleView::finally")
+                print("BatteryFactoryView::finally")
                 self.enableBtn(True)
 
     def enableBtn(self, enable):

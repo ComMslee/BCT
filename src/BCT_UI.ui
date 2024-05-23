@@ -886,9 +886,9 @@
      <property name="geometry">
       <rect>
        <x>520</x>
-       <y>10</y>
+       <y>30</y>
        <width>301</width>
-       <height>371</height>
+       <height>351</height>
       </rect>
      </property>
     </widget>
@@ -909,6 +909,19 @@
      </property>
      <property name="text">
       <string>select all</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="factory_temp">
+     <property name="geometry">
+      <rect>
+       <x>520</x>
+       <y>10</y>
+       <width>88</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>온도테스트</string>
      </property>
     </widget>
    </widget>

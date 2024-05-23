@@ -50,6 +50,9 @@ class DataConfig(QObject):
         self.__onTime = [0, 1, 0]
         self.__offTime = [0, 1, 0]
 
+        self.__err_test = {}
+        self.__temp_test = True
+
         self.__serial_fixed = "1234567"
         self.__serial_val = "1234567"
         self.__auto_cnt = True
@@ -72,6 +75,10 @@ class DataConfig(QObject):
                 "cycle": self.__cycle,
                 "ontime": self.__onTime,
                 "offtime": self.__offTime,
+            },
+            "tap_factory_test": {
+                "temp_test": self.__temp_test,
+                "err_test": self.__err_test
             },
             "tap_push_serial": {
                 "auto_cnt": self.__auto_cnt,
@@ -111,6 +118,12 @@ class DataConfig(QObject):
                         self.__cycle = tapPush["cycle"]
                         self.__onTime = tapPush["ontime"]
                         self.__offTime = tapPush["offtime"]
+
+                if "tap_factory_test" in loadConfig:
+                    tapRush = loadConfig["tap_factory_test"]
+                    if isinstance(tapRush, dict):
+                        self.__temp_test = tapRush["temp_test"]
+                        self.__err_test = tapRush["err_test"]
 
                 if "tap_push_serial" in loadConfig:
                     tapRush = loadConfig["tap_push_serial"]

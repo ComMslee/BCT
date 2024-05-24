@@ -26,9 +26,13 @@ class BatteryFactoryView(QObject):
         self.updateUI()
 
     def initUI(self):
+        dataConfig = self.dataConfig
         self.view.factory_start.clicked.connect(self.startCycle)
         self.view.factory_stop.clicked.connect(self.stopCycle)
         self.view.factory_select.clicked.connect(self.select_all_items)
+        self.view.factory_temp.stateChanged.connect(self.onChangeTemp)
+
+        self.view.factory_temp.setChecked(dataConfig.getTemp())
 
         colSize = [240, 90, 90]
         for view in [self.view.factory_table]:
@@ -46,8 +50,11 @@ class BatteryFactoryView(QObject):
         self.view.factory_list.itemSelectionChanged.connect(self.update_selected_items)
 
     def update_selected_items(self):
+        dataConfig = self.dataConfig
         selected_items = self.view.factory_list.selectedItems()
         self.selected_dict = {item.data(1): item.data(2) for item in selected_items}
+        dataConfig.setErr(self.selected_dict)
+        dataConfig.saveData()
         # selected_texts = [f"{item.data(1)}: {item.data(2)}" for item in selected_items]
         # print("Selected: " + ", ".join(selected_texts))
 
@@ -60,6 +67,11 @@ class BatteryFactoryView(QObject):
                 item.setSelected(True)
             else:
                 item.setSelected(False)
+
+    def onChangeTemp(self, state):
+        dataConfig = self.dataConfig
+        dataConfig.setTemp(state)
+        dataConfig.saveData()
 
     def updateUI(self):
         pass
@@ -75,7 +87,9 @@ class BatteryFactoryView(QObject):
                         DeviceView(self.view.factory_table, self.view.factory_result_2, 2)]
         for port, view in zip(devPort, self.devView):
             thread = FactoryWork(
-                port, dataConfig.getComBaudRate(), self.selected_dict
+                port, baudrate=dataConfig.getComBaudRate(),
+                bTempTest=dataConfig.getTemp(),
+                bErrTestDict=dataConfig.getErr()
             )
             thread.msgReadList.connect(view.pushTable)
             thread.msgThread.connect(view.threadNoti)
@@ -162,6 +176,6 @@ class DeviceView(QObject):
                         print(f"{item.text()} : {item.text()}")
                         cnt += 1
 
-            print(f"is cnt {cnt} | {table.rowCount()}")
+            print(f"write complete is cnt {cnt} | {table.rowCount()}")
             if cnt == table.rowCount():
                 self.resultView.setText("Pass")

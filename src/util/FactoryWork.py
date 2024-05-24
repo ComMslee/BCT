@@ -14,16 +14,15 @@ class FactoryWork(QThread):
     msgRead = QtCore.Signal(str)
     msgReadList = QtCore.Signal(list)
 
-    def __init__(self, ComPort, baudrate=115200, selected_dict=None):
+    def __init__(self, ComPort, baudrate=115200, bTempTest: bool = False, bErrTestDict=None):
         super().__init__()
 
-        if selected_dict is None:
-            selected_dict = {}
         self.serial_port = None
         self.read_thread: ReadThread = None
         self.comPort = ComPort
         self.BaudRate = baudrate
-        self.selected_dict = selected_dict if selected_dict and (len(selected_dict) > 0) else global_testCase
+        self.bTempTest = bTempTest
+        self.bErrTestDict = bErrTestDict if bErrTestDict else {}
         self.chargingStartWaitTime = 17 * 1000
         self.testWaitTime = 2.8 * 1000
         self.charging = False
@@ -35,7 +34,7 @@ class FactoryWork(QThread):
         self.waitCondition = QWaitCondition()
 
     def consoleWriteBytes(self, sendData: bytes):
-        print(f">>>> {' '.join(format(byte, '02X') for byte in sendData)}")
+        print(f"[FactoryWork]>>>> {' '.join(format(byte, '02X') for byte in sendData)}")
         if self.serial_port is not None:
             self.serial_port.write(sendData)
             time.sleep(0.3)
@@ -79,20 +78,20 @@ class FactoryWork(QThread):
             self.charging = False
 
     def setTest(self, testTitle: str, testType: bool):
-        print(testTitle)
+        print(f"[FactoryWork]{testTitle}")
         self.testTitle = str(testTitle)
         self.testType = testType
         if len(self.testTitle) > 0:
             self.msgReadList.emit([self.testTitle, ""])
 
     def testOnOff(self, chargingOn):
-        print(f"-----------------------{self.testTitle} {chargingOn}, {self.testType}")
+        print(f"[FactoryWork]testOnOff {self.testTitle} {chargingOn}, {self.testType}")
         if chargingOn == self.testType and len(self.testTitle) > 0:
             self.msgReadList.emit([self.testTitle, "Pass"])
 
     def ack(self, ack: bytes):
         if len(ack) == 2:
-            print(f"[cmd:{ack[1]}][result:{ack[0] == 0}]")
+            print(f"[FactoryWork][cmd:{ack[1]}][result:{ack[0] == 0}]")
 
     def initStopCharging(self):
         try:
@@ -102,7 +101,7 @@ class FactoryWork(QThread):
             self.consoleWriteBytes(self.makePacket(bytes([0x06, 0x00])))
             self.waitCondition.wait(self.mutex, 50)
         except Exception as error:
-            print(error)
+            print(f"[FactoryWork]{error}")
             self.ThreadNoti(str(error))
 
     def tempTest(self, testTitle, testType, minVal=30, maxVal=30):
@@ -112,7 +111,7 @@ class FactoryWork(QThread):
             self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x02, self.encodeSignedByte(maxVal)[0], 0x00])))
             self.waitCondition.wait(self.mutex, self.testWaitTime)
         except Exception as error:
-            print(error)
+            print(f"[FactoryWork]{error}")
             self.ThreadNoti(str(error))
 
     def run(self):
@@ -133,7 +132,7 @@ class FactoryWork(QThread):
                     self.read_thread.start()
 
                     # 01 testmode enable
-                    print("start Test")
+                    print("[FactoryWork]start Test")
                     self.consoleWriteBytes(self.makePacket(bytes([0x01, 0x01])))
                     self.waitCondition.wait(self.mutex, 50)
                     if not self.bRunning: return
@@ -143,29 +142,32 @@ class FactoryWork(QThread):
                     if not self.bRunning: return
 
                     # 충전시작
-                    print("start charging")
-                    self.consoleWriteBytes(self.makePacket(bytes([0x06, 0x01])))
-                    self.waitCondition.wait(self.mutex, self.chargingStartWaitTime)
-                    if not self.bRunning: return
+                    if self.bTempTest:
+                        print("[FactoryWork]tempTest::start charging")
+                        self.consoleWriteBytes(self.makePacket(bytes([0x06, 0x01])))
+                        self.waitCondition.wait(self.mutex, self.chargingStartWaitTime)
+                        if not self.bRunning: return
 
-                    # -5
-                    self.tempTest("-5", False, minVal=-5)
-                    if not self.bRunning: return
+                        self.tempTest("-5", False, minVal=-5)
+                        if not self.bRunning: return
 
-                    # +5
-                    self.tempTest("5", True, minVal=-5)
-                    if not self.bRunning: return
+                        self.tempTest("5", True, minVal=-5)
+                        if not self.bRunning: return
 
-                    # +60
-                    self.tempTest("60", False, maxVal=60)
-                    if not self.bRunning: return
+                        self.tempTest("60", False, maxVal=60)
+                        if not self.bRunning: return
 
-                    # +45
-                    self.tempTest("45", True, maxVal=45)
-                    if not self.bRunning: return
+                        self.tempTest("45", True, maxVal=45)
+                        if not self.bRunning: return
+                    else :
+                        print("[FactoryWork]tempTest:: is False Skip temp Test")
 
-                    for code, status in self.selected_dict.items():
+                    itemCnt = 0  # 카운터 변수 초기화
+                    itemLen = len(self.bErrTestDict)
+                    for code, status in self.bErrTestDict.items():
+                        itemCnt += 1
                         # 충전시작
+                        print(f"[FactoryWork]ErrTest::[{itemCnt}|{itemLen}]start charging")
                         self.consoleWriteBytes(self.makePacket(bytes([0x06, 0x01])))
                         self.waitCondition.wait(self.mutex, self.chargingStartWaitTime)
                         if not self.bRunning: return
@@ -176,18 +178,19 @@ class FactoryWork(QThread):
                         self.waitCondition.wait(self.mutex, self.testWaitTime)
 
                         # 충전 중지 및 초기화
+                        print("[FactoryWork]ErrTest::stop charging")
                         self.consoleWriteBytes(self.makePacket(bytes([0x04, 0x00])))
                         self.consoleWriteBytes(self.makePacket(bytes([0x06, 0x00])))
                         if not self.bRunning: return
 
                     # 충전종료
-                    print("stop charging")
+                    print("[FactoryWork]stop charging")
                     self.ThreadNoti("write complete")
                 else:
                     self.ThreadNoti("not open...")
 
             except Exception as error:
-                print(error)
+                print(f"[FactoryWork]{error}")
                 self.ThreadNoti(str(error))
 
             finally:
@@ -196,14 +199,14 @@ class FactoryWork(QThread):
 
                 # send Off
                 if self.serial_port is not None and self.serial_port.isOpen():
-                    print("factory test end init...")
+                    print("[FactoryWork]factory test end init...")
                     self.initStopCharging()
 
-                    print("end Test")
+                    print("[FactoryWork]end Test")
                     self.consoleWriteBytes(self.makePacket(bytes([0x01, 0x00])))
                     self.serial_port.close()
 
-                print("FactoryWork finally")
+                print("[FactoryWork]finally")
                 self.bRunning = False
                 self.ThreadNoti("finally")
 

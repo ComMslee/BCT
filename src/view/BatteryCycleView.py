@@ -69,13 +69,13 @@ class BatteryCycleView(QObject):
         devPort = [dataConfig.getComPort(1), dataConfig.getComPort(2)]
         self.devView = [DeviceView(
             "dev01",
-            self.view.dev_version, self.view.dev_cycle,
+            self.view.dev_serial, self.view.dev_cycle,
             self.view.dev_ampere, self.view.dev_volt, self.view.dev_temperature,
             self.view.dev_led_state,
             self.view.dev_table
         ), DeviceView(
             "dev02",
-            self.view.dev_version_2, self.view.dev_cycle_2,
+            self.view.dev_serial_2, self.view.dev_cycle_2,
             self.view.dev_ampere_2, self.view.dev_volt_2, self.view.dev_temperature_2,
             self.view.dev_led_state_2,
             self.view.dev_table_2

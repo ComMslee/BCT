@@ -185,6 +185,18 @@ class DataConfig(QObject):
     def getTime(self):
         return self.__onTime, self.__offTime
 
+    def setTemp(self, bTest: bool):
+        self.__temp_test = bTest
+
+    def getTemp(self):
+        return self.__temp_test
+
+    def setErr(self, testList: dict):
+        self.__err_test = testList
+
+    def getErr(self):
+        return self.__err_test
+
     def getSerial(self):
         return self.__serial_fixed, self.__serial_val
 

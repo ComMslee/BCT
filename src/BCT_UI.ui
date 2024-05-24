@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>833</width>
-    <height>690</height>
+    <height>728</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,13 +17,13 @@
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>80</y>
+     <y>100</y>
      <width>831</width>
      <height>621</height>
     </rect>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>0</number>
    </property>
    <property name="tabBarAutoHide">
     <bool>false</bool>
@@ -168,12 +168,12 @@
         <item row="0" column="0">
          <widget class="QLabel" name="label_5">
           <property name="text">
-           <string>버전</string>
+           <string>시리얼</string>
           </property>
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QLineEdit" name="dev_version">
+         <widget class="QLineEdit" name="dev_serial">
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -441,7 +441,7 @@
           </sizepolicy>
          </property>
          <property name="text">
-          <string>start</string>
+          <string>시작</string>
          </property>
         </widget>
        </item>
@@ -454,7 +454,7 @@
           </sizepolicy>
          </property>
          <property name="text">
-          <string>stop</string>
+          <string>중지</string>
          </property>
         </widget>
        </item>
@@ -697,12 +697,12 @@
         <item row="0" column="0">
          <widget class="QLabel" name="label_21">
           <property name="text">
-           <string>버전</string>
+           <string>시리얼</string>
           </property>
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QLineEdit" name="dev_version_2">
+         <widget class="QLineEdit" name="dev_serial_2">
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -771,17 +771,17 @@
      </property>
      <column>
       <property name="text">
-       <string>Test Name</string>
+       <string>테스트 항목</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Dev1</string>
+       <string>장치 01</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Dev2</string>
+       <string>장치 02</string>
       </property>
      </column>
     </widget>
@@ -801,7 +801,7 @@
       </sizepolicy>
      </property>
      <property name="text">
-      <string>start</string>
+      <string>시작</string>
      </property>
     </widget>
     <widget class="QPushButton" name="factory_stop">
@@ -820,7 +820,7 @@
       </sizepolicy>
      </property>
      <property name="text">
-      <string>stop</string>
+      <string>중지</string>
      </property>
     </widget>
     <widget class="QGroupBox" name="groupBox_10">
@@ -885,19 +885,19 @@
     <widget class="QListWidget" name="factory_list">
      <property name="geometry">
       <rect>
-       <x>520</x>
-       <y>30</y>
-       <width>301</width>
-       <height>351</height>
+       <x>540</x>
+       <y>60</y>
+       <width>281</width>
+       <height>321</height>
       </rect>
      </property>
     </widget>
     <widget class="QPushButton" name="factory_select">
      <property name="geometry">
       <rect>
-       <x>520</x>
+       <x>540</x>
        <y>380</y>
-       <width>301</width>
+       <width>281</width>
        <height>31</height>
       </rect>
      </property>
@@ -908,7 +908,7 @@
       </sizepolicy>
      </property>
      <property name="text">
-      <string>select all</string>
+      <string>전체 선택/해제</string>
      </property>
     </widget>
     <widget class="QCheckBox" name="factory_temp">
@@ -917,11 +917,30 @@
        <x>520</x>
        <y>10</y>
        <width>88</width>
-       <height>20</height>
+       <height>31</height>
       </rect>
      </property>
      <property name="text">
       <string>온도테스트</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_22">
+     <property name="geometry">
+      <rect>
+       <x>520</x>
+       <y>40</y>
+       <width>79</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>에러 테스트</string>
      </property>
     </widget>
    </widget>
@@ -980,7 +999,7 @@
               </sizepolicy>
              </property>
              <property name="text">
-              <string>Next</string>
+              <string>다음 장치에 push할 값</string>
              </property>
             </widget>
            </item>
@@ -1009,7 +1028,7 @@
               </sizepolicy>
              </property>
              <property name="text">
-              <string>Push</string>
+              <string>장치에 push할 값</string>
              </property>
             </widget>
            </item>
@@ -1119,14 +1138,14 @@
        <item row="1" column="0">
         <widget class="QLabel" name="label_16">
          <property name="text">
-          <string>Dev02</string>
+          <string>장치 02</string>
          </property>
         </widget>
        </item>
        <item row="0" column="0">
         <widget class="QLabel" name="label_15">
          <property name="text">
-          <string>Dev01</string>
+          <string>장치 01</string>
          </property>
         </widget>
        </item>
@@ -1141,7 +1160,7 @@
      <x>10</x>
      <y>0</y>
      <width>661</width>
-     <height>71</height>
+     <height>91</height>
     </rect>
    </property>
    <property name="title">
@@ -1153,10 +1172,17 @@
       <x>10</x>
       <y>30</y>
       <width>641</width>
-      <height>31</height>
+      <height>52</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="dev_baud">
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
      <item row="0" column="9">
       <widget class="QLineEdit" name="dev_port_2">
        <property name="alignment">
@@ -1164,17 +1190,17 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="3">
-      <widget class="QLabel" name="label_23">
+     <item row="0" column="2">
+      <widget class="QLabel" name="label_28">
        <property name="text">
-        <string>Dev01</string>
+        <string/>
        </property>
       </widget>
      </item>
-     <item row="0" column="1">
-      <widget class="QLineEdit" name="dev_baud">
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <item row="0" column="3">
+      <widget class="QLabel" name="label_23">
+       <property name="text">
+        <string>장치 01</string>
        </property>
       </widget>
      </item>
@@ -1188,21 +1214,7 @@
      <item row="0" column="7">
       <widget class="QLabel" name="label_24">
        <property name="text">
-        <string>Dev02</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="4">
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>Port</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="0">
-      <widget class="QLabel" name="label_2">
-       <property name="text">
-        <string>Baud</string>
+        <string>장치 02</string>
        </property>
       </widget>
      </item>
@@ -1213,10 +1225,45 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="2">
-      <widget class="QLabel" name="label_28">
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_2">
        <property name="text">
-        <string/>
+        <string>Baud</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="4">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Port</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="4">
+      <widget class="QLabel" name="label_31">
+       <property name="text">
+        <string>version</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="8">
+      <widget class="QLabel" name="label_32">
+       <property name="text">
+        <string>version</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="6">
+      <widget class="QLineEdit" name="dev_mcu_vsersion">
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="9">
+      <widget class="QLineEdit" name="dev_mcu_vsersion_2">
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
      </item>

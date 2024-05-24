@@ -25,10 +25,10 @@ class Ui_BCT(object):
     def setupUi(self, BCT):
         if not BCT.objectName():
             BCT.setObjectName(u"BCT")
-        BCT.resize(833, 690)
+        BCT.resize(833, 728)
         self.tbMain = QTabWidget(BCT)
         self.tbMain.setObjectName(u"tbMain")
-        self.tbMain.setGeometry(QRect(0, 80, 831, 621))
+        self.tbMain.setGeometry(QRect(0, 100, 831, 621))
         self.tbMain.setTabBarAutoHide(False)
         self.tbBatteryCycle = QWidget()
         self.tbBatteryCycle.setObjectName(u"tbBatteryCycle")
@@ -115,12 +115,12 @@ class Ui_BCT(object):
 
         self.gridLayout_3.addWidget(self.label_5, 0, 0, 1, 1)
 
-        self.dev_version = QLineEdit(self.gridLayoutWidget_3)
-        self.dev_version.setObjectName(u"dev_version")
-        self.dev_version.setAlignment(Qt.AlignCenter)
-        self.dev_version.setReadOnly(True)
+        self.dev_serial = QLineEdit(self.gridLayoutWidget_3)
+        self.dev_serial.setObjectName(u"dev_serial")
+        self.dev_serial.setAlignment(Qt.AlignCenter)
+        self.dev_serial.setReadOnly(True)
 
-        self.gridLayout_3.addWidget(self.dev_version, 0, 1, 1, 1)
+        self.gridLayout_3.addWidget(self.dev_serial, 0, 1, 1, 1)
 
         self.dev_table = QTableWidget(self.groupBox)
         if (self.dev_table.columnCount() < 6):
@@ -419,12 +419,12 @@ class Ui_BCT(object):
 
         self.gridLayout_9.addWidget(self.label_21, 0, 0, 1, 1)
 
-        self.dev_version_2 = QLineEdit(self.gridLayoutWidget_9)
-        self.dev_version_2.setObjectName(u"dev_version_2")
-        self.dev_version_2.setAlignment(Qt.AlignCenter)
-        self.dev_version_2.setReadOnly(True)
+        self.dev_serial_2 = QLineEdit(self.gridLayoutWidget_9)
+        self.dev_serial_2.setObjectName(u"dev_serial_2")
+        self.dev_serial_2.setAlignment(Qt.AlignCenter)
+        self.dev_serial_2.setReadOnly(True)
 
-        self.gridLayout_9.addWidget(self.dev_version_2, 0, 1, 1, 1)
+        self.gridLayout_9.addWidget(self.dev_serial_2, 0, 1, 1, 1)
 
         self.dev_table_2 = QTableWidget(self.groupBox_8)
         if (self.dev_table_2.columnCount() < 6):
@@ -502,15 +502,20 @@ class Ui_BCT(object):
 
         self.factory_list = QListWidget(self.tbBatteryFactory)
         self.factory_list.setObjectName(u"factory_list")
-        self.factory_list.setGeometry(QRect(520, 30, 301, 351))
+        self.factory_list.setGeometry(QRect(540, 60, 281, 321))
         self.factory_select = QPushButton(self.tbBatteryFactory)
         self.factory_select.setObjectName(u"factory_select")
-        self.factory_select.setGeometry(QRect(520, 380, 301, 31))
+        self.factory_select.setGeometry(QRect(540, 380, 281, 31))
         sizePolicy3.setHeightForWidth(self.factory_select.sizePolicy().hasHeightForWidth())
         self.factory_select.setSizePolicy(sizePolicy3)
         self.factory_temp = QCheckBox(self.tbBatteryFactory)
         self.factory_temp.setObjectName(u"factory_temp")
-        self.factory_temp.setGeometry(QRect(520, 10, 88, 20))
+        self.factory_temp.setGeometry(QRect(520, 10, 88, 31))
+        self.label_22 = QLabel(self.tbBatteryFactory)
+        self.label_22.setObjectName(u"label_22")
+        self.label_22.setGeometry(QRect(520, 40, 79, 21))
+        sizePolicy4.setHeightForWidth(self.label_22.sizePolicy().hasHeightForWidth())
+        self.label_22.setSizePolicy(sizePolicy4)
         self.tbMain.addTab(self.tbBatteryFactory, "")
         self.tbSerial = QWidget()
         self.tbSerial.setObjectName(u"tbSerial")
@@ -653,29 +658,34 @@ class Ui_BCT(object):
         self.tbMain.addTab(self.tbSerial, "")
         self.groupBox_2 = QGroupBox(BCT)
         self.groupBox_2.setObjectName(u"groupBox_2")
-        self.groupBox_2.setGeometry(QRect(10, 0, 661, 71))
+        self.groupBox_2.setGeometry(QRect(10, 0, 661, 91))
         self.gridLayoutWidget = QWidget(self.groupBox_2)
         self.gridLayoutWidget.setObjectName(u"gridLayoutWidget")
-        self.gridLayoutWidget.setGeometry(QRect(10, 30, 641, 31))
+        self.gridLayoutWidget.setGeometry(QRect(10, 30, 641, 52))
         self.gridLayout = QGridLayout(self.gridLayoutWidget)
         self.gridLayout.setObjectName(u"gridLayout")
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
+        self.dev_baud = QLineEdit(self.gridLayoutWidget)
+        self.dev_baud.setObjectName(u"dev_baud")
+        self.dev_baud.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+
+        self.gridLayout.addWidget(self.dev_baud, 0, 1, 1, 1)
+
         self.dev_port_2 = QLineEdit(self.gridLayoutWidget)
         self.dev_port_2.setObjectName(u"dev_port_2")
         self.dev_port_2.setAlignment(Qt.AlignCenter)
 
         self.gridLayout.addWidget(self.dev_port_2, 0, 9, 1, 1)
 
+        self.label_28 = QLabel(self.gridLayoutWidget)
+        self.label_28.setObjectName(u"label_28")
+
+        self.gridLayout.addWidget(self.label_28, 0, 2, 1, 1)
+
         self.label_23 = QLabel(self.gridLayoutWidget)
         self.label_23.setObjectName(u"label_23")
 
         self.gridLayout.addWidget(self.label_23, 0, 3, 1, 1)
-
-        self.dev_baud = QLineEdit(self.gridLayoutWidget)
-        self.dev_baud.setObjectName(u"dev_baud")
-        self.dev_baud.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-
-        self.gridLayout.addWidget(self.dev_baud, 0, 1, 1, 1)
 
         self.label_3 = QLabel(self.gridLayoutWidget)
         self.label_3.setObjectName(u"label_3")
@@ -687,26 +697,43 @@ class Ui_BCT(object):
 
         self.gridLayout.addWidget(self.label_24, 0, 7, 1, 1)
 
-        self.label = QLabel(self.gridLayoutWidget)
-        self.label.setObjectName(u"label")
-
-        self.gridLayout.addWidget(self.label, 0, 4, 1, 1)
-
-        self.label_2 = QLabel(self.gridLayoutWidget)
-        self.label_2.setObjectName(u"label_2")
-
-        self.gridLayout.addWidget(self.label_2, 0, 0, 1, 1)
-
         self.dev_port = QLineEdit(self.gridLayoutWidget)
         self.dev_port.setObjectName(u"dev_port")
         self.dev_port.setAlignment(Qt.AlignCenter)
 
         self.gridLayout.addWidget(self.dev_port, 0, 6, 1, 1)
 
-        self.label_28 = QLabel(self.gridLayoutWidget)
-        self.label_28.setObjectName(u"label_28")
+        self.label_2 = QLabel(self.gridLayoutWidget)
+        self.label_2.setObjectName(u"label_2")
 
-        self.gridLayout.addWidget(self.label_28, 0, 2, 1, 1)
+        self.gridLayout.addWidget(self.label_2, 0, 0, 1, 1)
+
+        self.label = QLabel(self.gridLayoutWidget)
+        self.label.setObjectName(u"label")
+
+        self.gridLayout.addWidget(self.label, 0, 4, 1, 1)
+
+        self.label_31 = QLabel(self.gridLayoutWidget)
+        self.label_31.setObjectName(u"label_31")
+
+        self.gridLayout.addWidget(self.label_31, 1, 4, 1, 1)
+
+        self.label_32 = QLabel(self.gridLayoutWidget)
+        self.label_32.setObjectName(u"label_32")
+
+        self.gridLayout.addWidget(self.label_32, 1, 8, 1, 1)
+
+        self.dev_mcu_vsersion = QLineEdit(self.gridLayoutWidget)
+        self.dev_mcu_vsersion.setObjectName(u"dev_mcu_vsersion")
+        self.dev_mcu_vsersion.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout.addWidget(self.dev_mcu_vsersion, 1, 6, 1, 1)
+
+        self.dev_mcu_vsersion_2 = QLineEdit(self.gridLayoutWidget)
+        self.dev_mcu_vsersion_2.setObjectName(u"dev_mcu_vsersion_2")
+        self.dev_mcu_vsersion_2.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout.addWidget(self.dev_mcu_vsersion_2, 1, 9, 1, 1)
 
         self.config_save = QPushButton(BCT)
         self.config_save.setObjectName(u"config_save")
@@ -719,7 +746,7 @@ class Ui_BCT(object):
 
         self.retranslateUi(BCT)
 
-        self.tbMain.setCurrentIndex(1)
+        self.tbMain.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(BCT)
@@ -734,7 +761,7 @@ class Ui_BCT(object):
         self.label_8.setText(QCoreApplication.translate("BCT", u"\u00b0C", None))
         self.dev_led_state.setText(QCoreApplication.translate("BCT", u"Battery State", None))
         self.label_6.setText(QCoreApplication.translate("BCT", u"\ubc18\ubcf5", None))
-        self.label_5.setText(QCoreApplication.translate("BCT", u"\ubc84\uc804", None))
+        self.label_5.setText(QCoreApplication.translate("BCT", u"\uc2dc\ub9ac\uc5bc", None))
         ___qtablewidgetitem = self.dev_table.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("BCT", u"\ucda9\uc804\uc0c1\ud0dc", None));
         ___qtablewidgetitem1 = self.dev_table.horizontalHeaderItem(1)
@@ -762,8 +789,8 @@ class Ui_BCT(object):
         self.label_46.setText(QCoreApplication.translate("BCT", u" \ubd84", None))
         self.config_time_off_s.setText(QCoreApplication.translate("BCT", u"0", None))
         self.label_48.setText(QCoreApplication.translate("BCT", u" \ucd08", None))
-        self.config_btn_start.setText(QCoreApplication.translate("BCT", u"start", None))
-        self.config_btn_stop.setText(QCoreApplication.translate("BCT", u"stop", None))
+        self.config_btn_start.setText(QCoreApplication.translate("BCT", u"\uc2dc\uc791", None))
+        self.config_btn_stop.setText(QCoreApplication.translate("BCT", u"\uc911\uc9c0", None))
         self.label_12.setText(QCoreApplication.translate("BCT", u"\ubc18\ubcf5\ud69f\uc218", None))
         self.config_cycle.setText(QCoreApplication.translate("BCT", u"0", None))
         self.groupBox_7.setTitle(QCoreApplication.translate("BCT", u"Test Result", None))
@@ -776,7 +803,7 @@ class Ui_BCT(object):
         self.label_11.setText(QCoreApplication.translate("BCT", u"\u00b0C", None))
         self.dev_led_state_2.setText(QCoreApplication.translate("BCT", u"Battery State", None))
         self.label_20.setText(QCoreApplication.translate("BCT", u"\ubc18\ubcf5", None))
-        self.label_21.setText(QCoreApplication.translate("BCT", u"\ubc84\uc804", None))
+        self.label_21.setText(QCoreApplication.translate("BCT", u"\uc2dc\ub9ac\uc5bc", None))
         ___qtablewidgetitem6 = self.dev_table_2.horizontalHeaderItem(0)
         ___qtablewidgetitem6.setText(QCoreApplication.translate("BCT", u"\ucda9\uc804\uc0c1\ud0dc", None));
         ___qtablewidgetitem7 = self.dev_table_2.horizontalHeaderItem(1)
@@ -791,38 +818,41 @@ class Ui_BCT(object):
         ___qtablewidgetitem11.setText(QCoreApplication.translate("BCT", u"\uc624\ub958\ucf54\ub4dc", None));
         self.tbMain.setTabText(self.tbMain.indexOf(self.tbBatteryCycle), QCoreApplication.translate("BCT", u"Battery Cycle", None))
         ___qtablewidgetitem12 = self.factory_table.horizontalHeaderItem(0)
-        ___qtablewidgetitem12.setText(QCoreApplication.translate("BCT", u"Test Name", None));
+        ___qtablewidgetitem12.setText(QCoreApplication.translate("BCT", u"\ud14c\uc2a4\ud2b8 \ud56d\ubaa9", None));
         ___qtablewidgetitem13 = self.factory_table.horizontalHeaderItem(1)
-        ___qtablewidgetitem13.setText(QCoreApplication.translate("BCT", u"Dev1", None));
+        ___qtablewidgetitem13.setText(QCoreApplication.translate("BCT", u"\uc7a5\uce58 01", None));
         ___qtablewidgetitem14 = self.factory_table.horizontalHeaderItem(2)
-        ___qtablewidgetitem14.setText(QCoreApplication.translate("BCT", u"Dev2", None));
-        self.factory_start.setText(QCoreApplication.translate("BCT", u"start", None))
-        self.factory_stop.setText(QCoreApplication.translate("BCT", u"stop", None))
+        ___qtablewidgetitem14.setText(QCoreApplication.translate("BCT", u"\uc7a5\uce58 02", None));
+        self.factory_start.setText(QCoreApplication.translate("BCT", u"\uc2dc\uc791", None))
+        self.factory_stop.setText(QCoreApplication.translate("BCT", u"\uc911\uc9c0", None))
         self.groupBox_10.setTitle(QCoreApplication.translate("BCT", u"Test Result", None))
         self.label_29.setText(QCoreApplication.translate("BCT", u"Dev02", None))
         self.label_30.setText(QCoreApplication.translate("BCT", u"Dev01", None))
-        self.factory_select.setText(QCoreApplication.translate("BCT", u"select all", None))
+        self.factory_select.setText(QCoreApplication.translate("BCT", u"\uc804\uccb4 \uc120\ud0dd/\ud574\uc81c", None))
         self.factory_temp.setText(QCoreApplication.translate("BCT", u"\uc628\ub3c4\ud14c\uc2a4\ud2b8", None))
+        self.label_22.setText(QCoreApplication.translate("BCT", u"\uc5d0\ub7ec \ud14c\uc2a4\ud2b8", None))
         self.tbMain.setTabText(self.tbMain.indexOf(self.tbBatteryFactory), QCoreApplication.translate("BCT", u"Factory Test", None))
         self.groupBox_6.setTitle(QCoreApplication.translate("BCT", u"Push Serial", None))
         self.push_serial_next.setText("")
-        self.label_26.setText(QCoreApplication.translate("BCT", u"Next", None))
+        self.label_26.setText(QCoreApplication.translate("BCT", u"\ub2e4\uc74c \uc7a5\uce58\uc5d0 push\ud560 \uac12", None))
         self.push_serial_mix.setText("")
-        self.label_19.setText(QCoreApplication.translate("BCT", u"Push", None))
+        self.label_19.setText(QCoreApplication.translate("BCT", u"\uc7a5\uce58\uc5d0 push\ud560 \uac12", None))
         self.label_17.setText(QCoreApplication.translate("BCT", u"\uace0\uc815\uac12", None))
         self.label_18.setText(QCoreApplication.translate("BCT", u"\ubcc0\uacbd\uac12", None))
         self.push_serial_autocnt.setText(QCoreApplication.translate("BCT", u"\ubcc0\uacbd\uac12 \uc99d\uac00", None))
         self.push_serial_push.setText(QCoreApplication.translate("BCT", u"Push", None))
-        self.label_16.setText(QCoreApplication.translate("BCT", u"Dev02", None))
-        self.label_15.setText(QCoreApplication.translate("BCT", u"Dev01", None))
+        self.label_16.setText(QCoreApplication.translate("BCT", u"\uc7a5\uce58 02", None))
+        self.label_15.setText(QCoreApplication.translate("BCT", u"\uc7a5\uce58 01", None))
         self.tbMain.setTabText(self.tbMain.indexOf(self.tbSerial), QCoreApplication.translate("BCT", u"Push Serial", None))
         self.groupBox_2.setTitle(QCoreApplication.translate("BCT", u"COM Connect", None))
-        self.label_23.setText(QCoreApplication.translate("BCT", u"Dev01", None))
-        self.label_3.setText(QCoreApplication.translate("BCT", u"Port", None))
-        self.label_24.setText(QCoreApplication.translate("BCT", u"Dev02", None))
-        self.label.setText(QCoreApplication.translate("BCT", u"Port", None))
-        self.label_2.setText(QCoreApplication.translate("BCT", u"Baud", None))
         self.label_28.setText("")
+        self.label_23.setText(QCoreApplication.translate("BCT", u"\uc7a5\uce58 01", None))
+        self.label_3.setText(QCoreApplication.translate("BCT", u"Port", None))
+        self.label_24.setText(QCoreApplication.translate("BCT", u"\uc7a5\uce58 02", None))
+        self.label_2.setText(QCoreApplication.translate("BCT", u"Baud", None))
+        self.label.setText(QCoreApplication.translate("BCT", u"Port", None))
+        self.label_31.setText(QCoreApplication.translate("BCT", u"version", None))
+        self.label_32.setText(QCoreApplication.translate("BCT", u"version", None))
         self.config_save.setText(QCoreApplication.translate("BCT", u"config save", None))
     # retranslateUi
 

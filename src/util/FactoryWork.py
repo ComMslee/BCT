@@ -167,14 +167,14 @@ class FactoryWork(QThread):
                     for code, status in self.bErrTestDict.items():
                         itemCnt += 1
                         # 충전시작
-                        print(f"[FactoryWork]ErrTest::[{itemCnt}|{itemLen}]start charging")
+                        print(f"[FactoryWork]ErrTest::start charging [ {itemCnt}/{itemLen} ]")
                         self.consoleWriteBytes(self.makePacket(bytes([0x06, 0x01])))
                         self.waitCondition.wait(self.mutex, self.chargingStartWaitTime)
                         if not self.bRunning: return
 
                         # 애러코드
                         self.setTest(f"ERR::{status}", False)
-                        self.consoleWriteBytes(self.makePacket(bytes([0x04, code])))
+                        self.consoleWriteBytes(self.makePacket(bytes([0x04, int(code)])))
                         self.waitCondition.wait(self.mutex, self.testWaitTime)
 
                         # 충전 중지 및 초기화

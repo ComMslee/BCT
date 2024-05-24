@@ -120,10 +120,10 @@ class DataConfig(QObject):
                         self.__offTime = tapPush["offtime"]
 
                 if "tap_factory_test" in loadConfig:
-                    tapRush = loadConfig["tap_factory_test"]
-                    if isinstance(tapRush, dict):
-                        self.__temp_test = tapRush["temp_test"]
-                        self.__err_test = tapRush["err_test"]
+                    tapfactory = loadConfig["tap_factory_test"]
+                    if isinstance(tapfactory, dict):
+                        self.__temp_test = tapfactory["temp_test"]
+                        self.__err_test = tapfactory["err_test"]
 
                 if "tap_push_serial" in loadConfig:
                     tapRush = loadConfig["tap_push_serial"]

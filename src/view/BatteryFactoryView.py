@@ -31,7 +31,6 @@ class BatteryFactoryView(QObject):
         self.view.factory_stop.clicked.connect(self.stopCycle)
         self.view.factory_select.clicked.connect(self.select_all_items)
         self.view.factory_temp.stateChanged.connect(self.onChangeTemp)
-
         self.view.factory_temp.setChecked(dataConfig.getTemp())
 
         colSize = [240, 90, 90]
@@ -40,13 +39,19 @@ class BatteryFactoryView(QObject):
                 view.setColumnWidth(i, size)
         self.view.factory_stop.setEnabled(False)
 
+        errlist = dataConfig.getErr()
+        self.view.factory_list.setSelectionMode(QListWidget.MultiSelection)
+
         for key, value in global_testCase.items():
             item = QListWidgetItem(f"{key}: {value}")
             item.setData(1, key)  # Save the key in user data
             item.setData(2, value)  # Save the value in user data
             self.view.factory_list.addItem(item)
 
-        self.view.factory_list.setSelectionMode(QListWidget.MultiSelection)
+        for i in range(self.view.factory_list.count()):
+            item: QListWidgetItem = self.view.factory_list.item(i)
+            item.setSelected(item.data(2) in errlist.values())
+
         self.view.factory_list.itemSelectionChanged.connect(self.update_selected_items)
 
     def update_selected_items(self):
@@ -63,10 +68,7 @@ class BatteryFactoryView(QObject):
         itemCnt = self.view.factory_list.count()
         for i in range(self.view.factory_list.count()):
             item = self.view.factory_list.item(i)
-            if len(selected_items) != itemCnt:
-                item.setSelected(True)
-            else:
-                item.setSelected(False)
+            item.setSelected(len(selected_items) != itemCnt)
 
     def onChangeTemp(self, state):
         dataConfig = self.dataConfig

@@ -101,7 +101,7 @@ class FactoryWork(QThread):
             self.consoleWriteBytes(self.makePacket(bytes([0x06, 0x00])))
             self.waitCondition.wait(self.mutex, 50)
         except Exception as error:
-            print(f"[FactoryWork]{error}")
+            print(f"[FactoryWork]initStopCharging Exception {error}")
             self.ThreadNoti(str(error))
 
     def tempTest(self, testTitle, testType, minVal=30, maxVal=30):
@@ -111,7 +111,7 @@ class FactoryWork(QThread):
             self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x02, self.encodeSignedByte(maxVal)[0], 0x00])))
             self.waitCondition.wait(self.mutex, self.testWaitTime)
         except Exception as error:
-            print(f"[FactoryWork]{error}")
+            print(f"[FactoryWork]tempTest Exception {error}")
             self.ThreadNoti(str(error))
 
     def run(self):
@@ -190,7 +190,7 @@ class FactoryWork(QThread):
                     self.ThreadNoti("not open...")
 
             except Exception as error:
-                print(f"[FactoryWork]{error}")
+                print(f"[FactoryWork]run Exception {error}")
                 self.ThreadNoti(str(error))
 
             finally:

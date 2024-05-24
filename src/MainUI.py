@@ -658,70 +658,23 @@ class Ui_BCT(object):
         self.tbMain.addTab(self.tbSerial, "")
         self.groupBox_2 = QGroupBox(BCT)
         self.groupBox_2.setObjectName(u"groupBox_2")
-        self.groupBox_2.setGeometry(QRect(10, 0, 661, 91))
+        self.groupBox_2.setGeometry(QRect(10, 0, 661, 81))
         self.gridLayoutWidget = QWidget(self.groupBox_2)
         self.gridLayoutWidget.setObjectName(u"gridLayoutWidget")
-        self.gridLayoutWidget.setGeometry(QRect(10, 30, 641, 52))
+        self.gridLayoutWidget.setGeometry(QRect(10, 20, 571, 52))
         self.gridLayout = QGridLayout(self.gridLayoutWidget)
         self.gridLayout.setObjectName(u"gridLayout")
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
-        self.dev_baud = QLineEdit(self.gridLayoutWidget)
-        self.dev_baud.setObjectName(u"dev_baud")
-        self.dev_baud.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.dev_mcu_vsersion_2 = QLineEdit(self.gridLayoutWidget)
+        self.dev_mcu_vsersion_2.setObjectName(u"dev_mcu_vsersion_2")
+        self.dev_mcu_vsersion_2.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.dev_baud, 0, 1, 1, 1)
-
-        self.dev_port_2 = QLineEdit(self.gridLayoutWidget)
-        self.dev_port_2.setObjectName(u"dev_port_2")
-        self.dev_port_2.setAlignment(Qt.AlignCenter)
-
-        self.gridLayout.addWidget(self.dev_port_2, 0, 9, 1, 1)
-
-        self.label_28 = QLabel(self.gridLayoutWidget)
-        self.label_28.setObjectName(u"label_28")
-
-        self.gridLayout.addWidget(self.label_28, 0, 2, 1, 1)
-
-        self.label_23 = QLabel(self.gridLayoutWidget)
-        self.label_23.setObjectName(u"label_23")
-
-        self.gridLayout.addWidget(self.label_23, 0, 3, 1, 1)
+        self.gridLayout.addWidget(self.dev_mcu_vsersion_2, 1, 9, 1, 1)
 
         self.label_3 = QLabel(self.gridLayoutWidget)
         self.label_3.setObjectName(u"label_3")
 
         self.gridLayout.addWidget(self.label_3, 0, 8, 1, 1)
-
-        self.label_24 = QLabel(self.gridLayoutWidget)
-        self.label_24.setObjectName(u"label_24")
-
-        self.gridLayout.addWidget(self.label_24, 0, 7, 1, 1)
-
-        self.dev_port = QLineEdit(self.gridLayoutWidget)
-        self.dev_port.setObjectName(u"dev_port")
-        self.dev_port.setAlignment(Qt.AlignCenter)
-
-        self.gridLayout.addWidget(self.dev_port, 0, 6, 1, 1)
-
-        self.label_2 = QLabel(self.gridLayoutWidget)
-        self.label_2.setObjectName(u"label_2")
-
-        self.gridLayout.addWidget(self.label_2, 0, 0, 1, 1)
-
-        self.label = QLabel(self.gridLayoutWidget)
-        self.label.setObjectName(u"label")
-
-        self.gridLayout.addWidget(self.label, 0, 4, 1, 1)
-
-        self.label_31 = QLabel(self.gridLayoutWidget)
-        self.label_31.setObjectName(u"label_31")
-
-        self.gridLayout.addWidget(self.label_31, 1, 4, 1, 1)
-
-        self.label_32 = QLabel(self.gridLayoutWidget)
-        self.label_32.setObjectName(u"label_32")
-
-        self.gridLayout.addWidget(self.label_32, 1, 8, 1, 1)
 
         self.dev_mcu_vsersion = QLineEdit(self.gridLayoutWidget)
         self.dev_mcu_vsersion.setObjectName(u"dev_mcu_vsersion")
@@ -729,24 +682,76 @@ class Ui_BCT(object):
 
         self.gridLayout.addWidget(self.dev_mcu_vsersion, 1, 6, 1, 1)
 
-        self.dev_mcu_vsersion_2 = QLineEdit(self.gridLayoutWidget)
-        self.dev_mcu_vsersion_2.setObjectName(u"dev_mcu_vsersion_2")
-        self.dev_mcu_vsersion_2.setAlignment(Qt.AlignCenter)
+        self.label_31 = QLabel(self.gridLayoutWidget)
+        self.label_31.setObjectName(u"label_31")
 
-        self.gridLayout.addWidget(self.dev_mcu_vsersion_2, 1, 9, 1, 1)
+        self.gridLayout.addWidget(self.label_31, 1, 4, 1, 1)
 
-        self.config_save = QPushButton(BCT)
-        self.config_save.setObjectName(u"config_save")
-        self.config_save.setGeometry(QRect(680, 10, 141, 71))
+        self.dev_port_2 = QLineEdit(self.gridLayoutWidget)
+        self.dev_port_2.setObjectName(u"dev_port_2")
+        self.dev_port_2.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout.addWidget(self.dev_port_2, 0, 9, 1, 1)
+
+        self.label_24 = QLabel(self.gridLayoutWidget)
+        self.label_24.setObjectName(u"label_24")
+
+        self.gridLayout.addWidget(self.label_24, 0, 7, 1, 1)
+
+        self.dev_baud = QLineEdit(self.gridLayoutWidget)
+        self.dev_baud.setObjectName(u"dev_baud")
+        self.dev_baud.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+
+        self.gridLayout.addWidget(self.dev_baud, 0, 1, 1, 1)
+
+        self.label_32 = QLabel(self.gridLayoutWidget)
+        self.label_32.setObjectName(u"label_32")
+
+        self.gridLayout.addWidget(self.label_32, 1, 8, 1, 1)
+
+        self.label = QLabel(self.gridLayoutWidget)
+        self.label.setObjectName(u"label")
+
+        self.gridLayout.addWidget(self.label, 0, 4, 1, 1)
+
+        self.label_28 = QLabel(self.gridLayoutWidget)
+        self.label_28.setObjectName(u"label_28")
+
+        self.gridLayout.addWidget(self.label_28, 0, 2, 1, 1)
+
+        self.label_2 = QLabel(self.gridLayoutWidget)
+        self.label_2.setObjectName(u"label_2")
+
+        self.gridLayout.addWidget(self.label_2, 0, 0, 1, 1)
+
+        self.dev_port = QLineEdit(self.gridLayoutWidget)
+        self.dev_port.setObjectName(u"dev_port")
+        self.dev_port.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout.addWidget(self.dev_port, 0, 6, 1, 1)
+
+        self.label_23 = QLabel(self.gridLayoutWidget)
+        self.label_23.setObjectName(u"label_23")
+
+        self.gridLayout.addWidget(self.label_23, 0, 3, 1, 1)
+
+        self.config_check = QPushButton(self.groupBox_2)
+        self.config_check.setObjectName(u"config_check")
+        self.config_check.setGeometry(QRect(590, 20, 61, 51))
         sizePolicy9 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Preferred)
         sizePolicy9.setHorizontalStretch(0)
         sizePolicy9.setVerticalStretch(0)
+        sizePolicy9.setHeightForWidth(self.config_check.sizePolicy().hasHeightForWidth())
+        self.config_check.setSizePolicy(sizePolicy9)
+        self.config_save = QPushButton(BCT)
+        self.config_save.setObjectName(u"config_save")
+        self.config_save.setGeometry(QRect(680, 10, 141, 71))
         sizePolicy9.setHeightForWidth(self.config_save.sizePolicy().hasHeightForWidth())
         self.config_save.setSizePolicy(sizePolicy9)
 
         self.retranslateUi(BCT)
 
-        self.tbMain.setCurrentIndex(0)
+        self.tbMain.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(BCT)
@@ -845,14 +850,15 @@ class Ui_BCT(object):
         self.label_15.setText(QCoreApplication.translate("BCT", u"\uc7a5\uce58 01", None))
         self.tbMain.setTabText(self.tbMain.indexOf(self.tbSerial), QCoreApplication.translate("BCT", u"Push Serial", None))
         self.groupBox_2.setTitle(QCoreApplication.translate("BCT", u"COM Connect", None))
-        self.label_28.setText("")
-        self.label_23.setText(QCoreApplication.translate("BCT", u"\uc7a5\uce58 01", None))
         self.label_3.setText(QCoreApplication.translate("BCT", u"Port", None))
-        self.label_24.setText(QCoreApplication.translate("BCT", u"\uc7a5\uce58 02", None))
-        self.label_2.setText(QCoreApplication.translate("BCT", u"Baud", None))
+        self.label_31.setText(QCoreApplication.translate("BCT", u"\ubc84\uc804", None))
+        self.label_24.setText(QCoreApplication.translate("BCT", u"\uc7a5\uce5802", None))
+        self.label_32.setText(QCoreApplication.translate("BCT", u"\ubc84\uc804", None))
         self.label.setText(QCoreApplication.translate("BCT", u"Port", None))
-        self.label_31.setText(QCoreApplication.translate("BCT", u"version", None))
-        self.label_32.setText(QCoreApplication.translate("BCT", u"version", None))
+        self.label_28.setText("")
+        self.label_2.setText(QCoreApplication.translate("BCT", u"Baud", None))
+        self.label_23.setText(QCoreApplication.translate("BCT", u"\uc7a5\uce5801", None))
+        self.config_check.setText(QCoreApplication.translate("BCT", u"check", None))
         self.config_save.setText(QCoreApplication.translate("BCT", u"config save", None))
     # retranslateUi
 

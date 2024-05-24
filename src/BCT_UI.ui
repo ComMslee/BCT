@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>2</number>
    </property>
    <property name="tabBarAutoHide">
     <bool>false</bool>
@@ -1160,7 +1160,7 @@
      <x>10</x>
      <y>0</y>
      <width>661</width>
-     <height>91</height>
+     <height>81</height>
     </rect>
    </property>
    <property name="title">
@@ -1170,37 +1170,16 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>30</y>
-      <width>641</width>
+      <y>20</y>
+      <width>571</width>
       <height>52</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="0" column="1">
-      <widget class="QLineEdit" name="dev_baud">
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="9">
-      <widget class="QLineEdit" name="dev_port_2">
+     <item row="1" column="9">
+      <widget class="QLineEdit" name="dev_mcu_vsersion_2">
        <property name="alignment">
         <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="2">
-      <widget class="QLabel" name="label_28">
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="3">
-      <widget class="QLabel" name="label_23">
-       <property name="text">
-        <string>장치 01</string>
        </property>
       </widget>
      </item>
@@ -1211,24 +1190,45 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="7">
-      <widget class="QLabel" name="label_24">
-       <property name="text">
-        <string>장치 02</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="6">
-      <widget class="QLineEdit" name="dev_port">
+     <item row="1" column="6">
+      <widget class="QLineEdit" name="dev_mcu_vsersion">
        <property name="alignment">
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
      </item>
-     <item row="0" column="0">
-      <widget class="QLabel" name="label_2">
+     <item row="1" column="4">
+      <widget class="QLabel" name="label_31">
        <property name="text">
-        <string>Baud</string>
+        <string>버전</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="9">
+      <widget class="QLineEdit" name="dev_port_2">
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="7">
+      <widget class="QLabel" name="label_24">
+       <property name="text">
+        <string>장치02</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="dev_baud">
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="8">
+      <widget class="QLabel" name="label_32">
+       <property name="text">
+        <string>버전</string>
        </property>
       </widget>
      </item>
@@ -1239,35 +1239,54 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="4">
-      <widget class="QLabel" name="label_31">
+     <item row="0" column="2">
+      <widget class="QLabel" name="label_28">
        <property name="text">
-        <string>version</string>
+        <string/>
        </property>
       </widget>
      </item>
-     <item row="1" column="8">
-      <widget class="QLabel" name="label_32">
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_2">
        <property name="text">
-        <string>version</string>
+        <string>Baud</string>
        </property>
       </widget>
      </item>
-     <item row="1" column="6">
-      <widget class="QLineEdit" name="dev_mcu_vsersion">
+     <item row="0" column="6">
+      <widget class="QLineEdit" name="dev_port">
        <property name="alignment">
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
      </item>
-     <item row="1" column="9">
-      <widget class="QLineEdit" name="dev_mcu_vsersion_2">
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
+     <item row="0" column="3">
+      <widget class="QLabel" name="label_23">
+       <property name="text">
+        <string>장치01</string>
        </property>
       </widget>
      </item>
     </layout>
+   </widget>
+   <widget class="QPushButton" name="config_check">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>20</y>
+      <width>61</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="text">
+     <string>check</string>
+    </property>
    </widget>
   </widget>
   <widget class="QPushButton" name="config_save">

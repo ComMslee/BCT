@@ -5,7 +5,6 @@ from PySide6 import QtCore
 from PySide6.QtCore import QThread, QMutex, QMutexLocker, QWaitCondition
 
 from src.util.ReadThread import ReadThread
-from src.util.define import global_testCase
 
 
 class FactoryWork(QThread):
@@ -159,7 +158,7 @@ class FactoryWork(QThread):
 
                         self.tempTest("45", True, maxVal=45)
                         if not self.bRunning: return
-                    else :
+                    else:
                         print("[FactoryWork]tempTest:: is False Skip temp Test")
 
                     itemCnt = 0  # 카운터 변수 초기화

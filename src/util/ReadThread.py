@@ -8,6 +8,7 @@ from PySide6.QtCore import QThread, QMutexLocker, QMutex
 class ReadThread(QThread):
     msgAck = QtCore.Signal(bytes)
     msgReadSerial = QtCore.Signal(str)
+    msgReadVersion = QtCore.Signal(str)
     msgReadRealTime = QtCore.Signal(dict)
 
     def __init__(self, serial_port):
@@ -117,6 +118,11 @@ class ReadThread(QThread):
                     text = ''.join(chr(byte) for byte in parserData[4:19])
                     print(f"STS_SERIAL_NUMBER [{parserData[3]}] {text}")
                     self.msgReadSerial.emit(text.replace('\x00', ''))
+
+                elif parserData[2] == 0x84:
+                    text = ''.join(chr(byte) for byte in parserData[4:19])
+                    print(f"STS_VERSION [{parserData[3]}] {text}")
+                    self.msgReadVersion.emit(text.replace('\x00', ''))
 
                 else:
                     print(f"parser not Know command {self.hexText(parserData)}")

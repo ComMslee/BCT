@@ -44,6 +44,6 @@ class MainWindow(QMainWindow, Ui_BCT):
 if __name__ == '__main__':
     app = QApplication()
     window = MainWindow()
-    window.setWindowTitle("BCT_V1.0.0")
+    window.setWindowTitle("BCT_V1.0.1")
     window.show()
     app.exec_()

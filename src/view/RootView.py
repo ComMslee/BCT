@@ -56,11 +56,11 @@ class RootView(QObject):
         pass
 
     def msgSerialRead(self, num):
-        # self.view.dev_mcu_vsersion.setText(num)
+        #  self.view.dev_mcu_vsersion.setText(num)
         pass
 
     def msgSerialRead2(self, num):
-        # self.view.dev_mcu_vsersion.setText(num)
+        #  self.view.dev_mcu_vsersion.setText(num)
         pass
 
     def onSaveDataEvent(self):

@@ -87,6 +87,7 @@ class ReadThread(QThread):
                     diagInfo = parserData[6]
                     chargeMode = parserData[22]
                     progrssbar = parserData[23]
+
                     info_string = (
                         f"STS_INFO "
                         f"BmsMode {parserData[3]} | "

@@ -72,6 +72,24 @@ class SerialCycleWorker(QThread):
                 [batteryData["chargeMode"], f"{self.cnt[0]}::{self.cnt[1]}",
                  batteryData["current"], batteryData["voltage"], batteryData["tempAvg"], code])
             self.cnt[1] += 1
+
+        soc = batteryData["soc"]
+        voltage = batteryData["voltage"]
+        current = batteryData["current"]
+
+        # soc 값을 90 이하일 때만 10단위로 내림하고 0인 경우 1로 설정
+        if soc <= 90:
+            soc = max((soc // 10) * 10, 1)
+
+        vmin, vmax = self.bctMap[soc][0] * 0.95, self.bctMap[soc][0] * 1.05
+        amin, amax = self.bctMap[soc][1] * 0.95, self.bctMap[soc][1] * 1.05
+
+        # 전류와 전압 조건 검사
+        if batteryData["progrssbar"] == 5:
+            currentPass = amin < current < amax
+            voltagePass = vmin < voltage < vmax
+            print(f"currnet {currentPass}, voltage {voltagePass}")
+
         self.msgReadRealTime.emit(batteryData)
 
     bctMap = {

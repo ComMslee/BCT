@@ -87,6 +87,7 @@ class ReadThread(QThread):
                     diagInfo = parserData[6]
                     chargeMode = parserData[22]
                     progrssbar = parserData[23]
+                    soc = parserData[13]
 
                     info_string = (
                         f"STS_INFO "
@@ -97,7 +98,7 @@ class ReadThread(QThread):
                         f"FullyCharged {parserData[8]} | "
                         f"Current {current} / {self.decodeWord(parserData[15], parserData[16], 0.02, True)} | "
                         f"Voltage {voltage} / {self.decodeWord(parserData[17], parserData[18], 0.002)} | "
-                        f"estRSOC {parserData[13]}, SOH {parserData[14]} | "
+                        f"estRSOC {soc}, SOH {parserData[14]} | "
                         f"TempCell Avg {tempAvg}, Max {parserData[20]}, Min {parserData[21]} | "
                         f"ChargeMode {chargeMode} | "
                         f"ProgressBarState {progrssbar}"
@@ -111,6 +112,7 @@ class ReadThread(QThread):
                         "diagInfo": diagInfo,
                         "progrssbar": progrssbar,
                         "chargeMode": chargeMode,
+                        "soc": soc,
                     }
 
                     self.msgReadRealTime.emit(data_82)

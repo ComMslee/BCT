@@ -73,6 +73,7 @@ class SerialCycleWorker(QThread):
                 [batteryData["chargeMode"], f"{self.cnt[2]}",
                  batteryData["current"], batteryData["voltage"], batteryData["tempAvg"], code])
             self.cnt[1] += 1
+            self.cnt[2] += 1
 
         soc = batteryData["soc"]
         voltage = batteryData["voltage"]

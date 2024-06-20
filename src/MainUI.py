@@ -469,10 +469,10 @@ class Ui_BCT(object):
         self.factory_stop.setSizePolicy(sizePolicy3)
         self.groupBox_10 = QGroupBox(self.tbBatteryFactory)
         self.groupBox_10.setObjectName(u"groupBox_10")
-        self.groupBox_10.setGeometry(QRect(520, 490, 301, 91))
+        self.groupBox_10.setGeometry(QRect(520, 490, 201, 91))
         self.gridLayoutWidget_11 = QWidget(self.groupBox_10)
         self.gridLayoutWidget_11.setObjectName(u"gridLayoutWidget_11")
-        self.gridLayoutWidget_11.setGeometry(QRect(10, 20, 281, 61))
+        self.gridLayoutWidget_11.setGeometry(QRect(10, 20, 181, 61))
         self.gridLayout_11 = QGridLayout(self.gridLayoutWidget_11)
         self.gridLayout_11.setObjectName(u"gridLayout_11")
         self.gridLayout_11.setContentsMargins(0, 0, 0, 0)
@@ -516,6 +516,9 @@ class Ui_BCT(object):
         self.label_22.setGeometry(QRect(520, 40, 79, 21))
         sizePolicy4.setHeightForWidth(self.label_22.sizePolicy().hasHeightForWidth())
         self.label_22.setSizePolicy(sizePolicy4)
+        self.label_33 = QLabel(self.tbBatteryFactory)
+        self.label_33.setObjectName(u"label_33")
+        self.label_33.setGeometry(QRect(730, 500, 81, 71))
         self.tbMain.addTab(self.tbBatteryFactory, "")
         self.tbSerial = QWidget()
         self.tbSerial.setObjectName(u"tbSerial")
@@ -751,7 +754,7 @@ class Ui_BCT(object):
 
         self.retranslateUi(BCT)
 
-        self.tbMain.setCurrentIndex(2)
+        self.tbMain.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(BCT)
@@ -836,6 +839,7 @@ class Ui_BCT(object):
         self.factory_select.setText(QCoreApplication.translate("BCT", u"\uc804\uccb4 \uc120\ud0dd/\ud574\uc81c", None))
         self.factory_temp.setText(QCoreApplication.translate("BCT", u"\uc628\ub3c4\ud14c\uc2a4\ud2b8", None))
         self.label_22.setText(QCoreApplication.translate("BCT", u"\uc5d0\ub7ec \ud14c\uc2a4\ud2b8", None))
+        self.label_33.setText("")
         self.tbMain.setTabText(self.tbMain.indexOf(self.tbBatteryFactory), QCoreApplication.translate("BCT", u"Factory Test", None))
         self.groupBox_6.setTitle(QCoreApplication.translate("BCT", u"Push Serial", None))
         self.push_serial_next.setText("")

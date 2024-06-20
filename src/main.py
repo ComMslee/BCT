@@ -1,5 +1,6 @@
 import PySide6
-from PySide6.QtWidgets import QMainWindow, QApplication
+from PySide6.QtGui import QPainter
+from PySide6.QtWidgets import QMainWindow, QApplication, QWidget
 
 from src.MainUI import Ui_BCT
 from src.repository.DataConfig import DataConfig
@@ -7,10 +8,11 @@ from src.view.BatteryCycleView import BatteryCycleView
 from src.view.BatteryFactoryView import BatteryFactoryView
 from src.view.PushSerialView import PushSerialView
 from src.view.RootView import RootView
+from src.view.unit.LEDBar import MakeBar
 
 
 class MainWindow(QMainWindow, Ui_BCT):
-    def __init__(self, *args, obj=None, **kwargs):
+    def __init__(self, *args, **kwargs):
         super(MainWindow, self).__init__(*args, **kwargs)
 
         self.setupUi(self)
@@ -20,6 +22,8 @@ class MainWindow(QMainWindow, Ui_BCT):
         self.batteryCycleTab = BatteryCycleView(self)
         self.batteryFactoryTab = BatteryFactoryView(self)
         self.pushSerialTab = PushSerialView(self)
+
+        # self.makeBar = MakeBar(self)
 
         self.initSelectTab()
 
@@ -45,5 +49,6 @@ if __name__ == '__main__':
     app = QApplication()
     window = MainWindow()
     window.setWindowTitle("BCT_V1.0.1")
+
     window.show()
     app.exec_()

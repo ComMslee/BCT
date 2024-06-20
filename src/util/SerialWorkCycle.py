@@ -25,7 +25,7 @@ class SerialCycleWorker(QThread):
         self.baudRate = baudRate
         self.timeCycle = timeCycle
         self.cycle = int(cycle)
-        self.cnt = [0, 0]
+        self.cnt = [0, 0, 0]
         self.mutex = QMutex()
         self.waitCondition = QWaitCondition()
 
@@ -69,7 +69,8 @@ class SerialCycleWorker(QThread):
             if code in global_testCase:
                 code = global_testCase[code]
             self.msgReadList.emit(
-                [batteryData["chargeMode"], f"{self.cnt[0]}::{self.cnt[1]}",
+                # [batteryData["chargeMode"], f"{self.cnt[0]}::{self.cnt[1]}",
+                [batteryData["chargeMode"], f"{self.cnt[2]}",
                  batteryData["current"], batteryData["voltage"], batteryData["tempAvg"], code])
             self.cnt[1] += 1
 
@@ -146,7 +147,8 @@ class SerialCycleWorker(QThread):
 
                     for idx in range(self.cycle):
                         if not self.bRunning: break
-                        self.cnt = [idx, 0]
+                        self.cnt[0] = idx
+                        self.cnt[1] = 0
                         self.msgCnt.emit(idx)
 
                         # 001 충전on

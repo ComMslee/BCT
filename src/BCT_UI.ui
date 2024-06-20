@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>1</number>
    </property>
    <property name="tabBarAutoHide">
     <bool>false</bool>
@@ -828,7 +828,7 @@
       <rect>
        <x>520</x>
        <y>490</y>
-       <width>301</width>
+       <width>201</width>
        <height>91</height>
       </rect>
      </property>
@@ -840,7 +840,7 @@
        <rect>
         <x>10</x>
         <y>20</y>
-        <width>281</width>
+        <width>181</width>
         <height>61</height>
        </rect>
       </property>
@@ -941,6 +941,19 @@
      </property>
      <property name="text">
       <string>에러 테스트</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_33">
+     <property name="geometry">
+      <rect>
+       <x>730</x>
+       <y>500</y>
+       <width>81</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
      </property>
     </widget>
    </widget>

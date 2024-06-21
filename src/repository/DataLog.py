@@ -24,7 +24,7 @@ class DataLog(QObject):
         self.devNum = devNum
         formatted_time = current_time.strftime("%y%m%d_%H%M%S")
         self.fileName = f"{formatted_time}_{serialNum}_{devNum}.csv"
-        self.writeData(["충전상태", "사이클", "전류", "전압", "온도", "오류코드"])
+        self.writeData(["상태", "카운트", "Soc", "전류", "전압", "온도", "오류코드"])
 
     def writeData(self, data):
         fullDir = os.path.join(self.__SAVE_DIR, self.fileName)

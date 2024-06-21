@@ -70,7 +70,7 @@ class SerialCycleWorker(QThread):
                 code = global_testCase[code]
             self.msgReadList.emit(
                 # [batteryData["chargeMode"], f"{self.cnt[0]}::{self.cnt[1]}",
-                [batteryData["chargeMode"], f"{self.cnt[2]}",
+                [batteryData["chargeMode"], f"{self.cnt[2]}", batteryData["soc"],
                  batteryData["current"], batteryData["voltage"], batteryData["tempAvg"], code])
             self.cnt[1] += 1
             self.cnt[2] += 1

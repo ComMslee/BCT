@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>0</number>
    </property>
    <property name="tabBarAutoHide">
     <bool>false</bool>
@@ -196,12 +196,17 @@
       </property>
       <column>
        <property name="text">
-        <string>충전상태</string>
+        <string>상태</string>
        </property>
       </column>
       <column>
        <property name="text">
         <string>번호</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>SOC</string>
        </property>
       </column>
       <column>
@@ -725,12 +730,17 @@
       </property>
       <column>
        <property name="text">
-        <string>충전상태</string>
+        <string>상태</string>
        </property>
       </column>
       <column>
        <property name="text">
         <string>번호</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>SOC</string>
        </property>
       </column>
       <column>

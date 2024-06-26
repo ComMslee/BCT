@@ -5,7 +5,7 @@ from PySide6 import QtCore
 from PySide6.QtCore import QThread, QMutex, QMutexLocker, QWaitCondition
 
 from src.util.ReadThread import ReadThread
-from src.util.define import global_testCase
+from src.util.define import global_testCase, bctMap
 
 
 class SerialCycleWorker(QThread):
@@ -64,6 +64,8 @@ class SerialCycleWorker(QThread):
         return headAndData + bytes([crc]) + bytes([0x7E])
 
     def readRealTime(self, batteryData: dict):
+        self.msgReadRealTime.emit(batteryData)
+
         if len(batteryData) > 4:
             code = batteryData["diagInfo"]
             if code in global_testCase:
@@ -75,48 +77,22 @@ class SerialCycleWorker(QThread):
             self.cnt[1] += 1
             self.cnt[2] += 1
 
-        soc = batteryData["soc"]
-        voltage = batteryData["voltage"]
-        current = batteryData["current"]
-
-        # soc 값을 90 이하일 때만 10단위로 내림하고 0인 경우 1로 설정
-        if soc <= 90:
-            soc = max((soc // 10) * 10, 1)
-
-        vmin, vmax = self.bctMap[soc][0] * 0.95, self.bctMap[soc][0] * 1.05
-        amin, amax = self.bctMap[soc][1] * 0.95, self.bctMap[soc][1] * 1.05
-
         # 전류와 전압 조건 검사
         if batteryData["progrssbar"] == 5:
+            soc = batteryData["soc"]
+            voltage = batteryData["voltage"]
+            current = batteryData["current"]
+
+            # soc 값을 90 이하일 때만 10단위로 내림하고 0인 경우 1로 설정
+            if soc <= 90:
+                soc = max((soc // 10) * 10, 1)
+
+            vmin, vmax = bctMap[soc][0] * 0.95, bctMap[soc][0] * 1.05
+            amin, amax = bctMap[soc][1] * 0.95, bctMap[soc][1] * 1.05
+
             currentPass = amin < current < amax
             voltagePass = vmin < voltage < vmax
             print(f"currnet {currentPass}, voltage {voltagePass}")
-
-        self.msgReadRealTime.emit(batteryData)
-
-    bctMap = {
-        1: [46.25, 2.62],
-        10: [49.32, 8.2],
-        20: [50.55, 8.22],
-        30: [51.45, 8.22],
-        40: [52.32, 8.2],
-        50: [53.42, 8.22],
-        60: [54.78, 8.22],
-        70: [55.88, 8.22],
-        80: [57.23, 8.2],
-        90: [58.18, 7.44],
-        91: [58.22, 7.1],
-        92: [58.26, 6.86],
-        93: [58.26, 6.66],
-        94: [58.26, 6.3],
-        95: [58.3, 6.1],
-        96: [58.26, 5.84],
-        97: [58.3, 5.46],
-        98: [58.34, 5.12],
-        99: [49.32, 4.64],
-        100: [49.32, 1],
-        # 101: [49.32, 0.28],
-    }
 
     def readSerial(self, serialNum: str):
         self.msgReadSerial.emit(serialNum)

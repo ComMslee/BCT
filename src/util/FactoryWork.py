@@ -5,6 +5,7 @@ from PySide6 import QtCore
 from PySide6.QtCore import QThread, QMutex, QMutexLocker, QWaitCondition
 
 from src.util.ReadThread import ReadThread
+from src.util.define import bctMap
 
 
 class FactoryWork(QThread):
@@ -13,13 +14,14 @@ class FactoryWork(QThread):
     msgRead = QtCore.Signal(str)
     msgReadList = QtCore.Signal(list)
 
-    def __init__(self, ComPort, baudrate=115200, bTempTest: bool = False, bErrTestDict=None):
+    def __init__(self, ComPort, baudrate=115200, bElectricity: bool = True, bTempTest: bool = False, bErrTestDict=None):
         super().__init__()
 
         self.serial_port = None
         self.read_thread: ReadThread = None
         self.comPort = ComPort
         self.BaudRate = baudrate
+        self.bElectricity = bElectricity
         self.bTempTest = bTempTest
         self.bErrTestDict = bErrTestDict if bErrTestDict else {}
         self.chargingStartWaitTime = 17 * 1000
@@ -66,7 +68,28 @@ class FactoryWork(QThread):
         crc = self.makeCrc(headAndData)
         return headAndData + bytes([crc]) + bytes([0x7E])
 
-    def readRealTime(self, batteryData: dict):
+    def electricityTest(self, batteryData: dict):
+        # 전류와 전압 조건 검사
+        if batteryData["progrssbar"] == 5:
+            soc = batteryData["soc"]
+            voltage = batteryData["voltage"]
+            current = batteryData["current"]
+
+            # soc 값을 90 이하일 때만 10단위로 내림하고 0인 경우 1로 설정
+            if soc <= 90:
+                soc = max((soc // 10) * 10, 1)
+
+            vmin, vmax = bctMap[soc][0] * 0.95, bctMap[soc][0] * 1.05
+            amin, amax = bctMap[soc][1] * 0.95, bctMap[soc][1] * 1.05
+
+            currentPass = amin < current < amax
+            voltagePass = vmin < voltage < vmax
+            print(f"currnet {currentPass}, voltage {voltagePass}")
+            self.msgReadList.emit([self.testTitle, f"{currentPass}/{voltagePass}"])
+        else:
+            self.msgReadList.emit([self.testTitle, f""])
+
+    def stateTest(self, batteryData: dict):
         if batteryData["progrssbar"] == 5:
             if not self.charging:
                 self.testOnOff(True)
@@ -126,7 +149,6 @@ class FactoryWork(QThread):
 
                     # 00 start read
                     self.read_thread = ReadThread(self.serial_port)
-                    self.read_thread.msgReadRealTime.connect(self.readRealTime)
                     self.read_thread.msgAck.connect(self.ack)
                     self.read_thread.start()
 
@@ -139,6 +161,15 @@ class FactoryWork(QThread):
                     # 초기화
                     self.initStopCharging()
                     if not self.bRunning: return
+
+                    if self.bElectricity:
+                        self.read_thread.msgReadRealTime.connect(self.electricityTest)
+                        self.testTitle = str(f"ElectricityTest")
+                        self.consoleWriteBytes(self.makePacket(bytes([0x06, 0x01])))
+                        self.waitCondition.wait(self.mutex, self.chargingStartWaitTime * 1.2)
+                        if not self.bRunning: return
+
+                    self.read_thread.msgReadRealTime.connect(self.stateTest)
 
                     # 충전시작
                     if self.bTempTest:

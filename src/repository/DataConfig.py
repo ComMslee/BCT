@@ -52,6 +52,7 @@ class DataConfig(QObject):
 
         self.__err_test = {}
         self.__temp_test = True
+        self.__electricity_test = True
 
         self.__serial_fixed = "1234567"
         self.__serial_val = "1234567"
@@ -77,6 +78,7 @@ class DataConfig(QObject):
                 "offtime": self.__offTime,
             },
             "tap_factory_test": {
+                "electricity_test": self.__electricity_test,
                 "temp_test": self.__temp_test,
                 "err_test": self.__err_test
             },
@@ -124,6 +126,7 @@ class DataConfig(QObject):
                     if isinstance(tapfactory, dict):
                         self.__temp_test = tapfactory["temp_test"]
                         self.__err_test = tapfactory["err_test"]
+                        self.__electricity_test = tapfactory["electricity_test"]
 
                 if "tap_push_serial" in loadConfig:
                     tapRush = loadConfig["tap_push_serial"]
@@ -190,6 +193,12 @@ class DataConfig(QObject):
 
     def getTemp(self):
         return self.__temp_test
+
+    def setElectricity(self, bTest: bool):
+        self.__electricity_test = bTest
+
+    def getElectricity(self):
+        return self.__electricity_test
 
     def setErr(self, testList: dict):
         self.__err_test = testList

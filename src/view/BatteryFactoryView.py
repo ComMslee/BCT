@@ -31,7 +31,9 @@ class BatteryFactoryView(QObject):
         self.view.factory_stop.clicked.connect(self.stopCycle)
         self.view.factory_select.clicked.connect(self.select_all_items)
         self.view.factory_temp.stateChanged.connect(self.onChangeTemp)
+        self.view.factory_electricity.stateChanged.connect(self.onCheangeElectricity)
         self.view.factory_temp.setChecked(dataConfig.getTemp())
+        self.view.factory_electricity.setChecked(dataConfig.getElectricity())
 
         colSize = [240, 90, 90]
         for view in [self.view.factory_table]:
@@ -75,6 +77,11 @@ class BatteryFactoryView(QObject):
         dataConfig.setTemp(state)
         dataConfig.saveData()
 
+    def onCheangeElectricity(self, state):
+        dataConfig = self.dataConfig
+        dataConfig.setElectricity(state)
+        dataConfig.saveData()
+
     def updateUI(self):
         pass
 
@@ -90,6 +97,7 @@ class BatteryFactoryView(QObject):
         for port, view in zip(devPort, self.devView):
             thread = FactoryWork(
                 port, baudrate=dataConfig.getComBaudRate(),
+                bElectricity=dataConfig.getElectricity(),
                 bTempTest=dataConfig.getTemp(),
                 bErrTestDict=dataConfig.getErr()
             )

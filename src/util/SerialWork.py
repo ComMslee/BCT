@@ -10,9 +10,9 @@ from src.util.ReadThread import ReadThread
 class SerialWorker(QThread):
     bRunning = True
     msgThread = QtCore.Signal(str)
-    msgSerialRead = QtCore.Signal(str)
+    msgSerialRead = QtCore.Signal(str, str)
 
-    def __init__(self, ComPort, writeNum: str, baudrate=115200):
+    def __init__(self, writeNum: str, ComPort, baudrate=115200):
         super().__init__()
 
         self.serial_port = None
@@ -59,7 +59,7 @@ class SerialWorker(QThread):
 
     def serialRead(self, serialNum):
         print(serialNum)
-        self.msgSerialRead.emit(serialNum)
+        self.msgSerialRead.emit(self.writeNum, serialNum)
 
     def run(self):
         with QMutexLocker(self.mutex):

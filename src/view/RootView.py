@@ -52,7 +52,7 @@ class RootView(QObject):
         pass
 
     def msgVersionRead2(self, ver):
-        self.view.dev_mcu_vsersion.setText(ver)
+        self.view.dev_mcu_vsersion_2.setText(ver)
         pass
 
     def msgSerialRead(self, num):

@@ -114,12 +114,11 @@ class TempWork(QThread):
                     if not self.bRunning: return
 
                     while True:
-                        self.waitCondition.wait(self.mutex, 100)
+                        self.waitCondition.wait(self.mutex, 3000)
                         if not self.bRunning: return
 
                     # 충전 중지 및 초기화
-                    print("[TempWork]ErrTest::stop charging")
-                    self.consoleWriteBytes(self.makePacket(bytes([0x04, 0x00])))
+                    print("[TempWork]stop Test")
                     self.consoleWriteBytes(self.makePacket(bytes([0x06, 0x00])))
                     if not self.bRunning: return
 

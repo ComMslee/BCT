@@ -130,6 +130,7 @@ class BatteryFactoryView(QObject):
         self.view.factory_stop.setEnabled(not enable)
         self.view.tbMain.setTabEnabled(0, enable)
         self.view.tbMain.setTabEnabled(2, enable)
+        self.view.tbMain.setTabEnabled(3, enable)
 
 
 class DeviceView(QObject):

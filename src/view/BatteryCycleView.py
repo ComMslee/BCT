@@ -118,6 +118,7 @@ class BatteryCycleView(QObject):
         self.view.config_btn_stop.setEnabled(not enable)
         self.view.tbMain.setTabEnabled(1, enable)
         self.view.tbMain.setTabEnabled(2, enable)
+        self.view.tbMain.setTabEnabled(3, enable)
 
     def setTableColumnSize(self, view: QTableWidget, sizes):
         for i, size in enumerate(sizes):

@@ -82,6 +82,7 @@ class TempWork(QThread):
         else:
             self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x01, self.encodeSignedByte(temp)[0], 0x00])))
             self.consoleWriteBytes(self.makePacket(bytes([0x05, 0x02, self.encodeSignedByte(30)[0], 0x00])))
+
     def run(self):
         with QMutexLocker(self.mutex):
             try:

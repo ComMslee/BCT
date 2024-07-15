@@ -25,7 +25,7 @@ class FactoryWork(QThread):
         self.bTempTest = bTempTest
         self.bErrTestDict = bErrTestDict if bErrTestDict else {}
         self.chargingStartWaitTime = 17 * 1000
-        self.testWaitTime = 2.8 * 1000
+        self.testWaitTime = 4 * 1000
         self.charging = False
 
         self.testType: bool = False
